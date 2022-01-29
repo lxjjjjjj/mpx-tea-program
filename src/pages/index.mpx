@@ -1,0 +1,196 @@
+<template>
+  <canvas-drag id="canvas-drag" graph="{{graph}}" width="700" height="750" enableUndo="{{true}}"></canvas-drag>
+  <view class="btn" bindtap="onAddImage">添加图片</view>
+  <view class="btn" bindtap="onAddText">添加文字</view>
+  <view class="btn" bindtap="onExport">导出图片</view>
+  <view class="btn" bindtap="onChangeColor">改变文字颜色</view>
+  <view class="btn" bindtap="onChangeBgColor">改变背景颜色</view>
+  <view class="btn" bindtap="onChangeBgImage">改变背景照片</view>
+  <view class="btn" bindtap="onExportJSON">导出模板</view>
+  <view class="btn" bindtap="onImport">导入默认模板</view>
+  <view class="btn" bindtap="onClearCanvas">清空画布</view>
+  <view class="btn" bindtap="onUndo">后退</view>
+  <time-line/>
+  <view bindtap="toDrawer"> 打开抽屉</view>
+</template>
+
+<script>
+  import mpx,{ createPage } from '@mpxjs/core'
+  import DrawerPage from './drawer.mpx?resolve'
+  import CanvasDrag from '../../scripts/canvas-drag';
+
+  createPage({
+      data: {
+          graph: {},
+      },
+
+      methods:{
+        /**
+         * 添加测试图片
+         */
+        onAddTest() {
+            this.setData({
+                graph: {
+                    w: 120,
+                    h: 120,
+                    type: 'image',
+                    url: '../../assets/images/test.jpg',
+                }
+            });
+        },
+
+        /**
+         * 添加图片
+         */
+        onAddImage() {
+          let proportion
+          let h = 200
+          let imageUrl = 'https://m.duitang.com/blog/?id=1347987947&belong_album=85440243'
+          // TODO: 微信后台设置域名 
+          // wx.downloadFile({
+          //   url: imageUrl, 
+          //   success: (res) => {
+          //     wx.getImageInfo({
+          //       src: imageUrl,
+          //       success (res) {
+          //         console.log('res',res)
+          //         // proportion = res.height / res.width
+          //         // h = h * proportion
+          //       }
+          //     })
+          //     this.setData({
+          //         graph: {
+          //           w: 200,
+          //           h: h,
+          //           type: 'image',
+          //           url: res.tempFilePaths[0],
+          //         }
+          //     });
+          //   }
+          // })
+          wx.chooseImage({
+            success: (res) => {
+              wx.getImageInfo({
+                src: res.tempFilePaths[0],
+                success (res) {
+                  proportion = res.height / res.width
+                  h = h * proportion
+                }
+              })
+              this.setData({
+                  graph: {
+                    w: 200,
+                    h: h,
+                    type: 'image',
+                    url: res.tempFilePaths[0],
+                  }
+              });
+            }
+          })
+        },
+
+        /**
+         * 添加文本
+         */
+        onAddText() {
+            this.setData({
+                graph: {
+                    type: 'text',
+                    text: 'helloworld',
+                }
+            });
+        },
+
+        /**
+         * 导出图片
+         */
+        onExport() {
+            CanvasDrag.export()
+                .then((filePath) => {
+                    console.log(filePath);
+                    wx.previewImage({
+                        urls: [filePath]
+                    })
+                })
+                .catch((e) => {
+                    console.error(e);
+                })
+        },
+
+        /**
+         * 改变文字颜色
+         */
+        onChangeColor() {
+            CanvasDrag.changFontColor('blue');
+        },
+
+        /**
+         * 改变背景颜色
+         */
+        onChangeBgColor() {
+            CanvasDrag.changeBgColor('yellow');
+        },
+
+        /**
+         * 改变背景照片
+         */
+        onChangeBgImage() {
+            CanvasDrag.changeBgImage('../../assets/images/test.jpg');
+        },
+
+        /**
+         * 导出当前画布为模板
+         */
+        onExportJSON(){
+            CanvasDrag.exportJson()
+              .then((imgArr) => {
+                console.log(JSON.stringify(imgArr));
+            })
+              .catch((e) => {
+                  console.error(e);
+              });
+        },
+
+        onImport(){
+            // 有背景
+            // let temp_theme = [{"type":"bgColor","color":"yellow"},{"type":"image","url":"../../assets/images/test.jpg","y":98.78423143832424,"x":143.78423143832424,"w":104.43153712335152,"h":104.43153712335152,"rotate":-12.58027482265038,"sourceId":null},{"type":"text","text":"helloworld","color":"blue","fontSize":24.875030530031438,"y":242.56248473498428,"x":119.57012176513672,"w":116.73966979980469,"h":34.87503053003144,"rotate":8.873370699754087}];
+            // 无背景
+            let temp_theme = [{"type":"image","url":"../../assets/images/test.jpg","y":103,"x":91,"w":120,"h":120,"rotate":0,"sourceId":null},{"type":"text","text":"helloworld","color":"blue","fontSize":20,"y":243,"x":97,"rotate":0}];
+
+            CanvasDrag.initByArr(temp_theme);
+        },
+
+        onClearCanvas:function(event){
+          let _this = this;
+          _this.setData({canvasBg:null});
+          CanvasDrag.clearCanvas();
+        },
+
+        onUndo:function(event){
+            CanvasDrag.undo();
+        },
+        toDrawer:function(){
+          mpx.navigateTo({
+            url: DrawerPage
+          })
+        }
+      }
+  });
+</script>
+<style>
+  .btn{
+    padding: 10rpx 20rpx;
+    float:left;
+    margin:10rpx;
+    border:solid 1px #dfdfdf;
+    border-radius: 10rpx;
+  }
+</style>
+<script type="application/json">
+  {
+    "usingComponents": {
+      "canvas-drag": "../components/canvas-drag",
+      "time-line":"../components/time-line"
+    }
+  }
+</script>
