@@ -10,13 +10,15 @@
   <view class="btn" bindtap="onImport">导入默认模板</view>
   <view class="btn" bindtap="onClearCanvas">清空画布</view>
   <view class="btn" bindtap="onUndo">后退</view>
+  <view class="btn" bindtap="toDrawer">打开抽屉</view>
+  <view class="btn" bindtap="toVerticalNav">打开垂直导航</view>
   <time-line/>
-  <view bindtap="toDrawer"> 打开抽屉</view>
 </template>
 
 <script>
   import mpx,{ createPage } from '@mpxjs/core'
   import DrawerPage from './drawer.mpx?resolve'
+  import VerticalNavPage from './vertical-nav?resolve'
   import CanvasDrag from '../../scripts/canvas-drag';
 
   createPage({
@@ -172,6 +174,11 @@
         toDrawer:function(){
           mpx.navigateTo({
             url: DrawerPage
+          })
+        },
+        toVerticalNav:function(){
+          mpx.navigateTo({
+            url: VerticalNavPage
           })
         }
       }
