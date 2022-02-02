@@ -11,10 +11,10 @@ function CanvasDrag(options = {}) {
   const pages = getCurrentPages();
   const ctx = pages[pages.length - 1];
 
-const canvasDrag = ctx.selectComponent(options.selector);
-  delete options.selector;
+  const canvasDrag = ctx.selectComponent(options.selector);
+    delete options.selector;
 
-return canvasDrag;
+  return canvasDrag;
 }
 
 CanvasDrag.export = () => {

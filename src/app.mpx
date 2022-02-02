@@ -112,7 +112,6 @@
   {
     "pages": [
       "./pages/index",
-      "./pages/drawer",
       "./pages/vertical-nav.mpx"
     ]
   }

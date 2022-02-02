@@ -1,11 +1,5 @@
 <template>
 	<view>
-		<view class="fixed">
-			<cu-custom isBack="{{true}}" bgColor="bg-shadeTop text-white">
-				<block slot="backText">返回</block>
-				<block slot="content">垂直导航</block>
-			</cu-custom>
-		</view>
 		<view class="VerticalBox">
 			<scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{verticalNavTop}}" style="height:100vh">
 				<view class="cu-item {{index==tabCur?'text-green cur':''}}"  wx:for="{{list}}" wx:key="index" bindtap="TabSelect"
@@ -101,7 +95,7 @@
 				let tabHeight = 0;
 				if (this.load) {
 					for (let i = 0; i < this.list.length; i++) {
-						let view = uni.createSelectorQuery().select("#main-" + this.list[i].id);
+						let view = this.createSelectorQuery().select("#main-" + this.list[i].id);
 						view.fields({
 							size: true
 						}, data => {
@@ -188,8 +182,6 @@
 <script type="application/json">
   {
     "component": true,
-	"usingComponents":{
-		"cu-custom":"../components/cu-custom.mpx"
-	}
+	"usingComponents":{}
   }
 </script>

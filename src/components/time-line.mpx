@@ -1,9 +1,5 @@
 <!-- 流转记录组件 -->
 <template>
-  <cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
-    <view slot="backText">返回</view>
-    <view slot="content">时间轴</view>
-  </cu-custom>
   <view class="cu-timeline">
     <view class="cu-time">昨天</view>
     <view class="cu-item cur cuIcon-noticefill">
@@ -175,8 +171,6 @@
 <script type="application/json">
   {
     "component": true,
-    "usingComponents":{
-      'cu-custom':'./cu-custom'
-    }
+    "usingComponents":{}
   }
 </script>

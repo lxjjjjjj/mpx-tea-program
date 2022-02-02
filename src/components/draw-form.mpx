@@ -1,0 +1,52 @@
+<template>
+<view>
+    <view class="draw-form-item">
+        <view class="draw-form-name">名称</view>
+        <input class="draw-input" auto-focus/>
+    </view>
+    <view class="draw-form-item">
+        <view class="draw-form-name">创作者</view>
+        <view class="draw-form-view"></view>
+    </view>
+    <view class="draw-form-item">
+        <view class="draw-form-name">简介</view>
+        <textarea class="draw-form-textarea" auto-focus/>
+    </view>
+</view>
+</template>
+<script>
+  import { createComponent } from '@mpxjs/core'
+
+  createComponent({
+  
+  })
+</script>
+<style lang="stylus" scoped>
+.draw-form-item{
+    width calc(100% - 20px);
+    margin: 10px 10px 0 10px;
+    display flex
+    align-items center
+}
+.draw-input{
+    width calc(100% - 20px);
+    border: solid 1px #dfdfdf;
+    border-radius: 10rpx;
+    height: 30px;
+    line-height: 30px;
+}
+.draw-form-name{
+    font-size 16px;
+    width 50px
+}
+.draw-form-textarea{
+    width calc(100% - 20px);
+    border: solid 1px #dfdfdf;
+    border-radius: 10rpx;
+    height: 30px;
+    line-height: 30px;
+}
+.draw-form-view{
+
+}
+</style>

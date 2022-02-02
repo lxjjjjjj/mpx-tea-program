@@ -1,29 +1,26 @@
 <template>
-  <canvas-drag id="canvas-drag" graph="{{graph}}" width="700" height="750" enableUndo="{{true}}"></canvas-drag>
-  <view class="btn" bindtap="onAddImage">添加图片</view>
-  <!-- <view class="btn" bindtap="onAddText">添加文字</view>
-  <view class="btn" bindtap="onExport">导出图片</view>
-  <view class="btn" bindtap="onChangeColor">改变文字颜色</view>
-  <view class="btn" bindtap="onChangeBgColor">改变背景颜色</view>
-  <view class="btn" bindtap="onExportJSON">导出模板</view>
-  <view class="btn" bindtap="onImport">导入默认模板</view> -->
-  <view class="btn" bindtap="onClearCanvas">清空</view>
-  <view class="btn" bindtap="onChangeBgImage">改变背景照片</view>
-  <!-- <view class="btn" bindtap="onUndo">后退</view> -->
-  <view class="btn" bindtap="toVerticalNav">打开垂直导航</view>
-  <draw-form/>
+    <canvas-drag id="canvas-drag" graph="{{graph}}" width="700" height="750" enableUndo="{{true}}"></canvas-drag>
+    <view class="btn" bindtap="onAddImage">添加图片</view>
+    <!-- <view class="btn" bindtap="onAddText">添加文字</view>
+    <view class="btn" bindtap="onExport">导出图片</view>
+    <view class="btn" bindtap="onChangeColor">改变文字颜色</view>
+    <view class="btn" bindtap="onChangeBgColor">改变背景颜色</view>
+    <view class="btn" bindtap="onExportJSON">导出模板</view>
+    <view class="btn" bindtap="onUndo">后退</view>
+    <view class="btn" bindtap="onImport">导入默认模板</view> -->
+    <view class="btn" bindtap="onChangeBgImage">改变背景照片</view>
+    <view class="btn" bindtap="onClearCanvas">清空</view>
+    <view class="btn" bindtap="toVerticalNav">打开垂直导航</view>
 </template>
-
 <script>
-  import mpx,{ createPage } from '@mpxjs/core'
-  import VerticalNavPage from './vertical-nav?resolve'
+  import mpx,{ createComponent } from '@mpxjs/core'
+  import VerticalNavPage from '../pages/vertical-nav?resolve'
   import CanvasDrag from '../../scripts/canvas-drag';
   const DRAG_ICON = require('../scale.png')
-  createPage({
+  createComponent({
       data: {
           graph: {},
       },
-
       methods:{
         /**
          * 添加测试图片
@@ -186,11 +183,11 @@
     border-radius: 10rpx;
   }
 </style>
+
 <script type="application/json">
   {
     "usingComponents": {
-      "canvas-drag": "../components/canvas-drag",
-      "draw-form": "../components/draw-form.mpx"
+      "canvas-drag": "./canvas-drag.mpx"
     }
   }
 </script>
