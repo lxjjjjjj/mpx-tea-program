@@ -103,16 +103,21 @@
 
 <style>
   /*此处编写全局样式*/
-  @import './icon.wxss';
-  @import './main.wxss';
-  @import './animation.wxss'
 </style>
 
 <script type="application/json">
   {
     "pages": [
-      "./pages/index",
-      "./pages/vertical-nav.mpx"
+      "./pages/cover",
+      "./pages/diy",
+      "./pages/login.mpx",
+      "./pages/signIn.mpx",
+      "./pages/notice.mpx",
+      "./pages/coupon.mpx",
+      "./pages/ad.mpx",
+      "./pages/collect.mpx",
+      "./pages/my.mpx",
+      "./pages/index.mpx"
     ]
   }
 </script>

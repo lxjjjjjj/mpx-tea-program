@@ -1,0 +1,222 @@
+<template>
+    <view class="tab-wrapper">
+        <view wx:for="{{tabs}}" wx:key="item" wx:class="tab-item {{index===tabSelect ? 'tab-item-active' : ''}}" bindtap="changeTab(index)">
+            {{item}}
+            <view class="tab-tip">3</view>
+        </view>
+    </view>
+    <view class="collect-container" wx:if="{{tabSelect===0}}">
+        <view class="collect-item" wx:for="{{collectList}}" wx:key="{{item.id}}">
+            <image mode="widthFix" class="collect-picture" src="{{item.image}}"/>
+            <view class="collect-top">
+                <image src="{{item.avatar}}" class="collect-image"/>
+                <view class="collect-id">作品名称 : {{item.name}}</view>
+            </view>
+            <view class="collect-desc">作品描述 : {{item.desc}}</view>
+        </view>
+    </view>
+    <view class="my-draw"wx:if="{{tabSelect===1}}">
+        <view class="draw-item">
+            <image mode="widthFix" class="draw-picture" src="{{draw.image}}"/>
+            <view class="draw-top">
+                <view class="draw-name">作品名称 : {{draw.name}}</view>
+            </view>
+            <view class="draw-desc">作品描述 : {{draw.desc}}</view>
+        </view>
+        <view class="bottom-operation">
+            <view wx:for="{{bottomOperations}}" wx:key="item" wx:class="bottom-item" bindtap="clickOperation(index)">
+                {{item}}
+            </view>
+        </view>
+    </view>
+</template>
+
+<script>
+  import mpx,{ createPage } from '@mpxjs/core'
+  import DIYPage from './diy.mpx?resolve'
+  createPage({
+      data: {
+        tabs:['我的创作','草稿箱'],
+        bottomOperations:['删除草稿','继续创作'],
+        tabSelect:0,
+        collectList:[
+            {
+                avatar:'https://p.qqan.com/up/2021-1/202118103317306.jpg',
+                name:'anyone',
+                id:'#DW2460',
+                desc:'这是一段描述这是一段描述这是一段描述这是一段描述这是一段描述',
+                image:'https://p.qqan.com/up/2021-1/202118103317306.jpg'
+            },
+            {
+                avatar:'https://p.qqan.com/up/2021-1/202118103317306.jpg',
+                name:'anyone',
+                id:'#DW2460',
+                desc:'这是一段描述',
+                image:'https://p.qqan.com/up/2021-1/202118103317306.jpg'
+            },
+            {
+                avatar:'https://p.qqan.com/up/2021-1/202118103317306.jpg',
+                name:'anyone',
+                id:'#DW2460',
+                desc:'这是一段描述',
+                image:'https://p.qqan.com/up/2021-1/202118103317306.jpg'
+            },
+            {
+                avatar:'https://p.qqan.com/up/2021-1/202118103317306.jpg',
+                name:'anyone',
+                id:'#DW2460',
+                desc:'这是一段描述',
+                image:'https://p.qqan.com/up/2021-1/202118103317306.jpg'
+            }
+        ],
+        draw:{
+            name:'anyone',
+            desc:'这是一段描述这是一段描述这是一段描述这是一段描述这是一段描述',
+            image:'https://p.qqan.com/up/2021-1/202118103317306.jpg'
+        }
+      },
+      methods:{
+        changeTab(index){
+            this.tabSelect = index
+        },
+        clickOperation(index){
+            if(index===0){
+                // wx.request()
+            }else{
+                mpx.navigateTo({
+                    url:DIYPage
+                })
+            }
+        }
+      }
+  });
+</script>
+<style>
+.tab-wrapper{
+    display:flex;
+    align-items: center;
+    margin-top:10px;
+}
+.tab-item{
+    width:80px;
+    height:30px;
+    line-height:30px;
+    background-color: #eee;
+    margin-left:10px;
+    text-align: center;
+    position: relative;
+}
+.tab-item-active{
+    background: orange !important;
+}
+.tab-tip{
+    width:15px;
+    height:15px;
+    border-radius: 8px;
+    background: red;
+    position: absolute;
+    top:-2px;
+    line-height: 15px;
+    right:-3px;
+    font-size:12px;
+}
+.bottom-operation{
+    display:flex;
+    align-items: center;
+    margin-top:10px;
+    position:fixed;
+    bottom:10px;
+    right: 10px;
+    left:10px;
+}
+.bottom-item{
+    width:160px;
+    height:30px;
+    line-height:30px;
+    background-color: #eee;
+    margin-left:10px;
+    text-align: center;
+    position: relative;
+}
+.offical{
+    height:200px;
+    width:calc(100vw - 20px);
+    margin:10px;
+}
+.collect{
+    height:100px;
+    width:calc(100vw - 20px);
+    margin:10px;
+}
+.collect-item{
+    width: calc(100vw - 20px);
+    margin:10px;
+}
+.collect-top{
+    display: flex;
+    align-items: center;
+    height:30px;
+    display: flex;
+    align-items: center;
+}
+.collect-image{
+    height:30px;
+    width:30px;
+    border-radius:15px;
+}
+.collect-name{
+    margin-left:10px;
+    font-size:14px;
+    color:#888;
+}
+.collect-desc{
+    font-size:14px;
+    color:#888;
+    margin-top:5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.collect-picture{
+    margin-top:5px;
+    width:100%;
+}
+.draw-item{
+    width: calc(100vw - 20px);
+    margin:10px;
+}
+.draw-top{
+    display: flex;
+    align-items: center;
+    height:30px;
+    display: flex;
+    align-items: center;
+}
+.draw-image{
+    height:30px;
+    width:30px;
+    border-radius:15px;
+}
+.draw-id{
+    margin-left:10px;
+    font-size:14px;
+    color:#888;
+}
+.draw-desc{
+    font-size:14px;
+    color:#888;
+    margin-top:5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.draw-picture{
+    margin-top:5px;
+    width:100%;
+}
+</style>
+<script type="application/json">
+  {
+    "usingComponents": {}
+  }
+</script>

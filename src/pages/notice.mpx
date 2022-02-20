@@ -1,0 +1,132 @@
+<template>
+    <view class="tab-wrapper">
+        <view wx:for="{{tabs}}" wx:key="item" wx:class="tab-item {{index===tabSelect ? 'tab-item-active' : ''}}" bindtap="changeTab(index)">
+            {{item}}
+            <view class="tab-tip">3</view>
+        </view>
+    </view>
+    <view wx:for="{{noticeList}}" wx:key="{{item.title}}" class="notice-style">
+        <image src="{{item.image}}" class="notice-image"/>
+        <view class="notice-content">
+            <view class="notice-top">
+                <view class="notice-title">{{item.title}}</view>
+                <view class="notice-time">{{item.date}}</view>
+            </view>
+            <view class="notice-desc">{{item.desc}}</view>
+        </view>
+    </view>
+</template>
+
+<script>
+  import mpx,{ createPage } from '@mpxjs/core'
+
+  createPage({
+      data: {
+        tabs:['我的消息','系统通知'],
+        tabSelect:0,
+        noticeList:[{
+            image:'https://p.qqan.com/up/2021-1/202118103317306.jpg',
+            title:"VIP福利",
+            date:"2022-02-20",
+            desc:"VIP福利已发放"
+        },{
+            image:'https://p.qqan.com/up/2021-1/202118103317306.jpg',
+            title:"VIP福利",
+            date:"2022-02-20",
+            desc:"VIP福利已发放"
+        },{
+            image:'https://p.qqan.com/up/2021-1/202118103317306.jpg',
+            title:"VIP福利",
+            date:"2022-02-20",
+            desc:"VIP福利已发放"
+        },{
+            image:'https://p.qqan.com/up/2021-1/202118103317306.jpg',
+            title:"VIP福利",
+            date:"2022-02-20",
+            desc:"VIP福利已发放"
+        }]
+      },
+      methods:{
+        changeTab(index){
+            this.tabSelect = index
+        }   
+      }
+  });
+</script>
+<style>
+    .tab-wrapper{
+        display:flex;
+        align-items: center;
+        margin-top:10px;
+    }
+    .tab-item{
+        width:80px;
+        height:30px;
+        line-height:30px;
+        background-color: #eee;
+        margin-left:10px;
+        text-align: center;
+        position: relative;
+    }
+    .tab-item-active{
+        background: orange !important;
+    }
+    .tab-tip{
+        width:15px;
+        height:15px;
+        border-radius: 8px;
+        background: red;
+        position: absolute;
+        top:-2px;
+        line-height: 15px;
+        right:-3px;
+        font-size:12px;
+    }
+    .notice-style{
+        width:calc(100vw - 20px);
+        height:80px;
+        margin:10px 10px;
+        background: #eee;
+        display: flex;
+        border-radius: 5px;
+    }
+    .notice-image{
+        width:30%;
+        height:100%;
+    }
+    .notice-content{
+        width:70%;
+        height:100%;
+        color:#333;
+    }
+    .notice-top{
+        position:relative;
+        margin-top:10px;
+        margin-left:10px;
+        height:20px;
+    }
+    .notice-title{
+        font-size:16px;
+        color:#888;
+        position:absolute;
+        top:0px;
+        left:10px;
+    }
+    .notice-time{
+        font-size:12px;
+        color:#888;
+        position:absolute;
+        top:2px;
+        right:10px;
+    }
+    .notice-desc{
+        margin-top:25px;
+        margin-left:20px;
+        font-size: 14px;
+    }
+</style>
+<script type="application/json">
+  {
+    "usingComponents": {}
+  }
+</script>

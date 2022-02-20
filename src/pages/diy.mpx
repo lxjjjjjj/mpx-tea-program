@@ -1,0 +1,363 @@
+<template>
+  <view class="canvas-container">
+    <canvas-drag id="canvas-drag" graph="{{graph}}" enableUndo="{{true}}"></canvas-drag>
+    <!-- <view class="btn" bindtap="onAddImage">添加图片</view>
+    <view class="btn" bindtap="onAddText">添加文字</view>
+    <view class="btn" bindtap="onExport">导出图片</view>
+    <view class="btn" bindtap="onChangeColor">改变文字颜色</view>
+    <view class="btn" bindtap="onChangeBgColor">改变背景颜色</view>
+    <view class="btn" bindtap="onExportJSON">导出模板</view>
+    <view class="btn" bindtap="onImport">导入默认模板</view>
+    <view class="btn" bindtap="onClearCanvas">清空</view>
+    <view class="btn" bindtap="onChangeBgImage">改变背景照片</view>
+    <view class="btn" bindtap="onUndo">后退</view>
+    <view class="btn" bindtap="toVerticalNav">打开垂直导航</view> -->
+  </view>
+  <view class="operation-area">
+    <view class="operation-container">
+      <button bindtap="publish" class="operation-btn">发布</button>
+      <button bindtap="save" class="operation-btn">保存</button>
+    </view>
+  </view>
+  <view class="change-container">
+    <view class="operation-list-wrapper">
+      <view class="operation-list">
+        <view bindtap="changeSelect(1)" class="change-btn {{typeSelect===1 ? 'change-select' : ''}}">底图</view>
+        <view bindtap="changeSelect(2)" class="change-btn {{typeSelect===2 ? 'change-select' : ''}}">元素</view>
+      </view>
+    </view>
+    <scroll-view class="vip-list" scroll-x wx:if="{{typeSelect===2}}">
+      <view class="vip-list-wrapper">
+        <view class="vip-item {{vipSelect===item ? 'change-select' : ''}}" bindtap="changeVIP(item)" wx:for="{{vipList}}" wx:key="item">{{item}}</view>
+      <view>
+    </scroll-view>
+    <view class="image-container">
+      <image wx:for="{{showList}}" wx:key="item" class="image-style" src="{{item}}" bindtap="changeImage(item)"/>
+      <view class="diy-self" bindtap="onAddImage">
+        <image class="diy-self-image" src="https://p.qqan.com/up/2021-1/202118103317306.jpg"></image>
+        <view class="diy-self-text">自定义</view>
+      </view>
+      <view></view><view></view><view></view><view></view><view></view>
+    </view>
+  </view>
+</template>
+
+<script>
+  import mpx,{ createPage } from '@mpxjs/core'
+  // import VerticalNavPage from './vertical-nav?resolve'
+  import CanvasDrag from '../../scripts/canvas-drag';
+  const DRAG_ICON = require('../scale.png')
+  createPage({
+      data: {
+          graph: {},
+          bgImageList:['https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg'],
+          iconList:{
+            VIP1:['https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg'],
+            VIP2:['https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg'],
+            VIP3:['https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg'],
+            VIP4:['https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg'],
+            VIP5:['https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg'],
+            VIP6:['https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg'],
+            VIP7:['https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg'],
+          },
+          vipList:['VIP1','VIP2','VIP3','VIP4','VIP5','VIP6','VIP7','VIP8'],
+          typeSelect:1,
+          vipSelect:'VIP1',
+          showList:[]
+      },
+      onReady(){
+        this.changeSelect(1)
+      },
+      methods:{
+        /**
+         * 添加测试图片
+         */
+        onAddTest() {
+            this.setData({
+                graph: {
+                    w: 120,
+                    h: 120,
+                    type: 'image',
+                    url: '../../assets/images/test.jpg',
+                }
+            });
+        },
+
+        /**
+         * 添加图片
+         */
+        onAddImage() {
+          let proportion
+          let h = 200
+          let imageUrl = 'https://m.duitang.com/blog/?id=1347987947&belong_album=85440243'
+          // TODO: 微信后台设置域名 
+          // wx.downloadFile({
+          //   url: imageUrl, 
+          //   success: (res) => {
+          //     wx.getImageInfo({
+          //       src: imageUrl,
+          //       success (res) {
+          //         console.log('res',res)
+          //         // proportion = res.height / res.width
+          //         // h = h * proportion
+          //       }
+          //     })
+          //     this.setData({
+          //         graph: {
+          //           w: 200,
+          //           h: h,
+          //           type: 'image',
+          //           url: res.tempFilePaths[0],
+          //         }
+          //     });
+          //   }
+          // })
+          wx.chooseImage({
+            success: (res) => {
+              wx.getImageInfo({
+                src: res.tempFilePaths[0],
+                success (res) {
+                  proportion = res.height / res.width
+                  h = h * proportion
+                }
+              })
+              this.setData({
+                  graph: {
+                    w: 200,
+                    h: h,
+                    type: 'image',
+                    url: res.tempFilePaths[0],
+                  }
+              });
+            }
+          })
+        },
+
+        /**
+         * 添加文本
+         */
+        onAddText() {
+            this.setData({
+                graph: {
+                    type: 'text',
+                    text: 'helloworld',
+                }
+            });
+        },
+
+        /**
+         * 导出图片
+         */
+        onExport() {
+            CanvasDrag.export()
+                .then((filePath) => {
+                    console.log(filePath);
+                    wx.previewImage({
+                        urls: [filePath]
+                    })
+                })
+                .catch((e) => {
+                    console.error(e);
+                })
+        },
+
+        /**
+         * 改变文字颜色
+         */
+        onChangeColor() {
+            CanvasDrag.changFontColor('blue');
+        },
+
+        /**
+         * 改变背景颜色
+         */
+        onChangeBgColor() {
+            CanvasDrag.changeBgColor('yellow');
+        },
+
+        /**
+         * 改变背景照片
+         */
+        onChangeBgImage() {
+            CanvasDrag.changeBgImage(DRAG_ICON);
+        },
+
+        /**
+         * 导出当前画布为模板
+         */
+        onExportJSON(){
+            CanvasDrag.exportJson()
+              .then((imgArr) => {
+                console.log(JSON.stringify(imgArr));
+            })
+              .catch((e) => {
+                  console.error(e);
+              });
+        },
+
+        onImport(){
+            // 有背景
+            // let temp_theme = [{"type":"bgColor","color":"yellow"},{"type":"image","url":"../../assets/images/test.jpg","y":98.78423143832424,"x":143.78423143832424,"w":104.43153712335152,"h":104.43153712335152,"rotate":-12.58027482265038,"sourceId":null},{"type":"text","text":"helloworld","color":"blue","fontSize":24.875030530031438,"y":242.56248473498428,"x":119.57012176513672,"w":116.73966979980469,"h":34.87503053003144,"rotate":8.873370699754087}];
+            // 无背景
+            let temp_theme = [{"type":"image","url":"../../assets/images/test.jpg","y":103,"x":91,"w":120,"h":120,"rotate":0,"sourceId":null},{"type":"text","text":"helloworld","color":"blue","fontSize":20,"y":243,"x":97,"rotate":0}];
+
+            CanvasDrag.initByArr(temp_theme);
+        },
+
+        onClearCanvas:function(event){
+          let _this = this;
+          _this.setData({canvasBg:null});
+          CanvasDrag.clearCanvas();
+        },
+
+        onUndo:function(event){
+            CanvasDrag.undo();
+        },
+        toVerticalNav:function(){
+          // mpx.navigateTo({
+          //   url: VerticalNavPage
+          // })
+        },
+        publish(){
+
+        },
+        save(){
+
+        },
+        changeSelect(index){
+          this.typeSelect = index
+          if (index===1) {
+            this.showList = this.bgImageList
+          } else {
+            this.showList = this.iconList[this.vipSelect]
+          }
+        },
+        changeVIP(item){
+          this.vipSelect = item
+          this.showList = this.iconList[item]
+        },
+        changeImage(imageSrc){
+          if(this.typeSelect === 1){
+            this.onChangeBgImage(imageSrc)
+          }else{
+            this.onAddImage(imageSrc)
+          }
+        }
+      }
+  });
+</script>
+<style>
+  .btn{
+    padding: 10rpx 20rpx;
+    float:left;
+    margin:10rpx;
+    border:solid 1px #dfdfdf;
+    border-radius: 10rpx;
+  }
+  .canvas-container{
+    height:50vh;
+    width: calc(100vw - 20rpx);
+    margin: 10rpx;
+    border: dashed #eee ;
+    box-sizing: border-box;
+    background: url('https://p.qqan.com/up/2021-1/202118103317306.jpg')
+  }
+  .operation-area{
+    position:relative;
+    height: 40px;
+  }
+  .operation-container{
+    display:flex;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+  }
+  .operation-btn{
+    margin:10rpx;
+    line-height: 30px;
+    height: 30px;
+    text-align: center;
+  }
+  .change-container{
+    padding-top:5px;
+    border-top: 2px #dfdfdf solid;
+    width: 100vw;
+  }
+  .operation-list-wrapper{
+    position: relative;
+    height: 40px;
+  }
+  .operation-list{
+    position: absolute;
+    right: 0;
+    top: 0;
+    display:flex;
+    width: 100%;
+  }
+  .change-select{
+    background: red;
+  }
+  .change-btn{
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    width: 50px;
+    color: green;
+    text-align: center;
+  }
+  .vip-item {
+    width: 40px;
+    height: 30px;
+    line-height: 30px;
+    color: green;
+    padding: 0 10px;
+  }
+  .vip-list {
+    width: 100vw;
+    height: 40px;
+  }
+  .vip-list-wrapper {
+    display: flex;
+  }
+  .image-container {
+    display: flex;
+    width: 100vw;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-right: -10px;
+  }
+  .image-style{
+    width: 100px;
+    height: 100px;
+    margin: 10px 0;
+    margin: 15px 10px 0 0;
+  }
+  .image-container > view {
+    width: 100px;
+    margin-right: 10px;
+  }
+  .diy-self{
+    border: 2px dashed #eee;
+    height: 100px;
+    width: 100px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px 10px 0 0;
+  }
+  .diy-self-image{
+    width: 80px;
+    height: 80px;
+  }
+  .diy-self-content{
+    color: #eee;
+  }
+</style>
+<script type="application/json">
+  {
+    "usingComponents": {
+      "canvas-drag": "../components/canvas-drag"
+    }
+  }
+</script>

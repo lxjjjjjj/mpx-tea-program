@@ -1,0 +1,160 @@
+<template>
+    <view class="login-wrapper">
+        <view class="login-title">Hello</view>
+        <view class="login-desc">欢迎来到NFT</view>
+        <view class="login-phone-wrapper">
+            <view class="login-phone">电话 : </view>
+            <input maxlength="11" class="login-phone-input" type="number"/>
+        </view>
+        <view class="login-number-wrapper">
+            <view class="login-number">验证码 : </view>
+            <input maxlength="6" class="login-number-input" type="number"/>
+            <view class="get-login-number" bindtap="sendMessage">发送验证码</view>
+        </view>
+        <view class="login-message"><checkbox class="login-checkbox" value="cb" checked="{{checked}}"/>我已阅读，理解并接受《***NFT项目的条款和条件》《NFT账号和微信账号绑定协议》《隐私权政策》</view>
+        <view class="third-login" bindtap="thirdLogin">
+            <view class="third-login-content">第三方账号登录</view>
+            <image class="third-login-image" src="https://static-qa.yimutea.com/test/E-860870-60FBA02D.png"></image>
+        </view>
+    </view>
+    <view bindtap="clickBtn" class="signIn-btn">注册</view>
+</template>
+
+<script>
+  import mpx,{ createPage } from '@mpxjs/core'
+  import SignInPage from './signIn?resolve'
+  createPage({
+      data: {
+        checked:false
+      },
+      methods:{
+            clickBtn(){
+                mpx.navigateTo({
+                    url: SignInPage
+                })
+            },
+            sendMessage(){
+                if(!this.checked){
+                    wx.showToast({
+                        title: '请勾选下方协议',
+                        icon: 'error',
+                        duration: 2000
+                    })
+
+                }
+            },
+            thirdLogin(){
+                if(!this.checked){
+                    wx.showToast({
+                        title: '请勾选下方协议',
+                        icon: 'error',
+                        duration: 2000
+                    })
+                }
+                wx.login({
+                    success (res) {
+                        if (res.code) {
+                        //发起网络请求
+                        // wx.request({
+                        //     url: 'https://example.com/onLogin',
+                        //     data: {
+                        //     code: res.code
+                        //     }
+                        // })
+                        } else {
+                            console.log('登录失败！' + res.errMsg)
+                        }
+                    }
+                })
+            }        
+      }
+  });
+</script>
+<style>
+    .login-wrapper{
+        display: flex;
+        flex-direction: column;
+        align-items: center
+    }
+    .signIn-btn{
+        position:absolute;
+        /*use rpx*/
+        top: 30rpx;
+        /*use rpx*/
+        right: 30rpx;
+        float:left;
+        color:#333;
+    }
+    .login-title{
+        font-weight: 700;
+        font-size:70px;
+        color: #333;
+        height: 60px;
+        line-height: 60px;
+        margin-top:100px;
+    }
+    .login-desc{
+        margin-top:10px;
+        color: #333;
+    }
+    .login-phone-wrapper{
+        border-bottom: 1px #eee solid;
+        width: 300px;
+        margin-top: 50px;
+        display: flex;
+        align-items: center;
+    }
+    .login-number-wrapper{
+        border-bottom: 1px #eee solid;
+        width: 300px;
+        margin-top:30px;
+        display: flex;
+        align-items: center;
+        position:relative;
+    }
+    .login-phone{
+        color: #333;
+    }
+    .login-number{
+        color: #333;
+    }
+    .get-login-number{
+        color: #888;
+        position:absolute;
+        right: 0
+    }
+    .login-phone-input{
+        width: 200px;
+    }
+    .login-number-input{
+        width:100px;
+    }
+    .login-message{
+        margin-top: 20px;
+        width: 300px;
+        color: #333;
+        font-size: 12px;
+    }
+    .login-checkbox{
+        transform: scale(0.6,0.6)
+    }
+    .third-login{
+        margin-top:150px;
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .third-login-content{
+        font-size:12px;
+        color:#333;
+    }
+    .third-login-image{
+        width:30px;
+        height:30px;
+    }
+</style>
+<script type="application/json">
+  {
+    "usingComponents": {}
+  }
+</script>

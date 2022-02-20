@@ -1,0 +1,126 @@
+<template>
+    <view class="signin-wrapper">
+        <view class="signin-title">注册</view>
+        <view class="signin-phone-wrapper">
+            <view class="signin-phone">电话 : </view>
+            <input maxlength="11" class="signin-phone-input" type="number"/>
+        </view>
+        <view class="signin-number-wrapper">
+            <view class="signin-number">验证码 : </view>
+            <input maxlength="6" class="signin-number-input" type="number"/>
+            <view class="get-signin-number" bindtap="sendMessage">发送验证码</view>
+        </view>
+        <view class="signin-confirm" bindtap="confirm">注册</view>
+        <view class="signin-message"><checkbox class="signin-checkbox" value="cb" checked="{{checked}}"/>我已阅读，理解并接受《***NFT项目的条款和条件》《NFT账号和微信账号绑定协议》《隐私权政策》</view>
+    </view>
+</template>
+
+<script>
+  import mpx,{ createPage } from '@mpxjs/core'
+  createPage({
+      data: {
+        checked:false
+      },
+      methods:{
+            clickBtn(){
+                    mpx.navigateTo({
+                        url: SignInPage
+                    })
+            },
+            sendMessage(){
+                
+            },
+            confirm(){
+                if(!this.checked){
+                    wx.showToast({
+                        title: '请勾选下方协议',
+                        icon: 'error',
+                        duration: 2000
+                    })
+
+                }
+            }       
+      }
+  });
+</script>
+<style>
+    .signin-wrapper{
+        display: flex;
+        flex-direction: column;
+        align-items: center
+    }
+    .signIn-btn{
+        position:absolute;
+        /*use rpx*/
+        top: 30rpx;
+        /*use rpx*/
+        right: 30rpx;
+        float:left;
+        color:#333;
+    }
+    .signin-title{
+        font-weight: 700;
+        font-size:40px;
+        color: #333;
+        height: 60px;
+        line-height: 60px;
+        margin-top:100px;
+    }
+    .signin-phone-wrapper{
+        border-bottom: 1px #eee solid;
+        width: 300px;
+        margin-top: 50px;
+        display: flex;
+        align-items: center;
+    }
+    .signin-number-wrapper{
+        border-bottom: 1px #eee solid;
+        width: 300px;
+        margin-top:30px;
+        display: flex;
+        align-items: center;
+        position:relative;
+    }
+    .signin-phone{
+        color: #333;
+    }
+    .signin-number{
+        color: #333;
+    }
+    .get-signin-number{
+        color: #888;
+        position:absolute;
+        right: 0
+    }
+    .signin-phone-input{
+        width: 200px;
+    }
+    .signin-number-input{
+        width:100px;
+    }
+    .signin-message{
+        margin-top: 180px;
+        width: 300px;
+        color: #333;
+        font-size: 12px;
+    }
+    .signin-checkbox{
+        transform: scale(0.6,0.6)
+    }
+    .signin-confirm{
+        width:300px;
+        height:50px;
+        font-size:20px;
+        font-weight:500;
+        background: #eee;
+        margin-top:30px;
+        text-align: center;
+        line-height: 50px;
+        border-radius:8px;
+    }
+</style>
+<script type="application/json">
+  {
+    "usingComponents": {}
+  }
+</script>
