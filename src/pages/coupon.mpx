@@ -17,7 +17,7 @@
         </view>
     </view>
     <view class="bottom-operation">
-        <view wx:for="{{bottomOperations}}" wx:key="item" wx:class="bottom-item" bindtap="clickOperation(index)">
+        <view wx:for="{{couponExtra}}" wx:key="item" wx:class="bottom-item" bindtap="clickOperation(index)">
             {{item}}
         </view>
     </view>
@@ -29,6 +29,7 @@
   createPage({
       data: {
         tabs:['全部','打折券','茶饮券','茶叶券'],
+        couponExtra:['打折券','茶饮券'],
         tabSelect:0,
         couponList:[{
             image:'https://p.qqan.com/up/2021-1/202118103317306.jpg',
