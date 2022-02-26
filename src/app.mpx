@@ -108,6 +108,7 @@
 <script type="application/json">
   {
     "pages": [
+      "./pages/index.mpx",
       "./pages/cover.mpx",
       "./pages/diy.mpx",
       "./pages/login.mpx",
@@ -116,8 +117,7 @@
       "./pages/coupon.mpx",
       "./pages/ad.mpx",
       "./pages/collect.mpx",
-      "./pages/my.mpx",
-      "./pages/index.mpx"
+      "./pages/my.mpx"
     ]
   }
 </script>
