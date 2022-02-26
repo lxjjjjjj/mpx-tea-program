@@ -6,7 +6,7 @@
         </view>
     </view>
     <view class="collect-container" wx:if="{{tabSelect===0}}">
-        <view class="collect-item" wx:for="{{collectList}}" wx:key="{{item.id}}">
+        <view class="collect-item" wx:for="{{collectList}}" wx:key="item">
             <image mode="widthFix" class="collect-picture" src="{{item.image}}"/>
             <view class="collect-top">
                 <image src="{{item.avatar}}" class="collect-image"/>
@@ -29,6 +29,7 @@
             </view>
         </view>
     </view>
+    <custom-tab-bar/>
 </template>
 
 <script>
@@ -217,6 +218,8 @@
 </style>
 <script type="application/json">
   {
-    "usingComponents": {}
+    "usingComponents": {
+        "custom-tab-bar":"../components/custom-tab-bar.mpx"
+    }
   }
 </script>

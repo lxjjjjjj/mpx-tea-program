@@ -40,6 +40,7 @@
       <view></view><view></view><view></view><view></view><view></view>
     </view>
   </view>
+  <custom-tab-bar/>
 </template>
 
 <script>
@@ -357,7 +358,8 @@
 <script type="application/json">
   {
     "usingComponents": {
-      "canvas-drag": "../components/canvas-drag"
+      "canvas-drag": "../components/canvas-drag",
+      "custom-tab-bar":"../components/custom-tab-bar.mpx"
     }
   }
 </script>

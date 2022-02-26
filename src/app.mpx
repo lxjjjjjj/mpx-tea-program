@@ -108,8 +108,8 @@
 <script type="application/json">
   {
     "pages": [
-      "./pages/cover",
-      "./pages/diy",
+      "./pages/cover.mpx",
+      "./pages/diy.mpx",
       "./pages/login.mpx",
       "./pages/signIn.mpx",
       "./pages/notice.mpx",

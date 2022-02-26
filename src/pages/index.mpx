@@ -5,6 +5,7 @@
             <image src="{{item.icon}}" style="top:{{item.y}}px;left:{{item.x}}px" class="index-icon" bindtap="clickBtn(item.page)"/>
         </view>
     <view>
+    <custom-tab-bar/>
 </template>
 
 <script>
@@ -68,6 +69,8 @@
 </style>
 <script type="application/json">
   {
-    "usingComponents": {}
+    "usingComponents": {
+        "custom-tab-bar":"../components/custom-tab-bar.mpx"
+    }
   }
 </script>
