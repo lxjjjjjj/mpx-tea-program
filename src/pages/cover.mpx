@@ -19,7 +19,7 @@
       },
       methods:{
           clickBtn(){
-                mpx.navigateTo({
+                mpx.redirectTo({
                       url: IndexPage
                 })
           }        
