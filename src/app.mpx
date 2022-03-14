@@ -118,6 +118,23 @@
       "./pages/collect.mpx",
       "./pages/my.mpx",
       "./pages/index.mpx"
-    ]
+    ],
+    "tabBar": {
+      "custom": true,
+      "color": "#0f0",
+      "selectedColor": "#f00",
+      "backgroundColor": "#fff",
+      "list": [{
+        "pagePath": "pages/diy",
+        "text": "DIY"
+      }, {
+        "pagePath": "pages/index",
+        "text": "首页"
+      }, {
+        "pagePath": "pages/my",
+        "text": "我的"
+      }]
+    },
+    "usingComponents": {}
   }
 </script>

@@ -19,9 +19,9 @@
       },
       methods:{
           clickBtn(){
-                mpx.redirectTo({
-                      url: IndexPage
-                })
+            wx.switchTab({
+              url: IndexPage
+            });
           }        
       }
   });

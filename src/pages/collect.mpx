@@ -219,7 +219,7 @@
 <script type="application/json">
   {
     "usingComponents": {
-        "custom-tab-bar":"../components/custom-tab-bar.mpx"
+        "custom-tab-bar":"../custom-tab-bar/index.mpx"
     }
   }
 </script>
