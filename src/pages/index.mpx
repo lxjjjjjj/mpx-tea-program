@@ -1,71 +1,172 @@
 <template>
-    <view class="index-container">
+    <view class="index-container" wx:if="{{Number(frontVersion.type)===0}}">
         <image src="{{bgImage}}" class="index-bg"/>
-        <view wx:for="{{icons}}" wx:key="index">
-            <image src="{{item.icon}}" style="top:{{item.y}}px;left:{{item.x}}px" class="index-icon" bindtap="clickBtn(item.page)"/>
+        <view wx:if="{{homeList && homeList.length}}" wx:for="{{homeList}}" wx:key="index">
+            <image src="{{item.imageUrl}}" style="top{{item.yaxis}}pxleft{{item.xaxis}}px" class="index-icon" bindtap="clickBtn(item.jumpUrl)"/>
         </view>
-    <view>
-    <custom-tab-bar/>
+    </view>
+    <view wx:else class="home-background">
+        <view class="home-title">
+            <image class="home-title-left" src="{{logo}}"></image>
+            <image class="home-title-right" src="{{go}}"></image>
+        </view>
+        <scroll-view wx:if="{{homeList && homeList.length}}" scroll-y="true" class="home-container" show-scrollbar="false">
+            <view wx:for="{{homeList}}" wx:key="index" class="home-container-swiper-container">
+                <swiper class="home-container-swiper"
+                    autoplay="{{false}}" 
+                    interval="{{5000}}" 
+                    duration="{{1000}}"
+                    bindchange="swiperChange($event,index)"
+                    >
+                    <block>
+                        <swiper-item class="home-container-swiper-item" 
+                            wx:for="{{item.swiperList}}" 
+                            wx:for-index="idx" 
+                            wx:for-item="swiperItem"
+                            wx:key="idx"
+                            bindtap="clickBtn(swiperItem.jumpUrl)"
+                        >
+                            <image class="home-container-swiper-item-image" src="{{swiperItem.image}}"/>
+                            <view class="home-container-swiper-item-content">
+                                <view class="home-container-swiper-item-title">{{swiperItem.title}}</view>
+                                <image class="home-container-swiper-item-titleIcon" src="{{swiperItem.title_icon}}"/>
+                            </view>
+                            <view class="home-container-swiper-item-desc">{{swiperItem.desc}}</view>
+                        </swiper-item>
+                    </block>
+                </swiper>
+                <image  class="home-container-swiper-item-dotImg" src="{{dot_pre}}{{item.swiperCurrent + 1}}.png"/>
+            </view>
+        </scroll-view>
+        <custom-tab-bar />
+    </view>
 </template>
 
 <script>
   import mpx,{ createPage } from '@mpxjs/core'
-  import IndexPage from './index?resolve'
+  import store from '../store'
   createPage({
-      data: {
-        bgImage:"https://static-qa.yimutea.com/test/images.png",
-        icons:[
-            {
-                icon:"https://static-qa.yimutea.com/test/1a2c737fe2dd42e58751a9b58d35ef9f.png",
-                x:30,
-                y:40,
-                page:"./collect"
-            },
-            {
-                icon:"https://static-qa.yimutea.com/test/1a2c737fe2dd42e58751a9b58d35ef9f.png",
-                x:200,
-                y:160,
-                page:"./coupon"
-            },
-            {
-                icon:"https://static-qa.yimutea.com/test/1a2c737fe2dd42e58751a9b58d35ef9f.png",
-                x:300,
-                y:70,
-                page:"./notice"
-            },
-            {
-                icon:"https://static-qa.yimutea.com/test/1a2c737fe2dd42e58751a9b58d35ef9f.png",
-                x:300,
-                y:360,
-                page:"./ad"
-            }
-        ]
-      },
-      methods:{
+    data: {
+        logo:"https://static-qa.yimutea.com/test/logo.png",
+        dot_pre:"https://static-qa.yimutea.com/test/%E7%82%B9%E7%82%B9",
+        go:"https://static-qa.yimutea.com/test/%E5%93%81%E7%89%8C%E4%BB%8B%E7%BB%8D.png",
+    },
+    computed:{
+        ...store.mapState(['homeList','frontVersion','bgImage'])
+    },
+    methods:{
+        ...store.mapActions(['getHomeList']),
         clickBtn(path){
             mpx.navigateTo({
                 url:path
             })
-        }     
-      }
-  });
+        },
+        swiperChange(e,index){
+            this.homeList[index].swiperCurrent = e.detail.current
+        }  
+    },
+    created(){
+        this.getHomeList({
+            params:'xxx'
+        })
+    }
+  })
 </script>
-<style>
-.index-container{
-    position:relative;
-    width:100vw;
-    height:100vh;
-}
-.index-bg{
-    width:100vw;
-    height:100vh;
-}
-.index-icon{
-    width:60px;
-    height:60px;
-    position: absolute;
-    z-index:2;
-}
+<style lang="stylus">
+    .home-background
+        position fixed
+        right 0
+        left 0
+        top 0
+        bottom 0
+        z-index: -1
+        height 100vh
+        width 100vw
+        background-image url('https://static-qa.yimutea.com/test/home_bg.png')
+        background-size 100% 100%
+    .home-background-image 
+        width 100%
+        height 100%
+    .home-title
+        height 34px
+        width calc(100% - 70px)
+        padding 0 35px
+        display flex
+        justify-content space-between
+        margin-bottom 10px
+        margin-top 10px 
+        &-left
+            height 100%
+            width 92px
+        &-right
+            height 100%
+            width 32px
+    .home-container
+        width 100%
+        display flex
+        flex-direction column
+        justify-content center
+        height calc(100vh - 134px)
+        -webkit-overflow-scrolling touch
+        &-swiper
+            width 100%
+            height 100%
+            &-container
+                height 230px !important
+                width 100%
+                position relative
+        &-swiper-item
+            display flex
+            flex-direction column
+            align-items center
+            &-content
+                position absolute
+                bottom 60px
+                display flex
+                width 260px
+                height 20px
+                align-items center
+            &-title
+                font-family MicrosoftYaHei-Bold
+                font-size 18px
+                font-weight Bold
+                color #fff
+            &-titleIcon
+                margin-left 12px
+                height 17px
+                width 50px
+            &-desc
+                font-size 12px
+                color #fff
+                font-family FZZZHUNHJW--GB1-0
+                width 100%
+                position absolute
+                bottom 30px
+                width 260px
+                text-overflow ellipsis
+                white-space nowrap
+                overflow hidden
+            &-dotImg
+                width 38px
+                height 8px
+                position absolute
+                left 50%
+                transform translateX(-50%)
+                bottom 90px
+    .index-container
+        position relative
+        width 100vw
+        height 100vh
+    .index-bg
+        width 100vw
+        height 100vh
+
+    .index-icon
+        width 60px
+        height 60px
+        position absolute
+        z-index 2
+
 </style>
 <script type="application/json">
   {

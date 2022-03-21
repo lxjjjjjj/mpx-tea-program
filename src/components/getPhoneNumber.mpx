@@ -1,0 +1,57 @@
+<template>
+    <view class="get-phone-number" catchtap="returnTap">
+        <view class="get-phone-number-container">
+            <view class="get-phone-number-message">允许获取用户手机号</view>
+            <button class="get-phone-number-btn" open-type="getPhoneNumber" bindgetphonenumber="setPhoneNumber">确 定</button>
+        </view>
+    </view>
+</template>
+<script>
+  import { createComponent } from '@mpxjs/core'
+  import store from '../store'
+  createComponent({
+      methods:{
+          ...store.mapActions(['fillUserPhone']),
+          returnTap(){
+              return
+          },
+          setPhoneNumber(e){
+              console.log(e.detail.code)
+              if(e.detail.code){
+                  store.commit('setPhoneNumberShow',false)
+                  this.fillUserPhone({ code: e.detail.code })
+              }
+          }
+      }
+  })
+</script>
+<style lang="stylus">
+.get-phone-number
+    background rgba(0,0,0,.5)
+    position fixed
+    top 0
+    left 0
+    right 0
+    bottom 0
+    &-container
+        height 100px
+        width 100%
+        position absolute
+        bottom 20px
+        display flex
+        flex-direction column
+        justify-content center
+        align-items center
+    &-message
+        color #ffffff
+        font-size 16px
+    &-btn
+        background url('https://static-qa.yimutea.com/test/%E9%80%89%E4%B8%AD%E7%A4%BC%E5%93%81%E5%88%B8%E8%83%8C%E6%99%AF%403x.png')
+        background-size 100% 100%
+        width 107px
+        height 40px
+        display flex
+        align-items center
+        justify-content center
+        margin-top 10px
+</style>

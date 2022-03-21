@@ -1,134 +1,292 @@
 <template>
-    <view class="my-top">
-        <image class="my-avatar" src="{{my.avatar}}"/>
-        <view class="my-name">{{my.name}}</view>
-        <view class="change-info">修改信息</view>
-    </view>
-    <view class="vip">
-        <view class="vip-level">{{my.level}}</view>
-        <view class="vip-detail">查看特权</view>
-    </view>
-    <view class="operation-list">
-        <view class="operation-item">
-            账号 : {{my.number}}
+    <view class="my-wrapper">
+        <view class="my-container" srcoll-y="true" show-scrollbar="false" enable-flex="true">
+            <view class="my-top">
+                <view class="my-avatar"><image src="{{userInfo.avatar || defaultAvatar}}"/></view>
+                <view>
+                    <view class="my-class">
+                        <view class="my-class-msg">{{userInfo.level}}</view>
+                        <image class="my-class-image" src="https://static-qa.yimutea.com/test/%E7%94%BB%E5%AE%B6BG%403x.png"/>
+                    </view>
+                    <view class="my-name">{{userInfo.name}}</view>
+                </view>
+                <view class="my-coupon" bindtap="goToCoupon"/>
+            </view>
+            <view class="my-vip">
+                <view class="my-vip-content">
+                    <view class="my-vip-title"/>
+                    <view class="my-vip-level">{{userInfo.level}}</view>
+                </view>
+                <view class="my-vip-detail"/>
+                <view class="my-vip-score">积分 {{userInfo.score}}</view>
+                <view class="my-vip-address"/>
+                <view class="my-vip-address-value">{{userInfo.address}}</view>
+            </view>
+            <view class="my-times">
+                <view class="my-times-img"/>
+                <view class="my-times-title">创作次数 </view>
+                <view class="my-times-value">{{userInfo.times}}</view>
+                <view class="my-times-go"></view>
+            </view>
+            <view class="collect-container">
+                <view class="collect-top">
+                    <view class="collect-title"/>
+                    <view class="collect-size">（{{userNFTAll.length}}）</view>
+                </view>
+                <view class="collect-list">
+                    <view class="collect-item" wx:for="{{userNFTAll}}" wx:key="item">
+                        <view class="collect-item-wrapper">
+                            <image mode="widthFix" class="collect-picture" src="{{item.image}}"/>
+                            <view class="collect-name">{{item.name}}</view>
+                            <view class="collect-ID">数字藏品ID</view>
+                            <view class="collect-desc">作品描述 : {{item.desc}}</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
         </view>
-        <view class="operation-item">
-            密码 : {{my.password}}
-        </view>
-        <view class="operation-item">
-            二维码名片
-        </view>
-        <view class="operation-item">
-            个性签名
-        </view>
-    </view>
-    <view class="operation-item-last">
-        设置
+        <custom-tab-bar/>
     </view>
 </template>
 
 <script>
   import mpx,{ createPage } from '@mpxjs/core'
+  import LoginPage from '../pages/login?resolve'
+  import couponPage from '../pages/coupon?resolve'
+  import store from '../store'
   createPage({
       data: {
-        my:{
-            avatar:'https://p.qqan.com/up/2021-1/202118103317306.jpg',
-            level:"VIP3",
-            name:'anyone',
-            number:"214325436",
-            password:"****234",
-
-        }
+        defaultAvatar: "https://static-qa.yimutea.com/test/%E5%A4%B4%E5%83%8F%E9%81%AE%E7%BD%A9%403x.png"
       },
-      methods:{        
+      computed:{
+          ...store.mapState(['userInfo','userNFTAll'])
+      },
+      methods:{   
+          ...store.mapActions(['getUserInfo','getUserNFTAll']),
+          goToCoupon(){
+              mpx.navigateTo({
+                  url:couponPage
+              })
+          }
+      },
+      created(){
+        this.getUserInfo()
+        this.getUserNFTAll()
+      },
+      onShow(){
+        //   mpx.navigateTo({
+        //       url:LoginPage
+        //   })
       }
   });
 </script>
-<style>
-    .my-top{
-        width: calc(100vw - 20px);
-        margin: 0 10px;
-        display: flex;
-        align-items: center;
-        padding:10px;
-        position:relative;
-    }
-    .my-avatar{
-        width: 48px;
-        height:48px;
-        border-radius: 24px;
-    }
-    .my-name{
-        font-size:16px;
-        color:#888;
-        margin-left:10px;
-    }
-    .change-info{
-        width:100px;
-        height:35px;
-        border-radius: 8px;
-        line-height:35px;
-        text-align: center;
-        position:absolute;
-        right:20px;
-        background: #eee;
-    }
-    .vip{
-        display: flex;
-        width:calc(100% - 20px);
-        margin:10px;
-        height:60px;
-        border-radius: 15px;
-        align-items:center;
-        background: #777;
-        position: relative;
-    }
-    .vip-level{
-        margin-left:20px;
-        font-size:20px;
-    }
-    .vip-detail{
-        height:30px;
-        line-height: 30px;
-        text-align: center;
-        width:80px;
-        border-radius: 15px;
-        background-color: #eee;
-        font-size:14px;
-        color: #888;
-        position: absolute;
-        right:10px;
-    }
-    .operation-list{
-        width:calc(100% - 40px);
-        margin: 20px;
-    }
-    .operation-item{
-        display: flex;
-        align-items: center;
-        line-height: 50px;
-        height: 50px;
-        font-size:20px;
-        border-top: 1px #bbb solid;
-    }
-    .operation-item:last-child{
-        border-bottom: 1px #bbb solid;
-    }
-    .operation-item-last{
-        display: flex;
-        align-items: center;
-        line-height: 50px;
-        height: 50px;
-        font-size:20px;
-        margin-top:20px;
-        border-top: 1px #bbb solid;
-        border-bottom: 1px #bbb solid;
-        width:calc(100% - 40px);
-        margin: 20px;
-    }
+<style lang="stylus">
+    .my-wrapper
+        background url('https://static-qa.yimutea.com/test/home_bg.png')
+        background-size 100% 100%
+        height 100vh
+        width 100vw
+    .my-container
+        height calc(100vh - 80px)
+        width calc(100vw - 40px)
+        margin 0 20px
+        margin-bottom 80px
+        overflow-y scroll
+    .my-container::-webkit-scrollbar
+        display none
+    .my-top
+        width 100%
+        display flex
+        align-items center
+        padding 10px 0
+        position relative
+    .my-times
+        background-image url('https://static-qa.yimutea.com/test/mytimesbg%403x.png')
+        background-size 100% 100%
+        width 100%
+        height 62px
+        margin-bottom 15px
+        display flex
+        align-items center
+        &-img
+            height 54px
+            width 56px
+            background-image url('https://static-qa.yimutea.com/test/%E5%9B%BE%E6%A0%87%403x.png')
+            background-size 100% 100%
+            margin-left 12px
+        &-title
+            font-size 14px
+            font-family MicrosoftYaHei
+            color #ffffff
+            margin-left 10px
+        &-value
+            color #FEE170
+            font-size 14px
+            font-family MicrosoftYaHei
+            margin-left 5px
+        &-go
+            background-image url('https://static-qa.yimutea.com/test/%E7%AE%AD%E5%A4%B4%403x.png')
+            background-size 100% 100%
+            height 15px
+            width 9px
+            margin-left 160px
+    .my-class
+        width 50px
+        height 18px
+        position relative
+        &-msg
+            font-size 12px
+            font-family MicrosoftYaHei
+            color #fff
+            position absolute
+            left 50%
+            top 50%
+            transform translate(-50%,-50%)
+            z-index 4
+        &-image
+            width 50px
+            height 18px
+            position absolute
+            left 50%
+            top 50%
+            transform translate(-50%,-50%)
+    .my-avatar
+        background url('https://static-qa.yimutea.com/test/%E5%A4%B4%E5%83%8F%E6%A1%86%403x.png')
+        background-size 100% 100%
+        width 62px
+        height 66px
+        display flex
+        align-items center
+        justify-content center
+        image
+            height 50px
+            width 50px
+    .my-name
+        font-size 16px
+        color #ffffff
+        font-weight 500
+    .my-coupon
+        background-image url('https://static-qa.yimutea.com/test/%E5%8D%A1%E5%8C%85%403x.png')
+        background-size 100% 100%
+        width 60px
+        height 40px
+        position absolute
+        right 20px 
+    .my-vip
+        background-image url('https://static-qa.yimutea.com/test/VIP%E8%83%8C%E6%99%AF1%403x.png')
+        background-size 100% 100%
+        width 100%
+        height 174px
+        position relative
+        display flex
+        &-content
+            height 18px
+            display flex 
+            align-items center
+            padding 30px 0 0 30px
+        &-level
+            margin-left 10px
+            font-size 20px
+            color #fff
+        &-title
+            background-image url('https://static-qa.yimutea.com/test/VIP%403x.png')
+            background-size 100% 100%
+            height 18px
+            width 48px
+        &-detail
+            background-image url('https://static-qa.yimutea.com/test/%E6%9F%A5%E7%9C%8B%E7%89%B9%E6%9D%83%403x.png')
+            background-size 100% 100%
+            height 30px 
+            width 80px
+            position  absolute
+            right 30px
+            top 25px
+        &-score
+            color #FADC78
+            font-size 12px
+            height 15px
+            position absolute
+            top 60px
+            left 30px
+        &-address
+            background-image url('https://static-qa.yimutea.com/test/%E9%92%B1%E5%8C%85%E5%9C%B0%E5%9D%80%403x.png')
+            background-size 100% 100%
+            height 10px 
+            width 44px
+            position  absolute
+            left 30px
+            top 100px
+        &-address-value
+            height 20px 
+            width calc(100% - 70px)
+            font-size 12px
+            color #fff
+            position absolute
+            left 30px
+            top 115px
+            text-overflow ellipsis 
+            overflow hidden
+            white-wrap nowrap
+    .collect
+        height 100px
+        width 100%
+        margin-top 10px
+        margin-bottom 10px
+        &-title
+            width 36px
+            height 18px
+            background-image url('https://static-qa.yimutea.com/test/%E8%97%8F%E5%93%81%403x.png')
+            background-size 100% 100%
+        &-size
+            font-size 15px
+            color #6171AB
+            font-family MicrosoftYaHei
+        &-item
+            width 158px
+            height 219px
+            margin 10px 0
+        &-item-wrapper
+            width 148px
+            height 209px
+            padding 5px
+        &-top
+            display flex
+            align-items center
+            height 30px
+            padding 0 10px
+        &-list
+            display flex
+            flex-wrap wrap
+            justify-content space-between
+        &-image
+            height 30px
+            width 30px
+            border-radius 15px
+        &-name
+            font-size 15px
+            color #fff
+        &-ID
+            color #696E88
+            font-size 9px
+            margin-top 5px
+        &-desc
+            font-size 12px
+            color #ADC6F4
+            margin-top 5px
+            text-overflow ellipsis
+            white-space nowrap
+            overflow hidden
+        &-picture
+            width 148px
+            height 148px
+        &-container
+            width 100%
+
 </style>
 <script type="application/json">
   {
-    "usingComponents": {}
+    "usingComponents": {
+        "custom-tab-bar":"../custom-tab-bar/index.mpx"
+    }
   }
 </script>

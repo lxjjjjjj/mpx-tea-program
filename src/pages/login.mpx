@@ -1,31 +1,43 @@
 <template>
     <view class="login-wrapper">
-        <view class="login-title">Hello</view>
-        <view class="login-desc">欢迎来到NFT</view>
-        <view class="login-phone-wrapper">
-            <view class="login-phone">电话 : </view>
+        <image class="login-title" src="https://qa-yimu.oss-cn-shenzhen.aliyuncs.com/test/%E6%A0%87%E9%A2%98_hi%403x.png"/>
+        <view class="login-desc">这里是易亩生璞</view>
+        <!-- <view class="login-phone-wrapper">
+            <view class="login-phone">电话</view>
             <input maxlength="11" class="login-phone-input" type="number"/>
         </view>
         <view class="login-number-wrapper">
-            <view class="login-number">验证码 : </view>
+            <view class="login-number">验证码</view>
             <input maxlength="6" class="login-number-input" type="number"/>
-            <view class="get-login-number" bindtap="sendMessage">发送验证码</view>
+            <view class="get-login-number" bindtap="sendMessage"/>
+        </view> -->
+        <image class="wx-login" bindtap="login" src="https://static-qa.yimutea.com/test/%E7%99%BB%E5%BD%95%403x.png"/>
+        <view class="login-message-wrapper">
+            <view class="login-checkbox" bindtap="argee">
+                <image class="login-checkbox-image" src="{{checked ? 'https://static-qa.yimutea.com/test/%E5%8B%BE%E9%80%89%403x.png' : ''}}"/>
+            </view>
+            <view class="login-message">我已阅读、理解并接受《**NFT项目的条款和条件》《NFT账号与微信账号绑定协议》《隐私权政策》</view>
         </view>
-        <view class="login-message"><checkbox class="login-checkbox" value="cb" checked="{{checked}}"/>我已阅读，理解并接受《***NFT项目的条款和条件》《NFT账号和微信账号绑定协议》《隐私权政策》</view>
-        <view class="third-login" bindtap="thirdLogin">
+        <!-- <view class="third-login" bindtap="thirdLogin">
             <view class="third-login-content">第三方账号登录</view>
-            <image class="third-login-image" src="https://static-qa.yimutea.com/test/E-860870-60FBA02D.png"></image>
-        </view>
+            <image class="third-login-image" src="https://static-qa.yimutea.com/test/%E5%BE%AE%E4%BF%A1%403x.png"></image>
+        </view> -->
     </view>
-    <view bindtap="clickBtn" class="signIn-btn">注册</view>
+    <get-phone-number wx:if="{{getPhoneNumber}}"/>
+    <!-- <image bindtap="clickBtn" class="signIn-btn" src="https://static-qa.yimutea.com/test/%E6%B3%A8%E5%86%8C%403x.png"/> -->
 </template>
 
 <script>
   import mpx,{ createPage } from '@mpxjs/core'
   import SignInPage from './signIn?resolve'
+  import store from '../store'
   createPage({
       data: {
-        checked:false
+        checked:false,
+        check_pre:'https://static-qa.yimutea.com/test/%E9%80%89%E6%8B%A9%E6%A1%86%403x.png'
+      },
+      computed:{
+          ...store.mapState(['getPhoneNumber'])
       },
       methods:{
             clickBtn(){
@@ -43,39 +55,75 @@
 
                 }
             },
-            thirdLogin(){
-                if(!this.checked){
+            argee(){
+                this.checked = !this.checked
+            },
+            login(){
+                if(this.checked){
+                    wx.getSetting({
+                        success (res) {
+                            if (!res.authSetting) {
+                                mpx.getUserProfile({
+                                    desc: '用于完善用户信息',
+                                    success: function(res) {
+                                        var userInfo = res.userInfo
+                                        store.commit('setAvatarUrl', userInfo.avatarUrl)
+                                        store.commit('setNickName', userInfo.nickName)
+                                        store.commit('setPhoneNumberShow',true)
+                                        mpx.login({
+                                            success (res) {
+                                                if (res.code) {
+                                                    store.dispatch('Login',{ code: res.code })
+                                                } else {
+                                                    wx.showToast({
+                                                        title: '登陆失败',
+                                                        icon: 'error',
+                                                        duration: 2000
+                                                    })
+                                                    console.log('登录失败！' + res.errMsg)
+                                                }
+                                            },
+                                            fail(){
+                                                wx.showToast({
+                                                    title: '登陆失败',
+                                                    icon: 'error',
+                                                    duration: 2000
+                                                })
+                                            }
+                                        })
+                                    },
+                                    fail: function(res){
+                                        wx.showToast({
+                                            title: '授权失败，将无法继续正常使用',
+                                            icon: 'error',
+                                            duration: 2000
+                                        })
+                                    }
+                                })
+                            }
+                        },
+                        fail(){
+
+                        }
+                    })
+                }else{
                     wx.showToast({
                         title: '请勾选下方协议',
                         icon: 'error',
                         duration: 2000
                     })
                 }
-                wx.login({
-                    success (res) {
-                        if (res.code) {
-                        //发起网络请求
-                        // wx.request({
-                        //     url: 'https://example.com/onLogin',
-                        //     data: {
-                        //     code: res.code
-                        //     }
-                        // })
-                        } else {
-                            console.log('登录失败！' + res.errMsg)
-                        }
-                    }
-                })
-            }        
+            }       
       }
   });
 </script>
-<style>
-    .login-wrapper{
-        display: flex;
-        flex-direction: column;
+<style lang="stylus">
+    .login-wrapper
+        height 100vh
+        background url('https://static-qa.yimutea.com/test/home_bg.png') 100% 100%
+        display flex
+        flex-direction column
         align-items: center
-    }
     .signIn-btn{
         position:absolute;
         /*use rpx*/
@@ -83,78 +131,107 @@
         /*use rpx*/
         right: 30rpx;
         float:left;
-        color:#333;
+        height 34px
+        width 58px
     }
     .login-title{
-        font-weight: 700;
-        font-size:70px;
-        color: #333;
-        height: 60px;
-        line-height: 60px;
-        margin-top:100px;
+        width 170px
+        height 27px 
+        margin-top:100px
     }
-    .login-desc{
-        margin-top:10px;
-        color: #333;
-    }
+    .login-desc
+        font-size 12px
+        font-family MicrosoftYaHeiLight
+        margin-top 10px
+        color #333
+    .wx-login
+        margin-top 20px
+        height 48px
+        width 276px
     .login-phone-wrapper{
-        border-bottom: 1px #eee solid;
-        width: 300px;
+        background-image url('https://static-qa.yimutea.com/test/bg%403x.png') 
+        background-size 100% 100%
+        width 276px
+        height 48px
         margin-top: 50px;
         display: flex;
         align-items: center;
     }
     .login-number-wrapper{
-        border-bottom: 1px #eee solid;
-        width: 300px;
+        background-image url('https://static-qa.yimutea.com/test/bg%403x.png') 
+        background-size 100% 100%
+        width 276px
+        height 48px
         margin-top:30px;
         display: flex;
         align-items: center;
         position:relative;
     }
-    .login-phone{
-        color: #333;
-    }
-    .login-number{
-        color: #333;
-    }
+    .login-phone
+        color: #6B7188
+        margin-left 20px
+        margin-right 10px
+        font-family MicrosoftYaHei
+        font-size 15px
+    .login-number
+        color #6B7188
+        margin-left 20px
+        margin-right 10px
+        font-family MicrosoftYaHei
+        font-size 15px
     .get-login-number{
-        color: #888;
-        position:absolute;
-        right: 0
+        background-image url('https://static-qa.yimutea.com/test/%E6%8C%89%E9%92%AE%E9%AA%8C%E8%AF%81%E7%A0%81%403x.png')
+        background-size 100% 100%
+        position absolute
+        width 88px
+        height 34px
+        right 5px
+        top 10px
     }
-    .login-phone-input{
-        width: 200px;
-    }
-    .login-number-input{
-        width:100px;
-    }
-    .login-message{
-        margin-top: 20px;
-        width: 300px;
-        color: #333;
-        font-size: 12px;
-    }
-    .login-checkbox{
-        transform: scale(0.6,0.6)
-    }
-    .third-login{
-        margin-top:150px;
-        display:flex;
-        flex-direction: column;
-        align-items: center;
-    }
+    .login-phone-input
+        width 200px
+        color #fff
+    .login-number-input
+        width 100px
+        color #fff
+    .login-message-wrapper
+        width 275px
+        height 32px
+        display flex
+        margin-top 20px
+    .login-message
+        width 249px
+        font-family MicrosoftYaHei
+        color #6171AB
+        font-size 12px
+    .login-checkbox
+        background-image url('https://static-qa.yimutea.com/test/%E9%80%89%E6%8B%A9%E6%A1%86%403x.png')
+        background-size 100% 100%
+        height 26px
+        width 26px
+        display flex
+        align-items center
+        justify-content center
+    .login-checkbox-image
+        width 22px
+        height 20px
+    .third-login
+        margin-top 75px
+        display flex
+        flex-direction column
+        align-items center
     .third-login-content{
-        font-size:12px;
-        color:#333;
+        font-size 12px
+        color #6171AB
     }
-    .third-login-image{
-        width:30px;
-        height:30px;
-    }
+    .third-login-image
+        width 27px
+        height 23px
 </style>
 <script type="application/json">
   {
-    "usingComponents": {}
+    "usingComponents": {
+        "get-phone-number":"../components/getPhoneNumber.mpx"
+    }
   }
 </script>

@@ -1,0 +1,14 @@
+{
+    "code":0,
+    "msg":"success",
+    "data":{
+        "avatar":"",
+        "level":"3",
+        "name":"anyone",
+        "score":"123",
+        "number":"214325436",
+        "password":"****234",
+        "times": 8,
+        "address":"cbdshgfdhskgfklsdgfilhsgbrhwjbfjdehwfgkdwgfhkegrfehrwjgkuwbgcfiyehkhr"
+    }
+}
