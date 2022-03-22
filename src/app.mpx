@@ -36,10 +36,11 @@
       "./pages/diy.mpx",
       "./pages/login.mpx",
       "./pages/signIn.mpx",
-      "./pages/notice.mpx",
-      "./pages/ad.mpx",
+      "./pages/times.mpx",
       "./pages/coupon.mpx",
-      "./pages/my.mpx"
+      "./pages/my.mpx",
+      "./pages/person.mpx",
+      "./pages/address.mpx"
     ],
     "tabBar": {
       "custom": true,

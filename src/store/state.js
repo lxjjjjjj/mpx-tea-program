@@ -6,7 +6,8 @@ const state = {
     nickName:'微信用户',
     getPhoneNumber:false,
     userInfo:{},
-    userNFTAll:[]
+    userNFTAll:[],
+    userCreateTimes:[]
 }
   
 export default state

@@ -59,3 +59,18 @@ export function getUserNFTAll(context, params){
         console.log('获取用户所有NFT失败',JSON.stringify(err))
     })
 }
+
+export function getUserCreationAll(context,params){
+    request({
+        url: apis.userCreationAPI,
+        params
+    }).then(res => {
+        if(res.errno){
+            console.log('获取用户创作次数失败',JSON.stringify(res))
+        }else{
+            context.commit('setUserCreateTimes', res)
+        }
+    }).catch(err=>{
+        console.log('获取用户创作次数失败',JSON.stringify(err))
+    })
+}

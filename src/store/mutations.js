@@ -31,3 +31,9 @@ export function setUserInfo (state,data){
 export function setUserNFTAll (state,data){
   state.userNFTAll = data
 }
+export function setUserCreateTimes (state,data){
+  data.forEach(item=>{
+    item.desc = Number(item.desc)
+  })
+  state.userCreateTimes = data
+}

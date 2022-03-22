@@ -1,0 +1,94 @@
+<template>
+    <view class="times-wrapper">
+        <view wx:for="{{userCreateTimes}}" wx:key="item" class="times-style">
+            <image src="{{item.image}}" class="times-image"/>
+            <view class="times-content">
+                <view class="times-top">
+                    <image class="times-title-image" src="https://static-qa.yimutea.com/test/VIP%403x.png"/>
+                    <view class="times-title">{{item.title}}</view>
+                </view>
+                <view class="times-desc">可创作次数：{{item.desc}}</view>
+            </view>
+            <view class="times-btn">
+                <image class="times-btn-image" wx:if="{{!item.desc}}" src="https://static-qa.yimutea.com/test/%E6%8C%89%E9%92%AE_%E4%B8%8D%E5%8F%AF%E7%94%A8%403x.png"/>
+                <image class="times-btn-image" wx:else src="https://static-qa.yimutea.com/test/%E6%8C%89%E9%92%AE_%E4%BD%BF%E7%94%A8%403x.png"/>
+        </view>
+    </view>
+</template>
+
+<script>
+  import mpx,{ createPage } from '@mpxjs/core'
+  import store from '../store'
+  createPage({
+    computed:{
+        ...store.mapState(['userCreateTimes'])
+    }, 
+    methods:{
+        
+    },
+    onLoad(){
+        store.dispatch('getUserCreationAll')
+    }
+  });
+</script>
+<style lang="stylus">
+    .times-wrapper
+        height 100%
+        min-height 100vh
+        width 100vw
+        background-image url('https://static-qa.yimutea.com/test/home_bg.png')
+        background-size 100% 100%
+        padding:10px 22px;
+    .times-style{
+        width:calc(100vw - 44px);
+        height:80px;
+        margin-bottom 12px
+        display: flex;
+        border-radius: 5px;
+        align-items center
+        background-image url('https://static-qa.yimutea.com/test/timesbg%403x.png')
+        background-size 100% 100%
+    }
+    .times-image{
+        width:87px;
+        height:83px;
+    }
+    .times-content{
+        width:200px;
+        height:100%;
+        color:#333;
+    }
+    .times-btn-image
+        height 28px
+        width 73px
+    .times-title-image
+        width 40px
+        height 15px
+    .times-top{
+        margin-top:10px;
+        margin-left:20px;
+        height:20px;
+        display flex
+        align-items center
+    }
+    .times-title{
+        font-size:16px;
+        color #fff
+        margin-left 10px
+    }
+    .times-time{
+        font-size:12px;
+        color:#888;
+    }
+    .times-desc{
+        margin-top:20px;
+        margin-left:20px;
+        color: #D4D4D4
+        font-size: 12px;
+    }
+</style>
+<script type="application/json">
+  {
+    "usingComponents": {}
+  }
+</script>
