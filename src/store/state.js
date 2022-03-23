@@ -7,7 +7,8 @@ const state = {
     getPhoneNumber:false,
     userInfo:{},
     userNFTAll:[],
-    userCreateTimes:[]
+    userCreateTimes:[],
+    nftInfo:{}
 }
   
 export default state

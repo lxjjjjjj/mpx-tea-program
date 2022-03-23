@@ -1,0 +1,118 @@
+<template>
+    <view class="nft-wrapper">
+        <view class="nft-top-wrapper">
+            <view class="nft-top">
+                <view class="nft-title"/>
+                <view class="nft-ad"/>
+            </view>
+        </view>
+        <view class="nft-image">
+            <image src="{{nftInfo.image}}"/> 
+        </view>
+        <view class="nft-desc">
+            <view class="nft-provider">
+                <view class="nft-provider-key">创作者</view>
+                <view class="nft-provider-value">{{nftInfo.provider}}</view>
+            </view>
+            <view class="nft-owner">
+                <view class="nft-owner-key">收藏者</view>
+                <view class="nft-owner-value">{{nftInfo.owner}}</view>
+            </view>
+            <view class="nft-msg">
+                <view class="nft-msg-key">简 介</view>
+                <view class="nft-msg-value">{{nftInfo.desc}}</view>
+            </view>
+        </view>
+    </view>
+</template>
+
+<script>
+  import mpx,{ createPage } from '@mpxjs/core'
+  import store from '../store'
+  import addressPage from './address?resolve'
+  createPage({
+    data:{
+        
+    },
+    computed:{
+        ...store.mapState(['nftInfo'])
+    }, 
+    methods:{
+        
+    }
+  });
+</script>
+<style lang="stylus">
+   .nft-wrapper
+        background url('https://static-qa.yimutea.com/test/home_bg.png')
+        background-size 100% 100%
+        min-height 100vh
+        height 100%
+        width 100vw
+    .nft-title
+        background url('https://static-qa.yimutea.com/test/logo%403x.png')
+        background-size 100% 100%
+        width 92px
+        height 34px
+        position absolute 
+        left 0
+        top 0
+    .nft-ad
+        background url('https://static-qa.yimutea.com/test/%E5%B9%BF%E5%91%8A%E8%AF%AD%403x.png')
+        background-size 100% 100%
+        width 100px
+        height 28px
+        position absolute 
+        right 0
+        bottom 0
+    .nft-top-wrapper
+        margin 0 40px
+        width calc(100% - 80px)
+        padding-top 20px
+    .nft-top
+        height 45px
+        position relative
+        width 100%
+    .nft-image
+        background url('https://static-qa.yimutea.com/test/%E6%A1%86%403x.png')
+        background-size 100% 100%
+        width calc(100% - 36px)
+        height 429px
+        padding 10px 18px
+        display flex
+        justify-content center
+        align-items center
+        image
+            width calc(100% -10px)
+            height calc(100% -10px)
+    .nft-desc
+        padding 10px 40px
+        width calc(100% - 80px)
+    .nft-provider,
+    .nft-owner,
+    .nft-msg
+        display flex
+        justify-content flex-start
+        min-height 30px
+        height 100%
+        line-height 30px
+        width 100%
+    .nft-provider-key,
+    .nft-owner-key,
+    .nft-msg-key
+        color #6B7188
+        font-size 12px
+        font-family MicrosoftYaHei
+        width 80px
+    .nft-provider-value,
+    .nft-owner-value,
+    .nft-msg-value
+        color #ADC6F4
+        font-size 12px
+        font-family FZZHJW--GB1-0
+</style>
+<script type="application/json">
+  {
+    "usingComponents": {}
+  }
+</script>

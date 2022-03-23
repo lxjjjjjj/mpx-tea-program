@@ -1,60 +1,44 @@
 <template>
-  <view class="canvas-container">
-    <canvas-drag id="canvas-drag" graph="{{graph}}" enableUndo="{{true}}"></canvas-drag>
-    <!-- <view class="btn" bindtap="onAddImage">添加图片</view>
-    <view class="btn" bindtap="onAddText">添加文字</view>
-    <view class="btn" bindtap="onExport">导出图片</view>
-    <view class="btn" bindtap="onChangeColor">改变文字颜色</view>
-    <view class="btn" bindtap="onChangeBgColor">改变背景颜色</view>
-    <view class="btn" bindtap="onExportJSON">导出模板</view>
-    <view class="btn" bindtap="onImport">导入默认模板</view>
-    <view class="btn" bindtap="onClearCanvas">清空</view>
-    <view class="btn" bindtap="onChangeBgImage">改变背景照片</view>
-    <view class="btn" bindtap="onUndo">后退</view>
-    <view class="btn" bindtap="toVerticalNav">打开垂直导航</view> -->
-  </view>
-  <view class="operation-area">
-    <view class="operation-container">
-      <button bindtap="publish" class="operation-btn">发布</button>
-      <button bindtap="save" class="operation-btn">保存</button>
+  <view class="diy-background">
+    <view class="canvas-container">
+      <canvas-drag class="canvas-drag" id="canvas-drag" width="{{676}}" height="{{846}}"graph="{{graph}}" enableUndo="{{true}}"></canvas-drag>
+      <button bindtap="publish" class="operation-btn"/>
+      <!-- <view class="btn" bindtap="onAddImage">添加图片</view>
+      <view class="btn" bindtap="onAddText">添加文字</view>
+      <view class="btn" bindtap="onExport">导出图片</view>
+      <view class="btn" bindtap="onChangeColor">改变文字颜色</view>
+      <view class="btn" bindtap="onChangeBgColor">改变背景颜色</view>
+      <view class="btn" bindtap="onExportJSON">导出模板</view>
+      <view class="btn" bindtap="onImport">导入默认模板</view>
+      <view class="btn" bindtap="onClearCanvas">清空</view>
+      <view class="btn" bindtap="onChangeBgImage">改变背景照片</view>
+      <view class="btn" bindtap="onUndo">后退</view> -->
     </view>
-  </view>
-  <view class="change-container">
-    <view class="operation-list-wrapper">
+    <view class="change-container">
       <view class="operation-list">
         <view bindtap="changeSelect(1)" class="change-btn {{typeSelect===1 ? 'change-select' : ''}}">底图</view>
         <view bindtap="changeSelect(2)" class="change-btn {{typeSelect===2 ? 'change-select' : ''}}">元素</view>
       </view>
-    </view>
-    <scroll-view class="vip-list" scroll-x wx:if="{{typeSelect===2}}">
-      <view class="vip-list-wrapper">
-        <view class="vip-item {{vipSelect===item ? 'change-select' : ''}}" bindtap="changeVIP(item)" wx:for="{{vipList}}" wx:key="item">{{item}}</view>
-      <view>
-    </scroll-view>
-    <view class="image-container">
-      <image wx:for="{{showList}}" wx:key="item" class="image-style" src="{{item}}" bindtap="changeImage(item)"/>
-      <view class="diy-self" bindtap="onAddImage">
-        <image class="diy-self-image" src="https://p.qqan.com/up/2021-1/202118103317306.jpg"></image>
-        <view class="diy-self-text">自定义</view>
+      <view class="image-container">
+        <view class="image-wrapper" wx:for="{{showList}}" wx:key="item" wx:style="{{iconStyle}}">
+          <image class="image-style" src="{{item}}" bindtap="changeImage(item)"/>
+        </view>
       </view>
-      <view></view><view></view><view></view><view></view><view></view>
     </view>
   </view>
-  <custom-tab-bar/>
 </template>
 
 <script>
   import mpx,{ createPage } from '@mpxjs/core'
   // import VerticalNavPage from './vertical-nav?resolve'
   import CanvasDrag from '../../scripts/canvas-drag';
-  const DRAG_ICON = require('../scale.png')
   createPage({
       data: {
           graph: {},
           bgImageList:['https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg'],
           iconList:{
-            VIP1:['https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg'],
-            VIP2:['https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg'],
+            VIP1:['https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg'],
+            VIP2:['https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg'],
             VIP3:['https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg'],
             VIP4:['https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg'],
             VIP5:['https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg'],
@@ -69,38 +53,37 @@
       onReady(){
         this.changeSelect(1)
       },
+      computed:{
+        iconStyle(){
+          const IconBg = "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90%E9%80%8F%E6%98%8E%E6%A1%86%403x.png"
+          return this.typeSelect===2 ? `background-image:url(${IconBg});background-size:100% 100%;`:''
+        }
+      },
       methods:{
-        /**
-         * 添加测试图片
-         */
-        onAddTest() {
-            this.setData({
-                graph: {
-                    w: 120,
-                    h: 120,
-                    type: 'image',
-                    url: '../../assets/images/test.jpg',
-                }
-            });
-        },
-
         /**
          * 添加图片
          */
         onAddImage() {
           let proportion
           let h = 200
-          let imageUrl = 'https://m.duitang.com/blog/?id=1347987947&belong_album=85440243'
-          // TODO: 微信后台设置域名 
-          // wx.downloadFile({
-          //   url: imageUrl, 
+          wx.downloadFile({
+            url: 'https://static-qa.yimutea.com/test/%E5%BD%A9%E8%89%B2%E6%B5%81%E6%98%9F%E9%9B%A8.PNG', 
+            success: (res) => {
+              this.graph = {
+                    w: 400,
+                    h: 500,
+                    type: 'image',
+                    url: res.tempFilePath,
+                  }
+              }
+          })
+          // wx.chooseImage({
           //   success: (res) => {
           //     wx.getImageInfo({
-          //       src: imageUrl,
+          //       src: res.tempFilePaths[0],
           //       success (res) {
-          //         console.log('res',res)
-          //         // proportion = res.height / res.width
-          //         // h = h * proportion
+          //         proportion = res.height / res.width
+          //         h = h * proportion
           //       }
           //     })
           //     this.setData({
@@ -113,25 +96,6 @@
           //     });
           //   }
           // })
-          wx.chooseImage({
-            success: (res) => {
-              wx.getImageInfo({
-                src: res.tempFilePaths[0],
-                success (res) {
-                  proportion = res.height / res.width
-                  h = h * proportion
-                }
-              })
-              this.setData({
-                  graph: {
-                    w: 200,
-                    h: h,
-                    type: 'image',
-                    url: res.tempFilePaths[0],
-                  }
-              });
-            }
-          })
         },
 
         /**
@@ -152,7 +116,6 @@
         onExport() {
             CanvasDrag.export()
                 .then((filePath) => {
-                    console.log(filePath);
                     wx.previewImage({
                         urls: [filePath]
                     })
@@ -180,7 +143,13 @@
          * 改变背景照片
          */
         onChangeBgImage() {
-            CanvasDrag.changeBgImage(DRAG_ICON);
+            wx.downloadFile({
+              url:'https://static-qa.yimutea.com/test/%E8%83%8C%E6%99%AF.PNG',
+              success(res){
+                var imgUrl= res.tempFilePath;
+                CanvasDrag.changeBgImage(imgUrl);
+              }
+            })
         },
 
         /**
@@ -214,15 +183,7 @@
         onUndo:function(event){
             CanvasDrag.undo();
         },
-        toVerticalNav:function(){
-          // mpx.navigateTo({
-          //   url: VerticalNavPage
-          // })
-        },
         publish(){
-
-        },
-        save(){
 
         },
         changeSelect(index){
@@ -247,7 +208,13 @@
       }
   });
 </script>
-<style>
+<style lang="stylus">
+  .diy-background
+      height 100%
+      min-height 100vh
+      width 100vw
+      background-image url('https://static-qa.yimutea.com/test/home_bg.png')
+      background-size 100% 100%
   .btn{
     padding: 10rpx 20rpx;
     float:left;
@@ -255,111 +222,80 @@
     border:solid 1px #dfdfdf;
     border-radius: 10rpx;
   }
-  .canvas-container{
-    height:50vh;
-    width: calc(100vw - 20rpx);
-    margin: 10rpx;
-    border: dashed #eee ;
+  .canvas-drag
+    margin 20px 18px 0 18px
+    width calc(100vw - 36px)
+    /*use rpx*/
+    height 846rpx
+  .canvas-container
+    /*use rpx*/
+    height:1000rpx;
+    width: 100vw
     box-sizing: border-box;
-    background: url('https://p.qqan.com/up/2021-1/202118103317306.jpg')
-  }
-  .operation-area{
-    position:relative;
-    height: 40px;
-  }
-  .operation-container{
+    background-size 100% 100%
+    display flex
+    position relative
+    justify-content center
+    background-image: url('https://static-qa.yimutea.com/test/%E5%8C%BA%E5%9F%9F%E8%83%8C%E6%99%AF%403x.png')
+  .operation-btn
+    height 30px
+    width 78px
+    background-image url('https://static-qa.yimutea.com/test/%E5%8F%91%E5%B8%83%403x.png')
+    background-size 100% 100%
+    position absolute
+    right 20px
+    bottom 10px
+  .change-container
+    padding 10px 17px 20px 17px
+  .operation-list
     display:flex;
-    position: absolute;
-    right: 0px;
-    top: 0px;
-  }
-  .operation-btn{
-    margin:10rpx;
-    line-height: 30px;
-    height: 30px;
-    text-align: center;
-  }
-  .change-container{
-    padding-top:5px;
-    border-top: 2px #dfdfdf solid;
-    width: 100vw;
-  }
-  .operation-list-wrapper{
-    position: relative;
-    height: 40px;
-  }
-  .operation-list{
-    position: absolute;
-    right: 0;
-    top: 0;
-    display:flex;
+    justify-content flex-start
+    overflow-x scroll
     width: 100%;
-  }
-  .change-select{
-    background: red;
-  }
-  .change-btn{
-    height: 30px;
-    line-height: 30px;
-    padding: 0 10px;
-    width: 50px;
-    color: green;
-    text-align: center;
-  }
-  .vip-item {
-    width: 40px;
-    height: 30px;
-    line-height: 30px;
-    color: green;
-    padding: 0 10px;
-  }
-  .vip-list {
-    width: 100vw;
-    height: 40px;
-  }
-  .vip-list-wrapper {
+  .change-select
+    background-image url('https://static-qa.yimutea.com/test/%E9%80%89%E4%B8%AD%E8%83%8C%E6%99%AF%403x.png')
+    background-size 100% 100%
+    width 56px
+    height 30px
+    color #fff !important
+  .change-btn
+    height 30px
+    line-height 30px
+    width 56px
+    color #A1A4E3
+    text-align center
+  .image-container 
     display: flex;
-  }
-  .image-container {
-    display: flex;
-    width: 100vw;
+    width: 100%;
     flex-wrap: wrap;
     justify-content: space-evenly;
     margin-right: -10px;
+  .image-wrapper
+    width 24%
+    /*use rpx*/
+    height 160rpx
+    display flex
+    justify-content center
+    margin-top: 12px
+  .image-style
+      /*use rpx*/
+      width 160rpx
+      /*use rpx*/
+      height 160rpx
+  .image-wrapper:last-child:nth-child(4n-1) {
+      margin-right: calc(24% + 2% / 3);
   }
-  .image-style{
-    width: 100px;
-    height: 100px;
-    margin: 10px 0;
-    margin: 15px 10px 0 0;
+  .image-wrapper:last-child:nth-child(4n-2) {
+      margin-right: calc(48% + 4% / 3);
   }
-  .image-container > view {
-    width: 100px;
-    margin-right: 10px;
-  }
-  .diy-self{
-    border: 2px dashed #eee;
-    height: 100px;
-    width: 100px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 15px 10px 0 0;
-  }
-  .diy-self-image{
-    width: 80px;
-    height: 80px;
-  }
-  .diy-self-content{
-    color: #eee;
+  .image-wrapper:last-child:nth-child(4n-3) {
+      margin-right: calc(72% + 8% / 3);
   }
 </style>
 <script type="application/json">
   {
     "usingComponents": {
-      "canvas-drag": "../components/canvas-drag",
-      "custom-tab-bar":"../custom-tab-bar/index.mpx"
+      "canvas-drag": "../components/canvas-drag"
     }
   }
 </script>

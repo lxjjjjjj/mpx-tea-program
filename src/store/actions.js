@@ -8,6 +8,8 @@ export function getHomeList(context, params){
     }).then(res=>{
         context.commit('setHomeList',res.frontPageList)
         context.commit('setFrontVersion',res.frontVersion)
+    }).catch(err=>{
+        console.log('获取首页数据失败',err)
     })
 }
 export function Login(context, params){
@@ -72,5 +74,20 @@ export function getUserCreationAll(context,params){
         }
     }).catch(err=>{
         console.log('获取用户创作次数失败',JSON.stringify(err))
+    })
+}
+
+export function getNFTById(context,params){
+    request({
+        url: apis.getNftByIdAPI,
+        params
+    }).then(res => {
+        if(res.errno){
+            console.log('通过id获取用户NFT失败',JSON.stringify(res))
+        }else{
+            context.commit('setNFTByIdInfo', res)
+        }
+    }).catch(err=>{
+        console.log('通过id获取用户NFT失败',JSON.stringify(err))
     })
 }

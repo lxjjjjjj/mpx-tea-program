@@ -40,7 +40,8 @@
       "./pages/coupon.mpx",
       "./pages/my.mpx",
       "./pages/person.mpx",
-      "./pages/address.mpx"
+      "./pages/address.mpx",
+      "./pages/myNFT.mpx"
     ],
     "tabBar": {
       "custom": true,

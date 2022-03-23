@@ -9,3 +9,5 @@ export const userInfoAPI = host + "/api/v1/user/info"
 export const userNFTAllAPI = host + "/api/v1/nft/all"
 // 用户创作次数
 export const userCreationAPI = host + "/api/v1/nft/creation/all"
+// 根据id查询用户创作的某个nft
+export const getNftByIdAPI = host + '/api/v1/nft'

@@ -458,12 +458,12 @@
           },
           draw() {
               if (this.data.bgImage !== '') {
-                  this.ctx.drawImage(this.data.bgImage, 0, 0, this.toPx(this.data.width), this.toPx(this.data.height));
+                  this.ctx.drawImage(this.data.bgImage, 0, 0, this.toPx(this.width), this.toPx(this.height));
               }
               if (this.data.bgColor !== '') {
                   this.ctx.save();
                   this.ctx.setFillStyle(this.data.bgColor);
-                  this.ctx.fillRect(0, 0, this.toPx(this.data.width), this.toPx(this.data.height));
+                  this.ctx.fillRect(0, 0, this.toPx(this.width), this.toPx(this.height));
                   this.ctx.restore();
               }
               this.drawArr.forEach((item) => {
@@ -505,7 +505,7 @@
                           if (lastDelIndex !== null && this.tempGraphArr[i].selected) {
                               if (this.drawArr[lastDelIndex].action === 'del') {
                                   this.drawArr.splice(lastDelIndex, 1);
-                                  this.ctx.clearRect(0, 0, this.toPx(this.data.width), this.toPx(this.data.height));
+                                  this.ctx.clearRect(0, 0, this.toPx(this.width), this.toPx(this.height));
                               }
                           } else {
                               this.tempGraphArr[lastIndex].selected = true;
@@ -650,7 +650,7 @@
               this.recordHistory();
           },
           clearCanvas() {
-              this.ctx.clearRect(0, 0, this.toPx(this.data.width), this.toPx(this.data.height));
+              this.ctx.clearRect(0, 0, this.toPx(this.width), this.toPx(this.height));
               this.ctx.draw();
               this.drawArr = [];
               this.initBg(); // 重置绘画背景

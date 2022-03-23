@@ -34,11 +34,11 @@
                     <view class="collect-size">（{{userNFTAll.length}}）</view>
                 </view>
                 <view class="collect-list">
-                    <view class="collect-item" wx:for="{{userNFTAll}}" wx:key="item">
+                    <view class="collect-item" wx:for="{{userNFTAll}}" wx:key="item" bindtap="getUserNFTById(item.id)">
                         <view class="collect-item-wrapper">
                             <image mode="widthFix" class="collect-picture" src="{{item.image}}"/>
                             <view class="collect-name">{{item.name}}</view>
-                            <view class="collect-ID">数字藏品ID</view>
+                            <view class="collect-ID">数字藏品ID : {{item.id}}</view>
                             <view class="collect-desc">作品描述 : {{item.desc}}</view>
                         </view>
                     </view>
@@ -54,6 +54,7 @@
   import LoginPage from '../pages/login?resolve'
   import couponPage from '../pages/coupon?resolve'
   import store from '../store'
+  import myNFT from './myNFT?resolve'
   createPage({
       data: {
         defaultAvatar: "https://static-qa.yimutea.com/test/%E5%A4%B4%E5%83%8F%E9%81%AE%E7%BD%A9%403x.png"
@@ -62,10 +63,16 @@
           ...store.mapState(['userInfo','userNFTAll'])
       },
       methods:{   
-          ...store.mapActions(['getUserInfo','getUserNFTAll']),
+          ...store.mapActions(['getUserInfo','getUserNFTAll','getNFTById']),
           goToCoupon(){
               mpx.navigateTo({
                   url:couponPage
+              })
+          },
+          getUserNFTById(id){
+              this.getNFTById({ id })
+              mpx.navigateTo({
+                  url:myNFT
               })
           }
       },
@@ -84,7 +91,8 @@
     .my-wrapper
         background url('https://static-qa.yimutea.com/test/home_bg.png')
         background-size 100% 100%
-        height 100vh
+        min-height 100vh
+        height 100%
         width 100vw
     .my-container
         height calc(100vh - 80px)
