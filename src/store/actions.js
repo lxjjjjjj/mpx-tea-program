@@ -91,3 +91,18 @@ export function getNFTById(context,params){
         console.log('通过id获取用户NFT失败',JSON.stringify(err))
     })
 }
+
+export function getUserCoupons(context,params){
+    request({
+        url: apis.getUserCouponsAPI,
+        params
+    }).then(res => {
+        if(res.errno){
+            console.log('获取用户优惠券失败',JSON.stringify(res))
+        }else{
+            context.commit('setUserCoupons', res)
+        }
+    }).catch(err=>{
+        console.log('获取用户优惠券失败',JSON.stringify(err))
+    })
+}

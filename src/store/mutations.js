@@ -40,3 +40,6 @@ export function setUserCreateTimes (state, data){
 export function setNFTByIdInfo (state, data){
   state.nftInfo = data
 }
+export function setUserCoupons (state, data){
+  state.userCoupons = data
+}

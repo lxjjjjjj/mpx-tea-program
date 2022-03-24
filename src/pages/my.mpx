@@ -22,7 +22,7 @@
                 <view class="my-vip-address"/>
                 <view class="my-vip-address-value">{{userInfo.address}}</view>
             </view>
-            <view class="my-times">
+            <view class="my-times" bindtap="goToTimes">
                 <view class="my-times-img"/>
                 <view class="my-times-title">创作次数 </view>
                 <view class="my-times-value">{{userInfo.times}}</view>
@@ -55,6 +55,7 @@
   import couponPage from '../pages/coupon?resolve'
   import store from '../store'
   import myNFT from './myNFT?resolve'
+  import timesPage from './times?resolve'
   createPage({
       data: {
         defaultAvatar: "https://static-qa.yimutea.com/test/%E5%A4%B4%E5%83%8F%E9%81%AE%E7%BD%A9%403x.png"
@@ -74,6 +75,11 @@
               mpx.navigateTo({
                   url:myNFT
               })
+          },
+          goToTimes(){
+              mpx.navigateTo({
+                  url:timesPage
+              })
           }
       },
       created(){
@@ -81,6 +87,7 @@
         this.getUserNFTAll()
       },
       onShow(){
+        // TODO 是否登陆的校验
         //   mpx.navigateTo({
         //       url:LoginPage
         //   })

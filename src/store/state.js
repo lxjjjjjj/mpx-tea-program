@@ -8,7 +8,8 @@ const state = {
     userInfo:{},
     userNFTAll:[],
     userCreateTimes:[],
-    nftInfo:{}
+    nftInfo:{},
+    userCoupons:{}
 }
   
 export default state

@@ -35,6 +35,7 @@
   createPage({
       data: {
           graph: {},
+          vip:0,
           bgImageList:['https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg'],
           iconList:{
             VIP1:['https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg'],
@@ -58,6 +59,9 @@
           const IconBg = "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90%E9%80%8F%E6%98%8E%E6%A1%86%403x.png"
           return this.typeSelect===2 ? `background-image:url(${IconBg});background-size:100% 100%;`:''
         }
+      },
+      onLoad(params){
+        this.vip = params.vip
       },
       methods:{
         /**

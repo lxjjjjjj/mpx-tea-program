@@ -7,7 +7,7 @@
                 </view>
             </view>
         </view>
-        <view wx:for="{{couponList}}" wx:key="{{item.title}}" class="coupon-style">
+        <view wx:for="{{userCoupons[tabSelect]}}" wx:key="{{item.title}}" class="coupon-style">
             <view class="coupon-content">
                 <view class="coupon-title">{{item.title}}</view>
                 <view class="coupon-num">剩余张数 : {{item.type}}</view>
@@ -20,107 +20,23 @@
 
 <script>
   import mpx,{ createPage } from '@mpxjs/core'
-
+  import store from  '../store'  
   createPage({
       data: {
-        tabs:['A级礼品券','B级礼品券'],
-        tabSelect:0,
-        couponList:[{
-            image:'https://static-qa.yimutea.com/test/%E6%98%93%E4%BA%A9%E7%94%9F%E7%92%9E%E7%A4%BC%E5%93%81%E5%88%B81%403x.png',
-            title:"精品茶饮券",
-            date:"2022-02-20",
-            type:"8"
-        },{
-            image:'https://static-qa.yimutea.com/test/%E6%98%93%E4%BA%A9%E7%94%9F%E7%92%9E%E7%A4%BC%E5%93%81%E5%88%B81%403x.png',
-            title:"精品茶饮券",
-            date:"2022-02-20",
-            type:"8"
-        },{
-            image:'https://static-qa.yimutea.com/test/%E6%98%93%E4%BA%A9%E7%94%9F%E7%92%9E%E7%A4%BC%E5%93%81%E5%88%B81%403x.png',
-            title:"精品茶饮券",
-            date:"2022-02-20",
-            type:"8"
-        },{
-            image:'https://static-qa.yimutea.com/test/%E6%98%93%E4%BA%A9%E7%94%9F%E7%92%9E%E7%A4%BC%E5%93%81%E5%88%B81%403x.png',
-            title:"精品茶饮券",
-            date:"2022-02-20",
-            type:"8"
-        },{
-            image:'https://static-qa.yimutea.com/test/%E6%98%93%E4%BA%A9%E7%94%9F%E7%92%9E%E7%A4%BC%E5%93%81%E5%88%B81%403x.png',
-            title:"精品茶饮券",
-            date:"2022-02-20",
-            type:"8"
-        },{
-            image:'https://static-qa.yimutea.com/test/%E6%98%93%E4%BA%A9%E7%94%9F%E7%92%9E%E7%A4%BC%E5%93%81%E5%88%B81%403x.png',
-            title:"精品茶饮券",
-            date:"2022-02-20",
-            type:"8"
-        },{
-            image:'https://static-qa.yimutea.com/test/%E6%98%93%E4%BA%A9%E7%94%9F%E7%92%9E%E7%A4%BC%E5%93%81%E5%88%B81%403x.png',
-            title:"精品茶饮券",
-            date:"2022-02-20",
-            type:"8"
-        },{
-            image:'https://static-qa.yimutea.com/test/%E6%98%93%E4%BA%A9%E7%94%9F%E7%92%9E%E7%A4%BC%E5%93%81%E5%88%B81%403x.png',
-            title:"精品茶饮券",
-            date:"2022-02-20",
-            type:"8"
-        },{
-            image:'https://static-qa.yimutea.com/test/%E6%98%93%E4%BA%A9%E7%94%9F%E7%92%9E%E7%A4%BC%E5%93%81%E5%88%B81%403x.png',
-            title:"精品茶饮券",
-            date:"2022-02-20",
-            type:"8"
-        },{
-            image:'https://static-qa.yimutea.com/test/%E6%98%93%E4%BA%A9%E7%94%9F%E7%92%9E%E7%A4%BC%E5%93%81%E5%88%B81%403x.png',
-            title:"精品茶饮券",
-            date:"2022-02-20",
-            type:"8"
-        },{
-            image:'https://static-qa.yimutea.com/test/%E6%98%93%E4%BA%A9%E7%94%9F%E7%92%9E%E7%A4%BC%E5%93%81%E5%88%B81%403x.png',
-            title:"精品茶饮券",
-            date:"2022-02-20",
-            type:"8"
-        },{
-            image:'https://static-qa.yimutea.com/test/%E6%98%93%E4%BA%A9%E7%94%9F%E7%92%9E%E7%A4%BC%E5%93%81%E5%88%B81%403x.png',
-            title:"精品茶饮券",
-            date:"2022-02-20",
-            type:"8"
-        },{
-            image:'https://static-qa.yimutea.com/test/%E6%98%93%E4%BA%A9%E7%94%9F%E7%92%9E%E7%A4%BC%E5%93%81%E5%88%B81%403x.png',
-            title:"精品茶饮券",
-            date:"2022-02-20",
-            type:"8"
-        },{
-            image:'https://static-qa.yimutea.com/test/%E6%98%93%E4%BA%A9%E7%94%9F%E7%92%9E%E7%A4%BC%E5%93%81%E5%88%B81%403x.png',
-            title:"精品茶饮券",
-            date:"2022-02-20",
-            type:"8"
-        },{
-            image:'https://static-qa.yimutea.com/test/%E6%98%93%E4%BA%A9%E7%94%9F%E7%92%9E%E7%A4%BC%E5%93%81%E5%88%B81%403x.png',
-            title:"精品茶饮券",
-            date:"2022-02-20",
-            type:"8"
-        },{
-            image:'https://static-qa.yimutea.com/test/%E6%98%93%E4%BA%A9%E7%94%9F%E7%92%9E%E7%A4%BC%E5%93%81%E5%88%B81%403x.png',
-            title:"精品茶饮券",
-            date:"2022-02-20",
-            type:"8"
-        },{
-            image:'https://static-qa.yimutea.com/test/%E6%98%93%E4%BA%A9%E7%94%9F%E7%92%9E%E7%A4%BC%E5%93%81%E5%88%B81%403x.png',
-            title:"精品茶饮券",
-            date:"2022-02-20",
-            type:"8"
-        },{
-            image:'https://static-qa.yimutea.com/test/%E6%98%93%E4%BA%A9%E7%94%9F%E7%92%9E%E7%A4%BC%E5%93%81%E5%88%B81%403x.png',
-            title:"精品茶饮券",
-            date:"2022-02-20",
-            type:"8"
-        }]
+        tabs: ['A级礼品券','B级礼品券'],
+        tabSelect: 0
+      },
+      computed:{
+          ...store.mapState(['userCoupons'])
       },
       methods:{
+        ...store.mapActions(['getUserCoupons']),
         changeTab(index){
             this.tabSelect = index
         }   
+      },
+      onLoad(){
+          this.getUserCoupons()
       }
   });
 </script>
@@ -164,7 +80,6 @@
         background-size 100% 100%
         display flex
         flex-direction column
-        justify-content center
         align-items center
     .coupon-style
         width 321px

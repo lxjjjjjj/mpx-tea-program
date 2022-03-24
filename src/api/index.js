@@ -11,3 +11,5 @@ export const userNFTAllAPI = host + "/api/v1/nft/all"
 export const userCreationAPI = host + "/api/v1/nft/creation/all"
 // 根据id查询用户创作的某个nft
 export const getNftByIdAPI = host + '/api/v1/nft'
+// 获取用户所有优惠券
+export const getUserCouponsAPI = host + '/api/v1/user/coupons'
