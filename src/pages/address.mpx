@@ -3,23 +3,27 @@
         <view class="address-title"/>
         <view class="address-user-wrapper">
             <view class="address-user">收货人</view>
-            <input maxlength="11" class="address-user-input"/>
+            <input class="address-user-input" wx:model="{{consignee}}"/>
         </view>
         <view class="address-phone-wrapper">
             <view class="address-phone">电话</view>
-            <input maxlength="11" class="address-phone-input" type="number"/>
+            <input maxlength="11" class="address-phone-input" type="number" wx:model="{{mobile}}"/>
         </view>
         <view class="address-local-wrapper">
             <view class="address-local">所在地区</view>
-            <input maxlength="11" class="address-local-input" type="number"/>
+            <picker mode = "region" bindchange="regionChange" value="{{region}}">
+                <view class="address-local-input">
+                    {{region[0]}} - {{region[1]}} - {{region[2]}}
+                </view>
+            </picker>
         </view>
         <view class="address-detail-wrapper">
             <view class="address-detail">详细地址</view>
-            <input maxlength="11" class="address-detail-input" type="number"/>
+            <input class="address-detail-input" wx:model="{{address}}"/>
         </view>
         <view class="address-btn">
-            <view class="address-btn-return"/>
-            <view class="address-btn-new"/>
+            <view class="address-btn-return" bindtap=""/>
+            <view class="address-btn-new" bindtap="newAddress"/>
         </view>
     </view>
 </template>
@@ -29,12 +33,32 @@
   import store from '../store'
   createPage({
     data:{
-        
+        region: ['广东省', '广州市', '海珠区'],
+        address: '',
+        mobile: '',
+        consignee: ''
     },
     computed:{
         
     }, 
     methods:{
+        ...store.mapActions(['addUserAddress']),
+        regionChange(e){
+            console.log('picker发送选择改变，携带值为', e.detail.value)
+            this.region = e.detail.value
+        },
+        newAddress(){
+            console.log('addUserAddress')
+            this.addUserAddress({
+                areaName: this.region[2],
+                cityName: this.region[1],
+                provinceName: this.region[0],
+                address: this.address,
+                mobile: this.mobile,
+                consignee: this.consignee,
+                type: 0
+            })
+        }
     },
     onLoad(){
         

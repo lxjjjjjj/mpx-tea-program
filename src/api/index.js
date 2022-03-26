@@ -13,3 +13,5 @@ export const userCreationAPI = host + "/api/v1/nft/creation/all"
 export const getNftByIdAPI = host + '/api/v1/nft'
 // 获取用户所有优惠券
 export const getUserCouponsAPI = host + '/api/v1/user/coupons'
+// 新建地址
+export const addUserAddressAPI = host + '/api/v1/userAddress/add'

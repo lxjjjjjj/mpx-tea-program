@@ -1,6 +1,7 @@
 import request from '../api/request'
 import * as apis from '../api/index'
 import state from './state'
+import mpx from '@mpxjs/core'
 export function getHomeList(context, params){
     request({
         url:apis.getHomeListAPI,
@@ -104,5 +105,25 @@ export function getUserCoupons(context,params){
         }
     }).catch(err=>{
         console.log('获取用户优惠券失败',JSON.stringify(err))
+    })
+}
+
+export function addUserAddress(context,params){
+    request({
+        url: apis.addUserAddressAPI,
+        params,
+        method:"POST"
+    }).then(res => {
+        if(res.errno){
+            console.log('新增地址失败',JSON.stringify(res))
+        }else{
+            mpx.showToast({
+                title: '新建地址成功',
+                icon: 'success',
+                duration: 2000
+            })  
+        }
+    }).catch(err=>{
+        console.log('新增地址失败',JSON.stringify(err))
     })
 }
