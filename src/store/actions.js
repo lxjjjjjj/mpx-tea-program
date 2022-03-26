@@ -127,3 +127,19 @@ export function addUserAddress(context,params){
         console.log('新增地址失败',JSON.stringify(err))
     })
 }
+
+export function getNFTMaterial(context,params){
+    request({
+        url: apis.getNFTMaterialAPI,
+        params
+    }).then(res => {
+        if(res.errno){
+            console.log('获取NFT素材失败',JSON.stringify(res))
+        }else{
+            context.commit("setNFTMaterial", res.material)
+            context.commit("setNFTTab", res.materialNameMap)  
+        }
+    }).catch(err=>{
+        console.log('获取NFT素材失败',JSON.stringify(err))
+    })
+}

@@ -9,7 +9,9 @@ const state = {
     userNFTAll:[],
     userCreateTimes:[],
     nftInfo:{},
-    userCoupons:{}
+    userCoupons:{},
+    NFTMaterial:[],
+    NFTTab:{}
 }
   
 export default state

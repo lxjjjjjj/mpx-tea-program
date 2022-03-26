@@ -22,7 +22,7 @@
             <input class="address-detail-input" wx:model="{{address}}"/>
         </view>
         <view class="address-btn">
-            <view class="address-btn-return" bindtap=""/>
+            <view class="address-btn-return" bindtap="back"/>
             <view class="address-btn-new" bindtap="newAddress"/>
         </view>
     </view>
@@ -57,6 +57,11 @@
                 mobile: this.mobile,
                 consignee: this.consignee,
                 type: 0
+            })
+        },
+        back(){
+            wx.navigateBack({
+                delta: 1
             })
         }
     },

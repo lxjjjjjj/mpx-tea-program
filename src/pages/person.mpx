@@ -97,6 +97,7 @@
         position absolute
         left 50%
         top 133px
+        text-align center
         transform translateX(-50%)
         background-image url('https://static-qa.yimutea.com/test/namebg%403x.png')
         background-size 100% 100%

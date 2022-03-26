@@ -2,7 +2,7 @@
     <view class="my-wrapper">
         <view class="my-container" srcoll-y="true" show-scrollbar="false" enable-flex="true">
             <view class="my-top">
-                <view class="my-avatar"><image src="{{userInfo.avatar || defaultAvatar}}"/></view>
+                <view class="my-avatar" bindtap="goToPerson"><image src="{{userInfo.avatar || defaultAvatar}}"/></view>
                 <view>
                     <view class="my-class">
                         <view class="my-class-msg">{{userInfo.level}}</view>
@@ -56,6 +56,7 @@
   import store from '../store'
   import myNFT from './myNFT?resolve'
   import timesPage from './times?resolve'
+  import personPage from './person?resolve'
   createPage({
       data: {
         defaultAvatar: "https://static-qa.yimutea.com/test/%E5%A4%B4%E5%83%8F%E9%81%AE%E7%BD%A9%403x.png"
@@ -70,6 +71,11 @@
                   url:couponPage
               })
           },
+          goToPerson(){
+              mpx.navigateTo({
+                  url:personPage
+              })
+          },
           getUserNFTById(id){
               this.getNFTById({ id })
               mpx.navigateTo({
@@ -82,15 +88,15 @@
               })
           }
       },
+      onShow(){
+        // TODO 是否登陆的校验
+      },
       created(){
         this.getUserInfo()
         this.getUserNFTAll()
-      },
-      onShow(){
-        // TODO 是否登陆的校验
-        //   mpx.navigateTo({
-        //       url:LoginPage
-        //   })
+        mpx.navigateTo({
+            url:LoginPage
+        })
       }
   });
 </script>

@@ -93,6 +93,7 @@
     .nft-msg
         display flex
         justify-content flex-start
+        flex-shrink 1
         min-height 30px
         height 100%
         line-height 30px
@@ -104,6 +105,7 @@
         font-size 12px
         font-family MicrosoftYaHei
         width 80px
+        flex-shrink 0
     .nft-provider-value,
     .nft-owner-value,
     .nft-msg-value

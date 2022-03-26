@@ -43,3 +43,9 @@ export function setNFTByIdInfo (state, data){
 export function setUserCoupons (state, data){
   state.userCoupons = data
 }
+export function setNFTMaterial (state, data){
+  state.NFTMaterial = data
+}
+export function setNFTTab (state, data){
+  state.NFTTab = data
+}

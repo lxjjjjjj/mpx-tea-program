@@ -16,12 +16,11 @@
     </view>
     <view class="change-container">
       <view class="operation-list">
-        <view bindtap="changeSelect(1)" class="change-btn {{typeSelect===1 ? 'change-select' : ''}}">底图</view>
-        <view bindtap="changeSelect(2)" class="change-btn {{typeSelect===2 ? 'change-select' : ''}}">元素</view>
+        <view bindtap="changeSelect(item)" wx:for="{{tabList}}"  wx:key="item" class="change-btn {{typeSelect === item ? 'change-select' : ''}}">{{NFTTab[item]}}</view>
       </view>
       <view class="image-container">
         <view class="image-wrapper" wx:for="{{showList}}" wx:key="item" wx:style="{{iconStyle}}">
-          <image class="image-style" src="{{item}}" bindtap="changeImage(item)"/>
+          <image class="image-style" src="{{item.url}}" bindtap="changeImage(item)"/>
         </view>
       </view>
     </view>
@@ -32,50 +31,46 @@
   import mpx,{ createPage } from '@mpxjs/core'
   // import VerticalNavPage from './vertical-nav?resolve'
   import CanvasDrag from '../../scripts/canvas-drag';
+  import store from '../store'
   createPage({
       data: {
           graph: {},
           vip:0,
-          bgImageList:['https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg'],
-          iconList:{
-            VIP1:['https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg'],
-            VIP2:['https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg'],
-            VIP3:['https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg'],
-            VIP4:['https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg'],
-            VIP5:['https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg'],
-            VIP6:['https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg'],
-            VIP7:['https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg','https://p.qqan.com/up/2021-1/202118103317306.jpg'],
-          },
-          vipList:['VIP1','VIP2','VIP3','VIP4','VIP5','VIP6','VIP7','VIP8'],
-          typeSelect:1,
-          vipSelect:'VIP1',
-          showList:[]
-      },
-      onReady(){
-        this.changeSelect(1)
+          typeSelect:'bg'
       },
       computed:{
+        ...store.mapState(['NFTMaterial', 'NFTTab']),
+        tabList(){
+          return Object.keys(this.NFTTab)
+        },
+        showList(){
+          return this.NFTMaterial[this.typeSelect]
+        },
         iconStyle(){
           const IconBg = "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90%E9%80%8F%E6%98%8E%E6%A1%86%403x.png"
-          return this.typeSelect===2 ? `background-image:url(${IconBg});background-size:100% 100%;`:''
+          return this.typeSelect !== 'bg' ? `background-image:url(${IconBg});background-size:100% 100%;`:''
         }
+      },
+      created(){
+        this.getNFTMaterial()
       },
       onLoad(params){
         this.vip = params.vip
       },
       methods:{
+        ...store.mapActions(['getNFTMaterial']),
         /**
          * 添加图片
          */
-        onAddImage() {
+        onAddImage(url) {
           let proportion
           let h = 200
           wx.downloadFile({
-            url: 'https://static-qa.yimutea.com/test/%E5%BD%A9%E8%89%B2%E6%B5%81%E6%98%9F%E9%9B%A8.PNG', 
+            url,
             success: (res) => {
               this.graph = {
-                    w: 400,
-                    h: 500,
+                    w: 100,
+                    h: 100,
                     type: 'image',
                     url: res.tempFilePath,
                   }
@@ -123,6 +118,7 @@
                     wx.previewImage({
                         urls: [filePath]
                     })
+                    console.log('filePath',filePath)
                 })
                 .catch((e) => {
                     console.error(e);
@@ -146,9 +142,9 @@
         /**
          * 改变背景照片
          */
-        onChangeBgImage() {
+        onChangeBgImage(url) {
             wx.downloadFile({
-              url:'https://static-qa.yimutea.com/test/%E8%83%8C%E6%99%AF.PNG',
+              url,
               success(res){
                 var imgUrl= res.tempFilePath;
                 CanvasDrag.changeBgImage(imgUrl);
@@ -188,25 +184,16 @@
             CanvasDrag.undo();
         },
         publish(){
-
+          this.onExport()
         },
-        changeSelect(index){
-          this.typeSelect = index
-          if (index===1) {
-            this.showList = this.bgImageList
-          } else {
-            this.showList = this.iconList[this.vipSelect]
-          }
+        changeSelect(id){
+          this.typeSelect = id
         },
-        changeVIP(item){
-          this.vipSelect = item
-          this.showList = this.iconList[item]
-        },
-        changeImage(imageSrc){
-          if(this.typeSelect === 1){
-            this.onChangeBgImage(imageSrc)
+        changeImage(item){
+          if(this.typeSelect === 'bg'){
+            this.onChangeBgImage(item.url)
           }else{
-            this.onAddImage(imageSrc)
+            this.onAddImage(item.url)
           }
         }
       }

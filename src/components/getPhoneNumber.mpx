@@ -7,20 +7,24 @@
     </view>
 </template>
 <script>
-  import { createComponent } from '@mpxjs/core'
+  import mpx, { createComponent } from '@mpxjs/core'
   import store from '../store'
+  import myPage from '../pages/my?resolve'
   createComponent({
       methods:{
           ...store.mapActions(['fillUserPhone']),
           returnTap(){
-              return
+              this.show = false
+              return false
           },
           setPhoneNumber(e){
-              console.log(e.detail.code)
+              store.commit('setPhoneNumberShow',false)
               if(e.detail.code){
-                  store.commit('setPhoneNumberShow',false)
-                  this.fillUserPhone({ code: e.detail.code })
+                this.fillUserPhone({ code: e.detail.code })
               }
+              mpx.switchTab({
+                url: myPage
+            })
           }
       }
   })
