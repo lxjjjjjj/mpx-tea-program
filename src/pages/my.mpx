@@ -108,10 +108,10 @@
         height 100%
         width 100vw
     .my-container
-        height calc(100vh - 80px)
+        height calc(100vh - 85px)
         width calc(100vw - 40px)
         margin 0 20px
-        margin-bottom 80px
+        margin-bottom 85px
         overflow-y scroll
     .my-container::-webkit-scrollbar
         display none

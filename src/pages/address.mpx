@@ -3,12 +3,14 @@
         <view class="address-title"/>
         <view class="address-user-wrapper">
             <view class="address-user">收货人</view>
-            <input class="address-user-input" wx:model="{{consignee}}"/>
+            <input class="address-user-input" wx:model="{{consignee}}" bindfocus="bindfocus('consignee')"/>
         </view>
+        <view class="address-user-danger" wx:if="{{rulesMap.consignee}}">收货人不能为空</view>
         <view class="address-phone-wrapper">
             <view class="address-phone">电话</view>
-            <input maxlength="11" class="address-phone-input" type="number" wx:model="{{mobile}}"/>
+            <input maxlength="11" class="address-phone-input" type="number" wx:model="{{mobile}}" bindfocus="bindfocus('mobile')"/>
         </view>
+        <view class="address-user-danger" wx:if="{{rulesMap.mobile || isRightNumber}}">{{isRightNumber ? '电话格式错误':'电话不能为空'}}</view>
         <view class="address-local-wrapper">
             <view class="address-local">所在地区</view>
             <picker mode = "region" bindchange="regionChange" value="{{region}}">
@@ -19,7 +21,17 @@
         </view>
         <view class="address-detail-wrapper">
             <view class="address-detail">详细地址</view>
-            <input class="address-detail-input" wx:model="{{address}}"/>
+            <textarea class="address-detail-input" wx:model="{{address}}" maxlength="{{80}}" bindfocus="bindfocus('address')"/>
+        </view>
+        <view class="address-user-danger" wx:if="{{rulesMap.address}}">详细地址不能为空</view>
+        <view class="address-default-wrapper">
+            <view class="address-default">设为默认</view>
+            <view class="address-default-input">
+                <view wx:class="{{ { 'address-default-btnTwo' : yes } }}" class="address-default-btnOne" bindtap="clickDefault(0)"></view>
+                <view class="addresss-default-btnText"> 是 </view>
+                <view wx:class="{{ { 'address-default-btnTwo' : no } }}" class="address-default-btnOne" bindtap="clickDefault(1)"></view>
+                <view class="addresss-default-btnText"> 否</view>
+            </view>
         </view>
         <view class="address-btn">
             <view class="address-btn-return" bindtap="back"/>
@@ -36,28 +48,59 @@
         region: ['广东省', '广州市', '海珠区'],
         address: '',
         mobile: '',
-        consignee: ''
+        consignee: '',
+        isRightNumber: false,
+        rulesMap: {
+            address: false,
+            mobile: false,
+            consignee: false,
+            region: false
+        },
+        defaultAddress:0
     },
     computed:{
-        
-    }, 
+        yes(){
+            return this.defaultAddress === 0
+        },
+        no(){
+            return this.defaultAddress === 1
+        }
+    },
     methods:{
         ...store.mapActions(['addUserAddress']),
         regionChange(e){
-            console.log('picker发送选择改变，携带值为', e.detail.value)
             this.region = e.detail.value
         },
+        bindfocus(type){
+            this.rulesMap[type] = false
+        },
         newAddress(){
-            console.log('addUserAddress')
-            this.addUserAddress({
-                areaName: this.region[2],
-                cityName: this.region[1],
-                provinceName: this.region[0],
-                address: this.address,
-                mobile: this.mobile,
-                consignee: this.consignee,
-                type: 0
-            })
+            if (!this.consignee) {
+                this.rulesMap.consignee = true
+            } 
+            if (!this.mobile) {
+                this.rulesMap.mobile = true
+            } 
+            if (!this.address) {
+                this.rulesMap.address = true
+            } else if (!/^1(3[0-9]|5[012356789]|7[678]|8[0-9])(?=\d{8}$)/g.test(this.mobile)){
+                this.isRightNumber = true
+            } 
+            if(this.consignee && this.mobile && this.address && !this.isRightNumber) {
+                this.addUserAddress({
+                    areaName: this.region[2],
+                    cityName: this.region[1],
+                    provinceName: this.region[0],
+                    address: this.address,
+                    mobile: this.mobile,
+                    consignee: this.consignee,
+                    type: 0
+                })
+            }
+        },
+        clickDefault(type){
+            console.log('type',type)
+            this.defaultAddress = type
         },
         back(){
             wx.navigateBack({
@@ -86,77 +129,69 @@
             width 142px
             background-image url('https://static-qa.yimutea.com/test/%E6%A0%87%E9%A2%98_%E6%94%B6%E8%B4%A7%E5%9C%B0%E5%9D%80%E7%AE%A1%E7%90%86%403x.png')
             background-size 100% 100%
-        &-user-wrapper
+        &-user-wrapper,
+        &-phone-wrapper,
+        &-local-wrapper,
+        &-detail-wrapper,
+        &-default-wrapper
             margin-top 89px
             background-image url('https://static-qa.yimutea.com/test/bg%403x.png') 
             background-size 100% 100%
-            width 276px
+            width calc(100% - 100px)
             height 48px
             margin-top: 23px;
             display: flex;
             align-items: center;
-        &-user
-            color: #6B7188
-            margin-left 20px
-            margin-right 10px
-            font-family MicrosoftYaHei
-            font-size 15px
-        &-user-input
-            width 200px
-            color #fff
-        &-phone-wrapper
-            margin-top 89px
-            background-image url('https://static-qa.yimutea.com/test/bg%403x.png') 
-            background-size 100% 100%
-            width 276px
-            height 48px
-            margin-top: 23px;
-            display: flex;
-            align-items: center;
-        &-phone
-            color: #6B7188
-            margin-left 20px
-            margin-right 10px
-            font-family MicrosoftYaHei
-            font-size 15px
-        &-phone-input
-            width 200px
-            color #fff
-        &-local-wrapper
-            margin-top 89px
-            background-image url('https://static-qa.yimutea.com/test/bg%403x.png') 
-            background-size 100% 100%
-            width 276px
-            height 48px
-            margin-top: 23px;
-            display: flex;
-            align-items: center;
-        &-local
-            color: #6B7188
-            margin-left 20px
-            margin-right 10px
-            font-family MicrosoftYaHei
-            font-size 15px
-        &-local-input
-            width 180px
-            color #fff
         &-detail-wrapper
-            margin-top 89px
-            background-image url('https://static-qa.yimutea.com/test/addressbg%403x.png') 
-            background-size 100% 100%
-            width 276px
-            height 74px
-            margin-top: 23px;
-        &-detail
+            height 74px !important
+            align-items flex-start !important
+            padding-top 10px
+            background-image url('https://static-qa.yimutea.com/test/addressbg%403x.png') !important
+        &-default-wrapper
+            background-image none
+        &-user,
+        &-phone,
+        &-local,
+        &-detail,
+        &-default
             color: #6B7188
             margin-left 20px
             margin-right 10px
             font-family MicrosoftYaHei
             font-size 15px
-            padding-top 10px
-        &-detail-input
-            width 180px
-            color #fff
+            width 60px
+        &-user-input,
+        &-detail-input,
+        &-local-input,
+        &-phone-input,
+        &-default-input
+            width 200px
+            color #fff  
+        &-default-input
+            display flex
+            align-items center
+            margin-top 8px
+        &-user-danger
+            color #6b7188
+            margin-left 80px
+            margin-right 10px
+            font-family MicrosoftYaHei
+            font-size 15px
+            margin-top 10px
+            width calc(100% - 180px)
+        &-default-btnOne
+            background-image url('https://static-qa.yimutea.com/test/%E9%80%89%E6%8B%A91%403x.png')
+            background-size 100% 100%
+            height 28px
+            width 28px
+            margin-left 30px
+        &-default-btnTwo
+            background-image url('https://static-qa.yimutea.com/test/%E9%80%89%E6%8B%A92%403x.png')
+            background-size 100% 100%
+            height 28px
+            width 28px
+        &-default-btnText
+            margin-left 20px
         &-btn
             display flex
             align-items center
