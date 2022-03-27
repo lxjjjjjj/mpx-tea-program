@@ -1,260 +1,105 @@
 {
     "code":0,
-    "msg":"success",
-    "data":{
-        "materialNameMap":{
-            "bg":"底图",
-            "tree":"树",
-            "flower":"花",
-            "cloud":"云"
+    "data":[
+        {
+            "heightPx":0,
+            "materialCategoryId":1,
+            "materialLevelVOList":[
+                {
+                    "id":1,
+                    "level":1,
+                    "url":"https://static-qa.yimutea.com/test/%E8%83%8C%E6%99%AF.PNG"
+                },
+                {
+                    "id":3,
+                    "level":1,
+                    "url":"https://static-qa.yimutea.com/test/%E8%83%8C%E6%99%AF.PNG"
+                },
+                {
+                    "id":4,
+                    "level":1,
+                    "url":"https://static-qa.yimutea.com/test/%E8%83%8C%E6%99%AF.PNG"
+                },
+                {
+                    "id":5,
+                    "level":5,
+                    "url":"https://static-qa.yimutea.com/test/%E8%83%8C%E6%99%AF.PNG"
+                },
+                {
+                    "id":6,
+                    "level":6,
+                    "url":"https://static-qa.yimutea.com/test/%E8%83%8C%E6%99%AF.PNG"
+                }
+            ],
+            "name":"背景",
+            "sort":0,
+            "widthPx":0,
+            "xAxis":0,
+            "yAxis":0
         },
-        "material":{
-            "tree": [
+        {
+            "heightPx":100,
+            "materialCategoryId":2,
+            "materialLevelVOList":[
                 {
-                "level":1,
-                "id": "sscdf",
-                "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                "level":2,
-                "id": "sscdf",
-                "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                "level":3,
-                "id": "sscdf",
-                "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                "level":4,
-                "id": "sscdf",
-                "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                "level":5,
-                "id": "sscdf",
-                "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                "level":6,
-                "id": "sscdf",
-                "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                "level":1,
-                "id": "sscdf",
-                "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                "level":2,
-                "id": "sscdf",
-                "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                "level":3,
-                "id": "sscdf",
-                "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                "level":4,
-                "id": "sscdf",
-                "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                "level":5,
-                "id": "sscdf",
-                "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                "level":6,
-                "id": "sscdf",
-                "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                "level":1,
-                "id": "sscdf",
-                "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
+                    "id":7,
+                    "level":1,
+                    "url":"https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
+                },
+                {
+                    "id":8,
+                    "level":1,
+                    "url":"https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
+                },
+                {
+                    "id":9,
+                    "level":1,
+                    "url":"https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
                 }
             ],
-            "flower": [
+            "name":"树",
+            "sort":1,
+            "widthPx":50,
+            "xAxis":100,
+            "yAxis":50
+        },
+        {
+            "heightPx":130,
+            "materialCategoryId":3,
+            "materialLevelVOList":[
                 {
+                    "id":10,
                     "level":1,
-                    "id": "sscdf",
-                    "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                    "level":2,
-                    "id": "sscdf",
-                    "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                    "level":3,
-                    "id": "sscdf",
-                    "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                    "level":4,
-                    "id": "sscdf",
-                    "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                    "level":5,
-                    "id": "sscdf",
-                    "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                    "level":6,
-                    "id": "sscdf",
-                    "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                    "level":1,
-                    "id": "sscdf",
-                    "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                    "level":2,
-                    "id": "sscdf",
-                    "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                    "level":3,
-                    "id": "sscdf",
-                    "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                    "level":4,
-                    "id": "sscdf",
-                    "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                    "level":5,
-                    "id": "sscdf",
-                    "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                    "level":6,
-                    "id": "sscdf",
-                    "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                    "level":1,
-                    "id": "sscdf",
-                    "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
+                    "url":"https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
                 }
             ],
-            "cloud": [
+            "name":"花",
+            "sort":1,
+            "widthPx":150,
+            "xAxis":90,
+            "yAxis":280
+        },
+        {
+            "heightPx":1,
+            "materialCategoryId":4,
+            "materialLevelVOList":[
                 {
-                    "level":1,
-                    "id": "sscdf",
-                    "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                    "level":2,
-                    "id": "sscdf",
-                    "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                    "level":3,
-                    "id": "sscdf",
-                    "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                    "level":4,
-                    "id": "sscdf",
-                    "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                    "level":5,
-                    "id": "sscdf",
-                    "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                    "level":6,
-                    "id": "sscdf",
-                    "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                    "level":1,
-                    "id": "sscdf",
-                    "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                    "level":2,
-                    "id": "sscdf",
-                    "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                    "level":3,
-                    "id": "sscdf",
-                    "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                    "level":4,
-                    "id": "sscdf",
-                    "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                    "level":5,
-                    "id": "sscdf",
-                    "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                    "level":6,
-                    "id": "sscdf",
-                    "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
-                },{
-                    "level":1,
-                    "id": "sscdf",
-                    "url": "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
+                    "id":2,
+                    "level":0,
+                    "url":"https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
+                },
+                {
+                    "id":11,
+                    "level":0,
+                    "url":"https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90_%E6%A4%8D%E7%89%A91%403x.png"
                 }
             ],
-            "bg":[
-                {
-                    "level":1,
-                    "id":"sfgdsg",
-                    "url":"https://static-qa.yimutea.com/test/%E8%83%8C%E6%99%AF.PNG"
-                },
-                {
-                    "level":2,
-                    "id":"sfgdsg",
-                    "url":"https://static-qa.yimutea.com/test/%E5%BD%A9%E8%89%B2%E6%B5%81%E6%98%9F%E9%9B%A8.PNG"
-                },
-                {
-                    "level":3,
-                    "id":"sfgdsg",
-                    "url":"https://static-qa.yimutea.com/test/%E8%83%8C%E6%99%AF.PNG"
-                },{
-                    "level":4,
-                    "id":"sfgdsg",
-                    "url":"https://static-qa.yimutea.com/test/%E8%83%8C%E6%99%AF.PNG"
-                },{
-                    "level":5,
-                    "id":"sfgdsg",
-                    "url":"https://static-qa.yimutea.com/test/%E8%83%8C%E6%99%AF.PNG"
-                },{
-                    "level":6,
-                    "id":"sfgdsg",
-                    "url":"https://static-qa.yimutea.com/test/%E8%83%8C%E6%99%AF.PNG"
-                },                {
-                    "level":1,
-                    "id":"sfgdsg",
-                    "url":"https://static-qa.yimutea.com/test/%E8%83%8C%E6%99%AF.PNG"
-                },
-                {
-                    "level":2,
-                    "id":"sfgdsg",
-                    "url":"https://static-qa.yimutea.com/test/%E8%83%8C%E6%99%AF.PNG"
-                },
-                {
-                    "level":3,
-                    "id":"sfgdsg",
-                    "url":"https://static-qa.yimutea.com/test/%E8%83%8C%E6%99%AF.PNG"
-                },{
-                    "level":4,
-                    "id":"sfgdsg",
-                    "url":"https://static-qa.yimutea.com/test/%E8%83%8C%E6%99%AF.PNG"
-                },{
-                    "level":5,
-                    "id":"sfgdsg",
-                    "url":"https://static-qa.yimutea.com/test/%E8%83%8C%E6%99%AF.PNG"
-                },{
-                    "level":6,
-                    "id":"sfgdsg",
-                    "url":"https://static-qa.yimutea.com/test/%E8%83%8C%E6%99%AF.PNG"
-                },                {
-                    "level":1,
-                    "id":"sfgdsg",
-                    "url":"https://static-qa.yimutea.com/test/%E8%83%8C%E6%99%AF.PNG"
-                },
-                {
-                    "level":2,
-                    "id":"sfgdsg",
-                    "url":"https://static-qa.yimutea.com/test/%E8%83%8C%E6%99%AF.PNG"
-                },
-                {
-                    "level":3,
-                    "id":"sfgdsg",
-                    "url":"https://static-qa.yimutea.com/test/%E8%83%8C%E6%99%AF.PNG"
-                },{
-                    "level":4,
-                    "id":"sfgdsg",
-                    "url":"https://static-qa.yimutea.com/test/%E8%83%8C%E6%99%AF.PNG"
-                },{
-                    "level":5,
-                    "id":"sfgdsg",
-                    "url":"https://static-qa.yimutea.com/test/%E8%83%8C%E6%99%AF.PNG"
-                },{
-                    "level":6,
-                    "id":"sfgdsg",
-                    "url":"https://static-qa.yimutea.com/test/%E8%83%8C%E6%99%AF.PNG"
-                }
-            ]
+            "name":"云",
+            "sort":1,
+            "widthPx":1,
+            "xAxis":1,
+            "yAxis":1
         }
-    }
+    ],
+    "msg":"success"
 }

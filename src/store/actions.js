@@ -136,8 +136,12 @@ export function getNFTMaterial(context,params){
         if(res.errno){
             console.log('获取NFT素材失败',JSON.stringify(res))
         }else{
-            context.commit("setNFTMaterial", res.material)
-            context.commit("setNFTTab", res.materialNameMap)  
+            const materialNameMap = res.map(item => {
+                return item.name
+            })
+            console.log('materialNameMap',materialNameMap)
+            context.commit("setNFTMaterial", res)
+            context.commit("setNFTTab", materialNameMap)  
         }
     }).catch(err=>{
         console.log('获取NFT素材失败',JSON.stringify(err))

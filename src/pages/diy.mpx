@@ -16,7 +16,7 @@
     </view>
     <view class="change-container">
       <view class="operation-list">
-        <view bindtap="changeSelect(item)" wx:for="{{tabList}}"  wx:key="item" class="change-btn {{typeSelect === item ? 'change-select' : ''}}">{{NFTTab[item]}}</view>
+        <view bindtap="changeSelect(item)" wx:for="{{NFTTab}}"  wx:key="item" class="change-btn {{typeSelect === item ? 'change-select' : ''}}">{{item}}</view>
       </view>
       <view class="image-container">
         <view class="image-wrapper" wx:for="{{showList}}" wx:key="item" wx:style="{{iconStyle}}">
@@ -36,15 +36,21 @@
       data: {
           graph: {},
           vip:0,
-          typeSelect:'bg'
+          typeSelect:'背景'
       },
       computed:{
         ...store.mapState(['NFTMaterial', 'NFTTab']),
-        tabList(){
-          return Object.keys(this.NFTTab)
-        },
         showList(){
-          return this.NFTMaterial[this.typeSelect]
+          return this.NFTMaterial.filter(item => item.name === this.typeSelect)?.[0]?.materialLevelVOList
+        },
+        iconPosition(){
+          const data = this.NFTMaterial.filter(item => item.name === this.typeSelect)
+          return {
+            x: data.xAxis,
+            y: data.yAxis,
+            height: data.heightPx,
+            width: data.widthPx
+          }
         },
         iconStyle(){
           const IconBg = "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90%E9%80%8F%E6%98%8E%E6%A1%86%403x.png"
@@ -72,7 +78,9 @@
                     w: 100,
                     h: 100,
                     type: 'image',
-                    url: res.tempFilePath,
+                    // x: this.iconPosition.x,
+                    // y:this.iconPosition.y,
+                    url: res.tempFilePath
                   }
               }
           })
@@ -190,7 +198,7 @@
           this.typeSelect = id
         },
         changeImage(item){
-          if(this.typeSelect === 'bg'){
+          if(this.typeSelect === '背景'){
             this.onChangeBgImage(item.url)
           }else{
             this.onAddImage(item.url)

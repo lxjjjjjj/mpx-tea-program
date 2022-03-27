@@ -8,6 +8,11 @@
         </view>
         <view class="nft-image">
             <image src="{{nftInfo.image}}"/> 
+            <view class="nft-image-share" >
+                <view>{{nftInfo.workName}}</view>
+                <view>{{}}</view>
+            </view>
+            <!-- wx:if="{{nftInfo.image}}" -->
         </view>
         <view class="nft-desc">
             <view class="nft-provider">
@@ -31,9 +36,6 @@
   import store from '../store'
   import addressPage from './address?resolve'
   createPage({
-    data:{
-        
-    },
     computed:{
         ...store.mapState(['nftInfo'])
     }, 
@@ -70,7 +72,7 @@
         width calc(100% - 80px)
         padding-top 20px
     .nft-top
-        height 45px
+        height 35px
         position relative
         width 100%
     .nft-image
@@ -78,13 +80,23 @@
         background-size 100% 100%
         width calc(100% - 36px)
         height 429px
-        padding 10px 18px
+        margin 10px 18px
         display flex
         justify-content center
         align-items center
+        position relative
         image
             width calc(100% -10px)
             height calc(100% -10px)
+    .nft-image-share
+        /*use rpx*/
+        height 76rpx
+        width calc(100% - 40px)
+        background-image url('https://static-qa.yimutea.com/test/%E9%A2%9C%E8%89%B2%E9%81%AE%E7%BD%A93%403x.png')
+        background-size 100% 100%
+        position absolute
+        left 20px
+        bottom 25px
     .nft-desc
         padding 10px 40px
         width calc(100% - 80px)
