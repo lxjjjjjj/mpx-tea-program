@@ -4,38 +4,27 @@
     "msg":"success",
     "data":[{
         "image":"https://static-qa.yimutea.com/test/VI%E8%83%8C%E6%99%AF%403x.png",
-        "title":"2",
-        "date":"2022-02-20",
-        "desc":"2"
+        "level":"1",
+        "count":2
     },{
         "image":"https://static-qa.yimutea.com/test/VI%E8%83%8C%E6%99%AF%403x.png",
-        "title":"2",
-        "date":"2022-02-20",
-        "desc":"0"
+        "level":"2",
+        "count":0
     },{
         "image":"https://static-qa.yimutea.com/test/VI%E8%83%8C%E6%99%AF%403x.png",
-        "title":"2",
-        "date":"2022-02-20",
-        "desc":"2"
+        "level":"3",
+        "count":2
     },{
         "image":"https://static-qa.yimutea.com/test/VI%E8%83%8C%E6%99%AF%403x.png",
-        "title":"2",
-        "date":"2022-02-20",
-        "desc":"0"
+        "level":"4",
+        "count":0
     },{
         "image":"https://static-qa.yimutea.com/test/VI%E8%83%8C%E6%99%AF%403x.png",
-        "title":"2",
-        "date":"2022-02-20",
-        "desc":"0"
+        "level":"5",
+        "count":0
     },{
         "image":"https://static-qa.yimutea.com/test/VI%E8%83%8C%E6%99%AF%403x.png",
-        "title":"2",
-        "date":"2022-02-20",
-        "desc":"0"
-    },{
-        "image":"https://static-qa.yimutea.com/test/VI%E8%83%8C%E6%99%AF%403x.png",
-        "title":"2",
-        "date":"2022-02-20",
-        "desc":"0"
+        "level":"6",
+        "count":0
     }]
 }

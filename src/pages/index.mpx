@@ -26,12 +26,12 @@
                             wx:key="idx"
                             bindtap="clickBtn(swiperItem.jumpUrl)"
                         >
-                            <image class="home-container-swiper-item-image" src="{{swiperItem.image}}"/>
+                            <image class="home-container-swiper-item-image" src="{{swiperItem.imageUrl}}"/>
                             <view class="home-container-swiper-item-content">
                                 <view class="home-container-swiper-item-title">{{swiperItem.title}}</view>
-                                <image class="home-container-swiper-item-titleIcon" src="{{swiperItem.title_icon}}"/>
+                                <image class="home-container-swiper-item-titleIcon" src="{{swiperItem.titleUrl}}"/>
                             </view>
-                            <view class="home-container-swiper-item-desc">{{swiperItem.desc}}</view>
+                            <view class="home-container-swiper-item-desc">{{swiperItem.summary}}</view>
                         </swiper-item>
                     </block>
                 </swiper>

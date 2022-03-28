@@ -11,7 +11,8 @@ const state = {
     nftInfo:{},
     userCoupons:{},
     NFTMaterial:[],
-    NFTTab:{}
+    NFTTab:{},
+    uuid:''
 }
   
 export default state

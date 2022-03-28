@@ -4,11 +4,12 @@
     "data":{
         "avatar":"",
         "level":"3",
-        "name":"anyone",
+        "userName":"anyone",
         "score":"123",
         "number":"214325436",
         "password":"****234",
-        "times": 8,
-        "address":"cbdshgfdhskgfklsdgfilhsgbrhwjbfjdehwfgkdwgfhkegrfehrwjgkuwbgcfiyehkhr"
+        "couponCount": 8,
+        "creationNftCount":0,
+        "walletAddr":"cbdshgfdhskgfklsdgfilhsgbrhwjbfjdehwfgkdwgfhkegrfehrwjgkuwbgcfiyehkhr"
     }
 }

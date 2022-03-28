@@ -7,10 +7,10 @@
             </view>
         </view>
         <view class="nft-image">
-            <image src="{{nftInfo.image}}"/> 
-            <view class="nft-image-share" >
-                <view>{{nftInfo.workName}}</view>
-                <view>{{}}</view>
+            <image src="{{nftInfo.nftUrl}}"/> 
+            <view class="nft-image-share">
+                <view class="nft-image-share-name">{{nftInfo.workName}}</view>
+                <button class="nft-image-share-btn" open-type="share"></button>
             </view>
             <!-- wx:if="{{nftInfo.image}}" -->
         </view>
@@ -25,7 +25,7 @@
             </view>
             <view class="nft-msg">
                 <view class="nft-msg-key">简 介</view>
-                <view class="nft-msg-value">{{nftInfo.desc}}</view>
+                <view class="nft-msg-value">{{nftInfo.summary}}</view>
             </view>
         </view>
     </view>
@@ -34,17 +34,42 @@
 <script>
   import mpx,{ createPage } from '@mpxjs/core'
   import store from '../store'
-  import addressPage from './address?resolve'
   createPage({
+    data:{
+        id:0
+    },
     computed:{
         ...store.mapState(['nftInfo'])
     }, 
+    onLoad(params){
+        this.id = params.id
+        this.getNFTById({ id: params.id })
+       wx.showShareMenu({
+            withShareTicket: true,
+            menus: ['shareAppMessage', 'shareTimeline']
+        });
+    },
     methods:{
-        
+        ...store.mapActions(['getNFTById'])
+    },
+    onShareAppMessage(){
+        return {
+            title: this.nftInfo.workName,
+            path: `/pages/myNFT/index?id=${this.id}`
+        }
+    },
+    onShareTimeline(){
+        return {
+            title: this.nftInfo.workName,
+            query: `id=${this.id}`,
+            imageUrl: this.nftInfo.nftUrl
+        }
     }
   });
 </script>
 <style lang="stylus">
+    button::after
+        border none
    .nft-wrapper
         background url('https://static-qa.yimutea.com/test/home_bg.png')
         background-size 100% 100%
@@ -90,13 +115,35 @@
             height calc(100% -10px)
     .nft-image-share
         /*use rpx*/
-        height 76rpx
+        height 110rpx
         width calc(100% - 40px)
         background-image url('https://static-qa.yimutea.com/test/%E9%A2%9C%E8%89%B2%E9%81%AE%E7%BD%A93%403x.png')
         background-size 100% 100%
         position absolute
         left 20px
         bottom 25px
+        z-index 999
+        &-name
+            color #FFFFFF
+            font-size 20px
+            margin-left 16px
+            position absolute
+            top 50%
+            transform translateY(-50%)
+        &-btn
+            background-image url('https://static-qa.yimutea.com/test/%E8%BD%AC%E5%8F%91%E5%88%86%E4%BA%AB%403x.png')
+            background-size 100% 100% !important
+            width 78px !important
+            height 32px !important
+            position absolute !important
+            top 50% !important
+            right 10px !important
+            transform translateY(-50%) !important
+            padding 0 !important
+            margin 0 !important
+            -webkit-tap-highlight-color: transparent;
+            background-color: transparent !important
+            border none !important
     .nft-desc
         padding 10px 40px
         width calc(100% - 80px)

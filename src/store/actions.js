@@ -56,7 +56,7 @@ export function getUserNFTAll(context, params){
         if(res.errno){
             console.log('获取用户所有NFT失败',JSON.stringify(res))
         }else{
-            context.commit('setUserNFTAll', res.nftList)
+            context.commit('setUserNFTAll', res)
         }
     }).catch(err=>{
         console.log('获取用户所有NFT失败',JSON.stringify(err))
@@ -80,8 +80,7 @@ export function getUserCreationAll(context,params){
 
 export function getNFTById(context,params){
     request({
-        url: apis.getNftByIdAPI,
-        params
+        url: apis.getNftByIdAPI + `/${params.id}`,
     }).then(res => {
         if(res.errno){
             console.log('通过id获取用户NFT失败',JSON.stringify(res))
@@ -139,11 +138,31 @@ export function getNFTMaterial(context,params){
             const materialNameMap = res.map(item => {
                 return item.name
             })
-            console.log('materialNameMap',materialNameMap)
             context.commit("setNFTMaterial", res)
             context.commit("setNFTTab", materialNameMap)  
         }
     }).catch(err=>{
         console.log('获取NFT素材失败',JSON.stringify(err))
+    })
+}
+
+export function NFTGenerate(context, params){
+    console.log('params',params)
+    request({
+        url:apis.NFTGenerateAPI,
+        params:params,
+        method:"POST"
+    }).then(res => {
+        if(res.errno){
+            console.log('铸造NFT失败',JSON.stringify(res))
+        }else{
+            mpx.showToast({
+                title: '提交铸造nft成功',
+                icon: 'success',
+                duration: 2000
+            })
+        }
+    }).catch(err=>{
+        console.log('铸造NFT失败',JSON.stringify(err))
     })
 }

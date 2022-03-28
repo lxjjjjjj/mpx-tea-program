@@ -17,16 +17,16 @@
   import mpx,{ createPage } from '@mpxjs/core'
   import store from '../store'
   import addressPage from './address?resolve'
+    // {
+    //     image:"https://static-qa.yimutea.com/test/%E5%9B%BE%E6%A0%87_%E5%AE%9E%E5%90%8D%E8%AE%A4%E8%AF%81%403x.png",
+    //     desc:"实名认证",
+    //     height:"38px",
+    //     width:"48px"
+    // },
   createPage({
     data:{
         defaultAvatar: "https://static-qa.yimutea.com/test/%E5%A4%B4%E5%83%8F%E9%81%AE%E7%BD%A9%403x.png",
         list:[
-            {
-                image:"https://static-qa.yimutea.com/test/%E5%9B%BE%E6%A0%87_%E5%AE%9E%E5%90%8D%E8%AE%A4%E8%AF%81%403x.png",
-                desc:"实名认证",
-                height:"38px",
-                width:"48px"
-            },
             {
                 image:"https://static-qa.yimutea.com/test/%E5%9B%BE%E6%A0%87_%E6%94%B6%E8%B4%A7%E5%9C%B0%E5%9D%80%E7%AE%A1%E7%90%86%403x.png",
                 desc:"收货地址管理",

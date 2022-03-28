@@ -17,3 +17,7 @@ export const getUserCouponsAPI = host + '/api/v1/user/coupons'
 export const addUserAddressAPI = host + '/api/v1/userAddress/add'
 // 获取nft素材
 export const getNFTMaterialAPI = host + '/api/v1/nft/material/all'
+// 上传生成的nft图片
+export const nftUploadAPI = host + '/api/v1/nft/upload'
+// 铸造nft
+export const NFTGenerateAPI = host + '/api/v1/nft/generate'

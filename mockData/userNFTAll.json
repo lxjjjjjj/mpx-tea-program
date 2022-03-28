@@ -1,50 +1,55 @@
 {
     "code":0,
     "msg":"success",
-    "data":{
-        "nftList":[
+    "data":[
             {
                 "name":"anyone",
-                "id":"#DW2460",
-                "desc":"这是一段描述这是一段描述这是一段描述这是一段描述这是一段描述",
-                "image":"https://static-qa.yimutea.com/test/%E7%94%BB%403x.png"
+                "id":1,
+                "number":"#DW2460",
+                "summary":"这是一段描述这是一段描述这是一段描述这是一段描述这是一段描述",
+                "nftUrl":"https://static-qa.yimutea.com/test/%E7%94%BB%403x.png"
             },
             {
                 "name":"anyone",
-                "id":"#DW2460",
-                "desc":"这是一段描述这是一段描述这是一段描述这是一段描述这是一段描述",
-                "image":"https://static-qa.yimutea.com/test/%E7%94%BB%403x.png"
+                "id":2,
+                "number":"#DW2460",
+                "summary":"这是一段描述这是一段描述这是一段描述这是一段描述这是一段描述",
+                "nftUrl":"https://static-qa.yimutea.com/test/%E7%94%BB%403x.png"
             },
             {
                 "name":"anyone",
-                "id":"#DW2460",
-                "desc":"这是一段描述这是一段描述这是一段描述这是一段描述这是一段描述",
-                "image":"https://static-qa.yimutea.com/test/%E7%94%BB%403x.png"
+                "id":3,
+                "number":"#DW2460",
+                "summary":"这是一段描述这是一段描述这是一段描述这是一段描述这是一段描述",
+                "nftUrl":"https://static-qa.yimutea.com/test/%E7%94%BB%403x.png"
             },
             {
                 "name":"anyone",
-                "id":"#DW2460",
-                "desc":"这是一段描述这是一段描述这是一段描述这是一段描述这是一段描述",
-                "image":"https://static-qa.yimutea.com/test/%E7%94%BB%403x.png"
+                "id":4,
+                "number":"#DW2460",
+                "summary":"这是一段描述这是一段描述这是一段描述这是一段描述这是一段描述",
+                "nftUrl":"https://static-qa.yimutea.com/test/%E7%94%BB%403x.png"
             },
             {
                 "name":"anyone",
-                "id":"#DW2460",
-                "desc":"这是一段描述这是一段描述这是一段描述这是一段描述这是一段描述",
-                "image":"https://static-qa.yimutea.com/test/%E7%94%BB%403x.png"
+                "id":5,
+                "number":"#DW2460",
+                "summary":"这是一段描述这是一段描述这是一段描述这是一段描述这是一段描述",
+                "nftUrl":"https://static-qa.yimutea.com/test/%E7%94%BB%403x.png"
             },
             {
                 "name":"anyone",
-                "id":"#DW2460",
-                "desc":"这是一段描述这是一段描述这是一段描述这是一段描述这是一段描述",
-                "image":"https://static-qa.yimutea.com/test/%E7%94%BB%403x.png"
+                "id":6,
+                "number":"#DW2460",
+                "summary":"这是一段描述这是一段描述这是一段描述这是一段描述这是一段描述",
+                "nftUrl":"https://static-qa.yimutea.com/test/%E7%94%BB%403x.png"
             },
             {
                 "name":"anyone",
-                "id":"#DW2460",
-                "desc":"这是一段描述这是一段描述这是一段描述这是一段描述这是一段描述",
-                "image":"https://static-qa.yimutea.com/test/%E7%94%BB%403x.png"
+                "id":7,
+                "number":"#DW2460",
+                "summary":"这是一段描述这是一段描述这是一段描述这是一段描述这是一段描述",
+                "nftUrl":"https://static-qa.yimutea.com/test/%E7%94%BB%403x.png"
             }
         ]
-    }
 }

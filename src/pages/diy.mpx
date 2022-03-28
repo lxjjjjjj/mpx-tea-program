@@ -2,7 +2,7 @@
   <view class="diy-background">
     <view class="canvas-container">
       <canvas-drag class="canvas-drag" id="canvas-drag" width="{{676}}" height="{{846}}"graph="{{graph}}" enableUndo="{{true}}"></canvas-drag>
-      <button bindtap="publish" class="operation-btn"/>
+      <button bindtap="onExport" class="operation-btn"/>
       <!-- <view class="btn" bindtap="onAddImage">添加图片</view>
       <view class="btn" bindtap="onAddText">添加文字</view>
       <view class="btn" bindtap="onExport">导出图片</view>
@@ -64,7 +64,7 @@
         this.vip = params.vip
       },
       methods:{
-        ...store.mapActions(['getNFTMaterial']),
+        ...store.mapActions(['getNFTMaterial','NFTGenerate']),
         /**
          * 添加图片
          */
@@ -121,12 +121,35 @@
          * 导出图片
          */
         onExport() {
+            const self = this
             CanvasDrag.export()
                 .then((filePath) => {
-                    wx.previewImage({
-                        urls: [filePath]
+                    // wx.previewImage({
+                    //     urls: [filePath]
+                    // })
+                    //上传图片
+                    wx.uploadFile({
+                      url: 'https://wx.yimutea.com/api/v1/nft/upload',
+                      filePath: filePath,
+                      name: 'file',
+                      header: {
+                        'Content-Type': 'multipart/form-data',
+                      },
+                      method: "post",
+                      success(res) {
+                        const data = JSON.parse(JSON.parse(res.data).toString())
+                        console.log('data',data)
+                        store.commit('setNFTUploadUUID',data)
+                        self.NFTGenerate({
+                            name:'test',
+                            level:1,
+                            summary:'zheshiyiduanmiaoshu',
+                            nft:'630f3a9d-5188-46c9-bc51-1fcdfb859bd4'
+                        })
+                      },
+                      fail() {
+                      }
                     })
-                    console.log('filePath',filePath)
                 })
                 .catch((e) => {
                     console.error(e);
@@ -191,13 +214,11 @@
         onUndo:function(event){
             CanvasDrag.undo();
         },
-        publish(){
-          this.onExport()
-        },
         changeSelect(id){
           this.typeSelect = id
         },
         changeImage(item){
+          console.log('item',item)
           if(this.typeSelect === '背景'){
             this.onChangeBgImage(item.url)
           }else{

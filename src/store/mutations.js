@@ -49,3 +49,6 @@ export function setNFTMaterial (state, data){
 export function setNFTTab (state, data){
   state.NFTTab = data
 }
+export function setNFTUploadUUID (state, data){
+  state.uuid = data
+}

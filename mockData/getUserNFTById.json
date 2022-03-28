@@ -7,7 +7,7 @@
         "owner":"路人甲",
         "provider":"路人乙",
         "workName":"易亩山茶采茶人",
-        "desc":"这是一段描述这是一段描述这是一段描述这是一段描述这是一段描述",
-        "image":"https://static-qa.yimutea.com/test/%E7%94%BB%403x.png"
+        "summary":"这是一段描述这是一段描述这是一段描述这是一段描述这是一段描述",
+        "nftUrl":"https://static-qa.yimutea.com/test/%E7%94%BB%403x.png"
     }
 }
