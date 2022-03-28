@@ -2,8 +2,7 @@
     <view class="times-wrapper">
         <view wx:for="{{userCreateTimes}}" wx:key="item" class="times-style">
             <view class="times-image-wrapper">
-            <image src="{{imageMap[item.level].bgUrl}}" class="times-image"/>
-            <image src="{{imageMap[item.level].iconUrl}}" class="time-avatar"/>
+            <image src="{{imageMap[item.level]}}" class="times-image"/>
             </view>
             <view class="times-content">
                 <view class="times-top">
@@ -26,30 +25,12 @@
   createPage({
     data:{
         imageMap:{
-            1: {
-                bgUrl:'https://static-qa.yimutea.com/test/VI%E8%83%8C%E6%99%AF%403x.png',
-                iconUrl:'https://static-qa.yimutea.com/test/%E5%9B%BE%E6%A0%871%403x.png'
-            },
-            2: {
-                bgUrl:'https://static-qa.yimutea.com/test/V2%E8%83%8C%E6%99%AF%403x.png',
-                iconUrl:'https://static-qa.yimutea.com/test/%E5%9B%BE%E6%A0%872%403x.png'
-            },
-            3: {
-                bgUrl:'https://static-qa.yimutea.com/test/V3%E8%83%8C%E6%99%AF%403x.png',
-                iconUrl:'https://static-qa.yimutea.com/test/%E5%9B%BE%E6%A0%873%403x.png'
-            },
-            4: {
-                bgUrl:'https://static-qa.yimutea.com/test/V4%E8%83%8C%E6%99%AF%403x.png',
-                iconUrl:'https://static-qa.yimutea.com/test/%E5%9B%BE%E6%A0%874%403x.png'
-            },
-            5: {
-                bgUrl:'https://static-qa.yimutea.com/test/V5%E8%83%8C%E6%99%AF%403x.png',
-                iconUrl:'https://static-qa.yimutea.com/test/%E5%9B%BE%E6%A0%875%403x.png'
-            },
-            6: {
-                bgUrl:'https://static-qa.yimutea.com/test/V6%E8%83%8C%E6%99%AF%403x.png',
-                iconUrl:'https://static-qa.yimutea.com/test/%E5%9B%BE%E6%A0%876%403x.png'
-            }
+            1: 'https://static-qa.yimutea.com/test/vip1%403x.png',
+            2: 'https://static-qa.yimutea.com/test/vip2%403x.png',
+            3: 'https://static-qa.yimutea.com/test/vip3%403x.png',
+            4: 'https://static-qa.yimutea.com/test/vip4%403x.png',
+            5: 'https://static-qa.yimutea.com/test/vip5%403x.png',
+            6: 'https://static-qa.yimutea.com/test/vip6%403x.png',
         }
     },
     computed:{
@@ -118,12 +99,6 @@
         margin-left:20px;
         color: #D4D4D4
         font-size: 12px;
-    .time-avatar
-        width 50px
-        height 56px
-        position absolute 
-        right 20px
-        bottom 16px
 </style>
 <script type="application/json">
   {

@@ -8,6 +8,44 @@
         "provider":"路人乙",
         "workName":"易亩山茶采茶人",
         "summary":"这是一段描述这是一段描述这是一段描述这是一段描述这是一段描述",
-        "nftUrl":"https://static-qa.yimutea.com/test/%E7%94%BB%403x.png"
+        "nftUrl":"https://static-qa.yimutea.com/test/%E7%94%BB%403x.png",
+        "recordList":[
+            {
+                "from":"茶园官方",
+                "to":"藏品铸造",
+                "hash":"0d650008e06b1ca717bbd282641b531395748fbc50f8c2f959e8dec7a319442c",
+                "date":"2020-03-09 00:58:50"
+            },
+            {
+                "from":"茶园官方",
+                "to":"藏品铸造",
+                "hash":"0d650008e06b1ca717bbd282641b531395748fbc50f8c2f959e8dec7a319442c",
+                "date":"2020-03-09 00:58:50"
+            },
+            {
+                "from":"茶园官方",
+                "to":"藏品铸造",
+                "hash":"0d650008e06b1ca717bbd282641b531395748fbc50f8c2f959e8dec7a319442c",
+                "date":"2020-03-09 00:58:50"
+            },
+            {
+                "from":"茶园官方",
+                "to":"藏品铸造",
+                "hash":"0d650008e06b1ca717bbd282641b531395748fbc50f8c2f959e8dec7a319442c",
+                "date":"2020-03-09 00:58:50"
+            },
+            {
+                "from":"茶园官方",
+                "to":"藏品铸造",
+                "hash":"0d650008e06b1ca717bbd282641b531395748fbc50f8c2f959e8dec7a319442c",
+                "date":"2020-03-09 00:58:50"
+            },
+            {
+                "from":"茶园官方",
+                "to":"藏品铸造",
+                "hash":"0d650008e06b1ca717bbd282641b531395748fbc50f8c2f959e8dec7a319442c",
+                "date":"2020-03-09 00:58:50"
+            }
+        ]
     }
 }

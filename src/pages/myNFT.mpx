@@ -28,6 +28,24 @@
                 <view class="nft-msg-value">{{nftInfo.summary}}</view>
             </view>
         </view>
+        <view class="nft-record">
+            <view class="nft-record-title"></view>
+            <view class="nft-record-list-title">
+                <view class="nft-record-list-title-item">from</view>
+                <view class="nft-record-list-title-item">to</view>
+                <view class="nft-record-list-title-item">哈希</view>
+                <view class="nft-record-list-title-item">时间</view>
+            </view>
+            <view class="nft-record-line"></view>
+            <view class="nft-record-content-wrapper">
+                <view class="nft-record-content" wx:for="{{nftInfo.recordList}}" wx:key="index">
+                    <view class="nft-record-content-item">{{item.from}}</view>
+                    <view class="nft-record-content-item">{{item.to}}</view>
+                    <view class="nft-record-content-item">{{item.hash}}</view>
+                    <view class="nft-record-content-item">{{item.date}}</view>
+                </view>
+            </view>
+        </view>
     </view>
 </template>
 
@@ -36,15 +54,15 @@
   import store from '../store'
   createPage({
     data:{
-        id:0
+        collectId:0
     },
     computed:{
         ...store.mapState(['nftInfo'])
     }, 
     onLoad(params){
-        this.id = params.id
+        this.collectId = params.id
         this.getNFTById({ id: params.id })
-       wx.showShareMenu({
+        wx.showShareMenu({
             withShareTicket: true,
             menus: ['shareAppMessage', 'shareTimeline']
         });
@@ -55,13 +73,13 @@
     onShareAppMessage(){
         return {
             title: this.nftInfo.workName,
-            path: `/pages/myNFT/index?id=${this.id}`
+            path: `/pages/myNFT/index?id=${this.collectId}`
         }
     },
     onShareTimeline(){
         return {
             title: this.nftInfo.workName,
-            query: `id=${this.id}`,
+            query: `id=${this.collectId}`,
             imageUrl: this.nftInfo.nftUrl
         }
     }
@@ -171,6 +189,69 @@
         color #ADC6F4
         font-size 12px
         font-family FZZHJW--GB1-0
+    .nft-record
+        background-image url('https://static-qa.yimutea.com/test/collectbg%403x.png')
+        background-size 100% 100%
+        height 228px
+        margin 16px 25px 0
+        width calc(100% - 50px)
+        padding-bottom 33px
+        position relative
+        &-title
+            background-image url('https://static-qa.yimutea.com/test/%E6%B5%81%E8%BD%AC%E8%AE%B0%E5%BD%95%403x.png')
+            background-size 100% 100%
+            height 23px
+            width 95px
+            position absolute
+            top 9px
+            left 10px
+        &-list-title
+            display flex
+            justify-content space-between
+            height 20px
+            line-height 20px
+            position absolute
+            top 50px
+            left 0px
+            width 100%
+            &-item
+                width 25%
+                text-align center
+                color #6B7188
+                font-size 12px
+        &-line  
+            width calc(100% - 24px)
+            height 1px
+            border 1px dashed #6B7188
+            transform scaleY(0.5)
+            position absolute
+            top 75px
+            left 12px
+        &-content
+            display flex
+            align-items center
+            justify-content space-between
+            width 100%
+            &-wrapper
+                position absolute
+                top 84px
+                height 170px
+                width 100%
+                overflow-y scroll
+            &-wrapper::-webkit-scrollbar
+                display none
+            &-item
+                width 25%
+                color #ADC6F4
+                font-size 10px
+                height 38px
+                text-align center
+                word-wrap break-word
+                text-overflow ellipsis
+                overflow hidden
+                display -webkit-box
+                -webkit-line-clamp 3
+                -webkit-box-orient vertical
 </style>
 <script type="application/json">
   {
