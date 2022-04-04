@@ -52,3 +52,9 @@ export function setNFTTab (state, data){
 export function setNFTUploadUUID (state, data){
   state.uuid = data
 }
+export function setDisplayData (state, data){
+  state.displayData = data
+}
+export function setDisplayPagination (state, data){
+  state.displayPagination = data
+}

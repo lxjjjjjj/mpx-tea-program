@@ -1,6 +1,14 @@
 <template>
-    <view class="service-wrapper">
-        
+    <view class="show-wrapper">
+        <view class="show">
+            <view wx:for="{{displayData}}" wx:key="index" class="show-item">
+                <image class="show-item-image" mode="widthFix" src="{{item.nftUrl}}"></image>
+                <view class="show-item-content">
+                    <view class="show-item-avatar-wrapper"><image class="show-item-avatar">{{item.userAvatar}}</image></view>
+                    <view class="show-item-name">{{item.userName}}</view>
+                </view>
+            </view>
+        </view>
     </view>
 </template>
 
@@ -12,13 +20,72 @@
     data:{
         
     },
+    computed:{
+        ...store.mapState(['displayData','displayPagination'])
+    },
     methods:{
-        
+        ...store.mapActions(['getDisplayData'])
+    },
+    created(){
+        this.getDisplayData({
+            page: 1,
+            pageSize: 20
+        })
+    },
+    onReachBottom: function() {
+        this.getDisplayData({
+            page: this.displayPagination.page + 1,
+            pageSize: 20
+        })
     }
   });
 </script>
 <style lang="stylus">
-    
+    .show-wrapper
+        height 100%
+        min-height 100vh
+        width 100vw
+        background-image url('https://static-qa.yimutea.com/test/home_bg.png')
+        background-size 100% 100%
+    .show
+        -moz-column-count 2
+        -webkit-column-count 2
+        column-count 2
+        column-gap 0
+        width 100%
+        padding-top 20px
+        &-item
+            width calc(50vw - 20px)
+            box-sizing border-box
+            margin 10px
+            break-inside avoid
+            background-image url('https://static-qa.yimutea.com/test/displaybg%403x.png')
+            background-size 100% 100%
+            &-image
+                width 100%
+            &-content
+                width 100%
+                display flex
+                align-items center
+            &-avatar
+                width 26px
+                height 26px
+                &-wrapper
+                    height 29px
+                    width 29px
+                    margin 10px
+                    background-size 100% 100%
+                    background-image url('https://static-qa.yimutea.com/test/%E5%A4%B4%E5%83%8F%E6%A1%86%403x.png')
+            &-name
+                font-size 12px
+                color #B0B3FF
+                margin-left 5px
+                word-wrap break-word
+                text-overflow ellipsis
+                overflow hidden
+                display -webkit-box
+                -webkit-line-clamp 2
+                -webkit-box-orient vertical
 </style>
 <script type="application/json">
   {

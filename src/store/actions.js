@@ -166,3 +166,19 @@ export function NFTGenerate(context, params){
         console.log('铸造NFT失败',JSON.stringify(err))
     })
 }
+
+export function getDisplayData(context, params){
+    request({
+        url:apis.getDisplayAPI,
+        params:params
+    }).then(res => {
+        if(res.errno){
+            console.log('获取展览馆数据失败',JSON.stringify(res))
+        }else{
+            context.commit('setDisplayData', context.state.displayData.concat(res.items))
+            context.commit('setDisplayPagination', res.pagination)
+        }
+    }).catch(err=>{
+        console.log('获取展览馆数据失败',JSON.stringify(err))
+    })
+}

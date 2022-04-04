@@ -42,7 +42,8 @@
       "./pages/person.mpx",
       "./pages/address.mpx",
       "./pages/myNFT.mpx",
-      "./pages/service.mpx"
+      "./pages/service.mpx",
+      "./pages/show.mpx"
     ],
     "tabBar": {
       "custom": true,

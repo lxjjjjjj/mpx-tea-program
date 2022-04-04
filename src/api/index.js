@@ -21,3 +21,5 @@ export const getNFTMaterialAPI = host + '/api/v1/nft/material/all'
 export const nftUploadAPI = host + '/api/v1/nft/upload'
 // 铸造nft
 export const NFTGenerateAPI = host + '/api/v1/nft/generate'
+// 展览馆
+export const getDisplayAPI = host + '/api/v1/nft/display/list'
