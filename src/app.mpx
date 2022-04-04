@@ -43,7 +43,8 @@
       "./pages/address.mpx",
       "./pages/myNFT.mpx",
       "./pages/service.mpx",
-      "./pages/show.mpx"
+      "./pages/show.mpx",
+      "./pages/showDetail.mpx"
     ],
     "tabBar": {
       "custom": true,

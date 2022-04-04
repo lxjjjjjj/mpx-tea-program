@@ -1,0 +1,101 @@
+<template>
+    <view class="show-detail-wrapper">
+       <view class="show-detail-share-wrapper"><view class="show-detail-share"/></view>
+       <view class="show-detail-item" wx:for="{{displayData}}" wx:key="index">
+           <image class="show-detail-item-image" mode="widthFix" src="{{item.nftUrl}}"></image>
+           <view class="show-detail-item-desc">{{item.nftDescription}}</view>
+           <view class="show-detail-item-content">
+                <view class="show-detail-item-avatar-wrapper">
+                    <image class="show-detail-item-avatar" src="{{item.userAvatar}}"></image>
+                </view>
+                <view class="show-detail-item-name">{{item.userName}}</view>
+           </view>
+        </view>
+    </view>
+</template>
+
+<script>
+  import mpx,{ createPage } from '@mpxjs/core'
+  import store from '../store'
+  
+  createPage({
+    data:{
+        
+    },
+    computed:{
+        ...store.mapState(['displayData','displayPagination'])
+    },
+    methods:{
+        ...store.mapActions(['getDisplayData'])
+    },
+    created(){
+        this.getDisplayData({
+            page: 1,
+            pageSize: 20
+        })
+    },
+    onReachBottom: function() {
+        this.getDisplayData({
+            page: this.displayPagination.page + 1,
+            pageSize: 20
+        })
+    }
+  });
+</script>
+<style lang="stylus">
+    .show-detail-wrapper
+        height 100%
+        min-height 100vh
+        width 100vw
+        background-image url('https://static-qa.yimutea.com/test/home_bg.png')
+        background-size 100% 100%
+    .show-detail
+        &-share
+            width 60px
+            height 36px
+            background-image url('https://static-qa.yimutea.com/test/%E6%8C%89%E9%92%AE%E5%88%86%E4%BA%AB%403x.png')
+            background-size 100% 100%
+            position absolute 
+            right 28px
+            &-wrapper
+                height 36px
+                width 100%
+                position relative
+        &-item
+            width calc(100% - 64px)
+            padding 10px 32px
+            &-content
+                display flex
+                align-items center
+            &-image
+                width 100%
+            &-desc
+                color #FFFFFF
+                font-size 12px
+                word-wrap break-word
+                text-overflow ellipsis
+                padding 10px
+                overflow hidden
+                display -webkit-box
+                -webkit-box-orient vertical
+            &-avatar
+                height 46px
+                width 46px
+                &-wrapper
+                    height 48px
+                    width 48px
+                    background-size 100% 100%
+                    background-image url('https://static-qa.yimutea.com/test/%E5%A4%B4%E5%83%8F%E6%A1%86%403x.png')
+            &-name
+                color #B0B3FF
+                font-size 13px
+                text-overflow ellipsis
+                white-space nowrap
+                overflow hidden
+
+</style>
+<script type="application/json">
+  {
+    "usingComponents": {}
+  }
+</script>
