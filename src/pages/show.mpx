@@ -1,0 +1,27 @@
+<template>
+    <view class="service-wrapper">
+        
+    </view>
+</template>
+
+<script>
+  import mpx,{ createPage } from '@mpxjs/core'
+  import store from '../store'
+  
+  createPage({
+    data:{
+        
+    },
+    methods:{
+        
+    }
+  });
+</script>
+<style lang="stylus">
+    
+</style>
+<script type="application/json">
+  {
+    "usingComponents": {}
+  }
+</script>

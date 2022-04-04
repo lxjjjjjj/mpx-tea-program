@@ -19,13 +19,32 @@
                 <view class="nft-provider-key">创作者</view>
                 <view class="nft-provider-value">{{nftInfo.provider}}</view>
             </view>
-            <view class="nft-owner">
-                <view class="nft-owner-key">收藏者</view>
-                <view class="nft-owner-value">{{nftInfo.owner}}</view>
-            </view>
             <view class="nft-msg">
                 <view class="nft-msg-key">简 介</view>
                 <view class="nft-msg-value">{{nftInfo.summary}}</view>
+            </view>
+        </view>
+        <view class="nft-ID">
+            <view class="nft-ID-num">NO.{{nftInfo.id}}</view>
+            <view class="nft-ID-title"/>
+            <view class="nft-ID-special">{{nftInfo.specialID}}</view>
+        </view>
+        <view class="nft-desc">
+            <view class="nft-msg-right">
+                <view class="nft-msg-key">拥有人</view>
+                <view class="nft-msg-value">{{nftInfo.provider}}</view>
+            </view>
+            <view class="nft-msg-right">
+                <view class="nft-msg-key">领取时间</view>
+                <view class="nft-msg-value">{{nftInfo.provider}}</view>
+            </view>
+            <view class="nft-msg-right">
+                <view class="nft-msg-key">发行时间</view>
+                <view class="nft-msg-value">{{nftInfo.provider}}</view>
+            </view>
+            <view class="nft-msg-right">
+                <view class="nft-msg-key">发行方</view>
+                <view class="nft-msg-value">{{nftInfo.provider}}</view>
             </view>
         </view>
         <view class="nft-record">
@@ -102,6 +121,42 @@
         position absolute 
         left 0
         top 0
+    .nft-ID
+        background-image url('https://static-qa.yimutea.com/test/id%E6%A1%86%403x.png')
+        background-size 100% 100%
+        height 68px
+        width calc(100% - 50px)
+        margin 20px 25px
+        position relative
+        &-num
+            position absolute 
+            /*use rpx*/
+            right 45px 
+            top -5px
+            color #FDD065
+            font-size 12px
+        &-title
+            background-image url('https://static-qa.yimutea.com/test/%E6%95%B0%E5%AD%97%E8%97%8F%E5%93%81ID%403x.png')
+            background-size 100% 100%
+            height 11px
+            width 55px
+            position absolute 
+            top 10px
+            left 20px
+        &-special
+            width calc(100% - 48px)
+            height 32px
+            color #ffffff
+            position absolute 
+            left 20px
+            top 25px
+            font-size 12px
+            word-wrap break-word
+            text-overflow ellipsis
+            overflow hidden
+            display -webkit-box
+            -webkit-line-clamp 2
+            -webkit-box-orient vertical
     .nft-ad
         background url('https://static-qa.yimutea.com/test/%E5%B9%BF%E5%91%8A%E8%AF%AD%403x.png')
         background-size 100% 100%
@@ -175,6 +230,14 @@
         height 100%
         line-height 30px
         width 100%
+        &-right
+            display flex
+            justify-content space-between
+            flex-shrink 1
+            min-height 30px
+            height 100%
+            line-height 30px
+            width 100%
     .nft-provider-key,
     .nft-owner-key,
     .nft-msg-key
@@ -244,7 +307,7 @@
                 width 25%
                 color #ADC6F4
                 font-size 10px
-                height 38px
+                height 45px
                 text-align center
                 word-wrap break-word
                 text-overflow ellipsis
