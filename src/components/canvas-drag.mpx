@@ -97,17 +97,6 @@
 
               if (this.type === 'text') {
                   this.ctx.strokeRect(this.x, this.y, textWidth, textHeight);
-                  // wx.downloadFile({
-                  //   url: DELETE_ICON_URL, 
-                  //   success (res) {
-                  //     if (res.statusCode === 200) {
-                        
-                  //     }
-                  //   },
-                  //   fail(){
-
-                  //   }
-                  // })
                   this.ctx.drawImage(DELETE_ICON, this.x - 15, this.y - 15, 30, 30);
                   this.ctx.drawImage(DRAG_ICON, this.x + textWidth - 15, this.y + textHeight - 15, 30, 30);
               } else {

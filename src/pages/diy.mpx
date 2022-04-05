@@ -1,7 +1,7 @@
 <template>
   <view class="diy-background">
     <view class="canvas-container">
-      <canvas-drag class="canvas-drag" id="canvas-drag" width="{{676}}" height="{{846}}"graph="{{graph}}" enableUndo="{{true}}"></canvas-drag>
+      <canvas-drag class="canvas-drag" id="canvas-drag" width="{{678}}" height="{{846}}"graph="{{graph}}" enableUndo="{{true}}"></canvas-drag>
       <button bindtap="onExport" class="operation-btn"/>
       <!-- <view class="btn" bindtap="onAddImage">添加图片</view>
       <view class="btn" bindtap="onAddText">添加文字</view>
@@ -244,7 +244,8 @@
   }
   .canvas-drag
     margin 20px 18px 0 18px
-    width calc(100vw - 36px)
+    /*use rpx*/
+    width 678rpx
     /*use rpx*/
     height 846rpx
   .canvas-container
