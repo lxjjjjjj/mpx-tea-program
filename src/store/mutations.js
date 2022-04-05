@@ -67,3 +67,6 @@ export function setAuth (state, data){
 export function setPhoneIsValidate(state, data){
   state.phoneIsValidate = data
 }
+export function setAddressList(state, data){
+  state.addressList = data
+}

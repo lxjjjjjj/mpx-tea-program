@@ -13,7 +13,7 @@
         <view class="address-user-danger" wx:if="{{rulesMap.mobile || isRightNumber}}">{{isRightNumber ? '电话格式错误':'电话不能为空'}}</view>
         <view class="address-local-wrapper">
             <view class="address-local">所在地区</view>
-            <picker mode = "region" bindchange="regionChange" value="{{region}}">
+            <picker mode="multiSelector" range="{{showArray}}" bindchange="regionChange" range-key="areaName" bindcolumnchange="columnchange">
                 <view class="address-local-input">
                     {{region[0]}} - {{region[1]}} - {{region[2]}}
                 </view>
@@ -27,9 +27,9 @@
         <view class="address-default-wrapper">
             <view class="address-default">设为默认</view>
             <view class="address-default-input">
-                <view wx:class="{{ { 'address-default-btnTwo' : yes } }}" class="address-default-btnOne" bindtap="clickDefault(0)"></view>
+                <view wx:class="{{ { 'address-default-btnTwo' : yes } }}" class="address-default-btnOne" bindtap="chooseDefault(0)"></view>
                 <view class="addresss-default-btnText"> 是 </view>
-                <view wx:class="{{ { 'address-default-btnTwo' : no } }}" class="address-default-btnOne" bindtap="clickDefault(1)"></view>
+                <view wx:class="{{ { 'address-default-btnTwo' : no } }}" class="address-default-btnOne" bindtap="chooseDefault(1)"></view>
                 <view class="addresss-default-btnText"> 否</view>
             </view>
         </view>
@@ -43,9 +43,10 @@
 <script>
   import mpx,{ createPage } from '@mpxjs/core'
   import store from '../store'
+  import { formatArea } from '../utils'
   createPage({
     data:{
-        region: ['广东省', '广州市', '海珠区'],
+        region: ['北京','北京','东城区'],
         address: '',
         mobile: '',
         consignee: '',
@@ -56,7 +57,9 @@
             consignee: false,
             region: false
         },
-        defaultAddress:0
+        defaultAddress:0,
+        showArray:[],
+        regionId: [0,0,0]
     },
     computed:{
         yes(){
@@ -64,12 +67,36 @@
         },
         no(){
             return this.defaultAddress === 1
+        },
+        regionArray(){
+            return formatArea(wx.getStorageSync('area'))
+        }
+    },
+    watch:{
+        regionArray:{
+            handler(){
+                this.showArray[0] = this.regionArray[0]
+                const provinceId = this.regionArray[0].filter(item=>item.areaName === this.region[0])[0].id
+                this.showArray[1] = this.regionArray[1].filter(item=>item.parentId === provinceId)
+                const cityId = this.regionArray[1].filter(item=>item.areaName === this.region[1])[0].id
+                this.showArray[2] = this.regionArray[2].filter(item=>item.parentId === cityId)
+            },
+            immediate:true
         }
     },
     methods:{
-        ...store.mapActions(['addUserAddress']),
+        ...store.mapActions(['addUserAddress','getAllArea']),
         regionChange(e){
-            this.region = e.detail.value
+            e.detail.value.forEach((item, index)=>{
+                if(String(Number(item)) === 'NaN'){
+                    this.regionId[index] = this.showArray[index][0].id
+                    this.region[index] = this.showArray[index][0].areaName
+                }else{
+                    this.regionId[index] = this.showArray[index][item].id
+                    this.region[index] = this.showArray[index][item].areaName
+                }
+            })
+            this.$forceUpdate()
         },
         bindfocus(type){
             this.rulesMap[type] = false
@@ -89,27 +116,45 @@
             if(this.consignee && this.mobile && this.address && !this.isRightNumber) {
                 this.addUserAddress({
                     areaName: this.region[2],
+                    areaId:this.regionId[2],
+                    cityId:this.regionId[1],
                     cityName: this.region[1],
+                    provinceId: this.regionId[0],
                     provinceName: this.region[0],
                     address: this.address,
                     mobile: this.mobile,
                     consignee: this.consignee,
-                    type: 0
+                    type: 0,
+                    id:0
                 })
             }
         },
-        clickDefault(type){
-            console.log('type',type)
+        chooseDefault(type){
             this.defaultAddress = type
+            console.log('this.defaultAddress',this.defaultAddress)
         },
         back(){
             wx.navigateBack({
                 delta: 1
             })
+        },
+        columnchange(e){
+            if(e.detail.column === 0){
+                mpx.set(this.showArray, e.detail.column + 1, this.regionArray[e.detail.column + 1].filter(item=>{
+                    return item.parentId === this.regionArray[e.detail.column][e.detail.value].id
+                }))
+                mpx.set(this.showArray, e.detail.column + 2, this.regionArray[e.detail.column + 2].filter(item=>{
+                    return item.parentId === this.showArray[e.detail.column + 1][0].id
+                }))
+            }else if(e.detail.column === 1){
+                mpx.set(this.showArray, e.detail.column + 1, this.regionArray[e.detail.column + 1].filter(item=>{
+                    return item.parentId === this.showArray[e.detail.column][e.detail.value].id
+                }))
+            }
         }
     },
     onLoad(){
-        
+        !wx.getStorageSync('area') && this.getAllArea()
     }
   });
 </script>
@@ -137,7 +182,7 @@
             margin-top 89px
             background-image url('https://static-qa.yimutea.com/test/bg%403x.png') 
             background-size 100% 100%
-            width calc(100% - 100px)
+            width calc(100% - 60px)
             height 48px
             margin-top: 23px;
             display: flex;
@@ -199,10 +244,10 @@
             width 276px
             justify-content space-between
             &-return
-                background-image url('https://static-qa.yimutea.com/test/%E8%BF%94%E5%9B%9E%403x.png')
+                background-image url('https://static-qa.yimutea.com/test/%E8%BF%94%E5%9B%9E%403x%20(1).png')
                 background-size 100% 100%
-                height 52px
-                width 136px
+                height 43px
+                width 127px
             &-new
                 background-image url('https://static-qa.yimutea.com/test/%E6%96%B0%E5%A2%9E%403x.png')
                 background-size 100% 100%

@@ -17,7 +17,9 @@ const state = {
     displayPagination: {},
     couponPagination: {},
     auth:false,
-    phoneIsValidate: false
+    phoneIsValidate: false,
+    addressList:[],
+    allArea:{}
 }
   
 export default state

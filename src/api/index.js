@@ -16,7 +16,7 @@ export const getNftByIdAPI = host + '/api/v1/nft'
 // 获取用户所有优惠券
 export const getUserCouponsAPI = host + '/api/v1/gift/getListByUserId?userId=1'
 // 新建地址
-export const addUserAddressAPI = host + '/api/v1/userAddress/add'
+export const addUserAddressAPI = host + '/api/v1/userAddress/add?userId=1'
 // 获取nft素材
 export const getNFTMaterialAPI = host + '/api/v1/nft/material/all'
 // 上传生成的nft图片
@@ -31,3 +31,7 @@ export const userAuthAPI = host + '/api/v1/user/auth'
 export const sendAuthSmsAPI = host + '/api/v1/user/sendAuthSms'
 // 电话号码校验
 export const phoneValidateAPI = host + '/api/v1/user/phone/validate'
+// 用户收货地址列表
+export const addressListAPI = host + '/api/v1/userAddress/list'
+// 获取城市字典
+export const getAllAreaAPI = host + '/api/v1/area/getAll?userId=1'

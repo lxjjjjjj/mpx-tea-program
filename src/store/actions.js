@@ -266,3 +266,45 @@ export function sendAuthSms(context, params){
         })
     })
 }
+
+export function getAddresssList(context, params){
+    request({
+        url:apis.addressListAPI,
+        params:params,
+        method:"POST"
+    }).then(res => {
+        if(res.code){
+            console.log('获取用户地址列表失败',JSON.stringify(res))
+            mpx.showToast({
+                title: '获取地址列表失败',
+                icon: 'error',
+                duration: 1000
+            })
+        }else{
+            context.commit('setAddressList',res)
+        }
+    }).catch(err => {
+        console.log('获取用户地址列表失败',JSON.stringify(err))
+        mpx.showToast({
+            title: '获取地址列表失败',
+            icon: 'error',
+            duration: 1000
+        })
+    })
+}
+
+export function getAllArea(context, params){
+    request({
+        url:apis.getAllAreaAPI,
+        params:params,
+        method:"POST"
+    }).then(res => {
+        if(res.code){
+            console.log('获取城市字典失败',JSON.stringify(res))
+        }else{
+            wx.setStorageSync('area',res)
+        }
+    }).catch(err => {
+        console.log('获取城市字典失败',JSON.stringify(err))
+    })
+}
