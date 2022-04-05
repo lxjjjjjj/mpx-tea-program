@@ -78,10 +78,10 @@
               this.y = this.centerY - textHeight / 2;
           }
 
-          // 旋转元素
-          this.ctx.translate(this.centerX, this.centerY);
-          this.ctx.rotate(this.rotate * Math.PI / 180);
-          this.ctx.translate(-this.centerX, -this.centerY);
+          // 旋转元素 注释了三行
+        //   this.ctx.translate(this.centerX, this.centerY);
+        //   this.ctx.rotate(this.rotate * Math.PI / 180);
+        //   this.ctx.translate(-this.centerX, -this.centerY);
           // 渲染元素
           if (this.type === 'text') {
               this.ctx.fillText(this.text, this.centerX, this.centerY);
@@ -98,11 +98,11 @@
               if (this.type === 'text') {
                   this.ctx.strokeRect(this.x, this.y, textWidth, textHeight);
                   this.ctx.drawImage(DELETE_ICON, this.x - 15, this.y - 15, 30, 30);
-                  this.ctx.drawImage(DRAG_ICON, this.x + textWidth - 15, this.y + textHeight - 15, 30, 30);
+                //   this.ctx.drawImage(DRAG_ICON, this.x + textWidth - 15, this.y + textHeight - 15, 30, 30);
               } else {
                   this.ctx.strokeRect(this.x, this.y, this.w, this.h);
                   this.ctx.drawImage(DELETE_ICON, this.x - 15, this.y - 15, 30, 30);
-                  this.ctx.drawImage(DRAG_ICON, this.x + this.w - 15, this.y + this.h - 15, 30, 30);
+                //   this.ctx.drawImage(DRAG_ICON, this.x + this.w - 15, this.y + this.h - 15, 30, 30);
               }
           }
           this.ctx.restore();
@@ -523,7 +523,8 @@
                           currentGraph.y = currentGraph.centerY - this.currentGraph.h / 2;
                       }
                   } else if (currentGraph.action === 'transform') {
-                      currentGraph.transform(this.currentTouch.x, this.currentTouch.y, x, y, this.currentGraph);
+                      //注释放大缩小
+                    //   currentGraph.transform(this.currentTouch.x, this.currentTouch.y, x, y, this.currentGraph);
                   }
                   // 更新4个坐标点（相对于画布的坐标系）
                   currentGraph._rotateSquare();

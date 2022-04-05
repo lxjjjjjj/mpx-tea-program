@@ -69,17 +69,17 @@
          * 添加图片
          */
         onAddImage(url) {
-          let proportion
+          // let proportion
           let h = 200
           wx.downloadFile({
             url,
             success: (res) => {
               this.graph = {
-                    w: 100,
-                    h: 100,
+                    w: 100,//图片宽度
+                    h: 100,//图片高度
                     type: 'image',
-                    // x: this.iconPosition.x,
-                    // y:this.iconPosition.y,
+                    x: 100,//图片左边位置
+                    y: 100,//图片右边位置
                     url: res.tempFilePath
                   }
               }
@@ -218,7 +218,6 @@
           this.typeSelect = id
         },
         changeImage(item){
-          console.log('item',item)
           if(this.typeSelect === '背景'){
             this.onChangeBgImage(item.url)
           }else{
