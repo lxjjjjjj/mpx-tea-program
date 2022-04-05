@@ -1,3 +1,5 @@
+import mpx from '@mpxjs/core'
+import LoginPage from '../pages/login?resolve'
 export default ({url,params,method="GET"}) => {
     return new Promise((resolve,reject)=>{
         wx.request({
@@ -8,7 +10,13 @@ export default ({url,params,method="GET"}) => {
                 'content-type': 'application/json'
             },
             success (res) {
-                resolve(res.data.data)
+                if (res.statusCode === 403) {
+                    mpx.navigateTo({
+                        url:LoginPage
+                    })
+                } else {
+                    resolve(res.data.data)
+                }
             },
             fail (reason) {
                 reject(reason)

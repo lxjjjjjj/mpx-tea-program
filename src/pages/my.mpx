@@ -51,7 +51,6 @@
 
 <script>
   import mpx,{ createPage } from '@mpxjs/core'
-  import LoginPage from '../pages/login?resolve'
   import couponPage from '../pages/coupon?resolve'
   import store from '../store'
   import myNFT from './myNFT?resolve'
@@ -96,9 +95,6 @@
       created(){
         this.getUserInfo()
         this.getUserNFTAll()
-        mpx.navigateTo({
-            url:LoginPage
-        })
       }
   });
 </script>

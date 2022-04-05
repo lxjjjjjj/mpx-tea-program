@@ -65,6 +65,8 @@
             },
             bindfocus(type){
                 this.rulesMap[type] = false
+                type === 'mobile' && (this.isRightNumber = false )
+                type === 'idCard' && (this.identifyErrorMsg = '')
             },
             sendMessage(){
                 console.log('sendMessage')
