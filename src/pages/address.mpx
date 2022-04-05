@@ -124,7 +124,7 @@
                     address: this.address,
                     mobile: this.mobile,
                     consignee: this.consignee,
-                    type: 0,
+                    type: this.defaultAddress,
                     id:0
                 })
             }
@@ -216,6 +216,8 @@
             display flex
             align-items center
             margin-top 8px
+        &-detail-input
+            height 100px !important
         &-user-danger
             color #6b7188
             margin-left 80px
