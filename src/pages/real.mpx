@@ -1,0 +1,279 @@
+<template>
+    <view class="real-wrapper">
+        <image class="real-title" src="https://static-qa.yimutea.com/test/%E6%A0%87%E9%A2%98_%E5%AE%9E%E5%90%8D%E4%BF%A1%E6%81%AF%E8%AE%A4%E8%AF%81%403x.png"/>
+        <view class="real-mobile-wrapper">
+            <view class="real-mobile">姓  名</view>
+            <input maxlength="11" class="real-mobile-input" wx:model="{{name}}" bindfocus="bindfocus('name')"/>
+        </view>
+        <view class="real-user-danger" wx:if="{{rulesMap.name}}">姓名不能为空</view>
+        <view class="real-code-wrapper">
+            <view class="real-code">身份证号</view>
+            <input maxlength="18" class="real-code-input" type="code" wx:model="{{idCard}}" bindfocus="bindfocus('idCard')"/>
+        </view>
+        <view class="real-user-danger" wx:if="{{rulesMap.idCard || identifyErrorMsg}}">{{identifyErrorMsg}}</view>
+        <view class="real-code-wrapper">
+            <view class="real-code">电  话</view>
+            <input maxlength="11" class="real-code-input" type="code" wx:model="{{mobile}}" bindfocus="bindfocus('mobile')"/>
+        </view>
+        <view class="real-user-danger" wx:if="{{rulesMap.mobile || isRightNumber}}">{{isRightNumber ? '电话格式错误':'电话不能为空'}}</view>
+        <view class="real-code-wrapper">
+            <view class="real-code">验证码</view>
+            <input maxlength="6" class="real-number-input" type="code" wx:model="{{code}}" bindfocus="bindfocus('code')"/>
+            <view class="get-real-code" bindtap="sendMessage" wx:if="{{showSendBtn}}"/>
+            <view class="get-real-code-countdown" wx:else>{{codeCountDown}}s</view>
+        </view>
+        <view class="real-user-danger" wx:if="{{rulesMap.code}}">验证码不能为空</view>
+        <view class="real-user-btns">
+            <image class="wx-auth" bindtap="cancel" src="https://static-qa.yimutea.com/test/%E5%8F%96%E6%B6%88%403x.png"/>
+            <image class="wx-auth" bindtap="auth" src="https://static-qa.yimutea.com/test/%E8%AE%A4%E8%AF%81%403x.png"/>
+        </view>
+    </view>
+</template>
+
+<script>
+  import mpx,{ createPage } from '@mpxjs/core'
+  import SignInPage from './signIn?resolve'
+  import store from '../store'
+  import { identityIDCard } from '../utils'
+  createPage({
+      data: {
+        name:'',
+        idCard:'',
+        mobile:'',
+        code:'',
+        rulesMap: {
+            name: false,
+            idCard: false,
+            mobile: false,
+            code: false
+        },
+        isRightNumber: false,
+        identifyErrorMsg:"",
+        codeCountDown:60,
+        timer:0,
+        showSendBtn:true
+      },
+      computed:{
+          ...store.mapState(['getPhoneNumber'])
+      },
+      methods:{
+            ...store.mapActions(['userAuth','sendAuthSms']),
+            cancel(){
+                wx.navigateBack({
+                    delta: 1
+                })
+            },
+            bindfocus(type){
+                this.rulesMap[type] = false
+            },
+            sendMessage(){
+                console.log('sendMessage')
+                if (!this.mobile) {
+                    wx.showToast({
+                        title: '电话不能为空',
+                        icon: 'error',
+                        duration: 1000
+                    })
+                } else if (!/^1(3[0-9]|5[012356789]|7[678]|8[0-9])(?=\d{8}$)/g.test(this.mobile)){
+                    this.isRightNumber = true
+                    wx.showToast({
+                        title: '电话号码格式不正确',
+                        icon: 'error',
+                        duration: 1000
+                    })
+                } 
+                if(this.mobile && !this.isRightNumber){
+                    if(this.timer) {
+                        clearInterval(this.timer)
+                        this.codeCountDown = 60
+                    }
+                    const self = this
+                    this.timer = setInterval(()=>{
+                        if (this.codeCountDown <= 0) {
+                            clearInterval(this.timer)
+                            this.codeCountDown = 60
+                            this.showSendBtn = true
+                        } else {
+                            this.codeCountDown = this.codeCountDown - 1
+                            this.showSendBtn = false
+                        }
+                    }, 1000)
+                    this.sendAuthSms({
+                        mobile:this.mobile
+                    })
+                }
+            },
+            auth(){
+                const identyfyRes = identityIDCard(this.idCard)
+                this.identifyErrorMsg = identyfyRes.errorMessage
+                if (!this.name) {
+                    this.rulesMap.name = true
+                } 
+                if (!this.code) {
+                    this.rulesMap.code = true
+                } 
+                if (!identyfyRes.isPass) {
+                    this.rulesMap.idCard = true
+                } 
+                if (!this.mobile) {
+                    this.rulesMap.mobile = true
+                } else if (!/^1(3[0-9]|5[012356789]|7[678]|8[0-9])(?=\d{8}$)/g.test(this.mobile)){
+                    this.isRightNumber = true
+                } 
+                if(this.name && this.mobile && this.code && !this.isRightNumber && identyfyRes.isPass) {
+                    this.userAuth({
+                        name:this.name,
+                        idCard:this.idCard,
+                        code:this.code,
+                        mobile:this.mobile
+                    })
+                }
+            }       
+      },
+      onHide(){
+          if(this.timer) clearTimeout(this.timer)
+      }
+  });
+</script>
+<style lang="stylus">
+    .real-wrapper
+        height 100vh
+        background url('https://static-qa.yimutea.com/test/home_bg.png') 100% 100%
+        display flex
+        flex-direction column
+        align-items: center
+    .signIn-btn{
+        position:absolute;
+        /*use rpx*/
+        top: 30rpx;
+        /*use rpx*/
+        right: 30rpx;
+        float:left;
+        height 34px
+        width 58px
+    }
+    .real-title{
+        width 142px
+        height 22px 
+        margin-top:58px
+    }
+    .wx-auth
+        margin-top 20px
+        height 43px
+        width 127px
+    .real-mobile-wrapper{
+        background-image url('https://static-qa.yimutea.com/test/bg%403x.png') 
+        background-size 100% 100%
+        width 276px
+        height 48px
+        margin-top: 50px;
+        display: flex;
+        align-items: center;
+    }
+    .real-code-wrapper{
+        background-image url('https://static-qa.yimutea.com/test/bg%403x.png') 
+        background-size 100% 100%
+        width 276px
+        height 48px
+        margin-top:30px;
+        display: flex;
+        align-items: center;
+        position:relative;
+    }
+    .real-user-danger
+        color #6b7188
+        margin-left 80px
+        margin-right 10px
+        font-family MicrosoftYaHei
+        font-size 15px
+        margin-top 10px
+        width calc(100% - 180px)
+    .real-mobile
+        color: #6B7188
+        margin-left 20px
+        margin-right 10px
+        font-family MicrosoftYaHei
+        font-size 15px
+        width 60px
+        white-space pre
+    .real-code
+        color #6B7188
+        margin-left 20px
+        margin-right 10px
+        font-family MicrosoftYaHei
+        font-size 15px
+        width 60px
+        white-space pre
+    .get-real-code{
+        background-image url('https://static-qa.yimutea.com/test/%E6%8C%89%E9%92%AE%E9%AA%8C%E8%AF%81%E7%A0%81%403x.png')
+        background-size 100% 100%
+        position absolute
+        width 88px
+        height 34px
+        right 5px
+        top 10px
+    }
+    .get-real-code-countdown{
+        color: #6b7188;
+        margin-left: 20px;
+        margin-right: 20px;
+        font-family: MicrosoftYaHei;
+        font-size: 15px;
+        position: absolute;
+        right: 20px;
+    }
+    .real-mobile-input
+        width 180px
+        color #fff
+    .real-code-input
+        width 170px
+        color #fff
+    .real-number-input
+        width 100px
+        color #fff
+    .real-message-wrapper
+        width 275px
+        height 32px
+        display flex
+        margin-top 20px
+    .real-message
+        width 249px
+        font-family MicrosoftYaHei
+        color #6171AB
+        font-size 12px
+    .real-checkbox
+        background-image url('https://static-qa.yimutea.com/test/%E9%80%89%E6%8B%A9%E6%A1%86%403x.png')
+        background-size 100% 100%
+        height 26px
+        width 26px
+        display flex
+        align-items center
+        justify-content center
+    .real-checkbox-image
+        width 22px
+        height 20px
+    .third-login
+        margin-top 75px
+        display flex
+        flex-direction column
+        align-items center
+    .third-real-content{
+        font-size 12px
+        color #6171AB
+    }
+    .third-real-image
+        width 27px
+        height 23px
+    .real-user-btns
+        width 276px
+        height 43px
+        display flex
+        margin-top 20px
+        align-items center
+        justify-content space-between
+</style>
+<script type="application/json">
+  {
+    "usingComponents": {}
+  }
+</script>

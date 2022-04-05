@@ -44,7 +44,8 @@
       "./pages/myNFT.mpx",
       "./pages/service.mpx",
       "./pages/show.mpx",
-      "./pages/showDetail.mpx"
+      "./pages/showDetail.mpx",
+      "./pages/real.mpx"
     ],
     "tabBar": {
       "custom": true,

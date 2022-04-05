@@ -95,12 +95,19 @@ export function getNFTById(context,params){
 export function getUserCoupons(context,params){
     request({
         url: apis.getUserCouponsAPI,
-        params
+        params,
+        method:'POST'
     }).then(res => {
         if(res.errno){
             console.log('获取用户优惠券失败',JSON.stringify(res))
         }else{
-            context.commit('setUserCoupons', res)
+            context.commit('setUserCoupons', res.list)
+            context.commit('setCouponPagination', {
+                pageNum: res.pageNum,
+                pageSize: res.pageSize,
+                pages: res.pages,
+                total: res.total
+            })
         }
     }).catch(err=>{
         console.log('获取用户优惠券失败',JSON.stringify(err))
@@ -180,5 +187,82 @@ export function getDisplayData(context, params){
         }
     }).catch(err=>{
         console.log('获取展览馆数据失败',JSON.stringify(err))
+    })
+}
+
+export function userAuth(context, params){
+    request({
+        url:apis.userAuthAPI,
+        params:params,
+        method:"POST"
+    }).then(res => {
+        if(res.errno){
+            console.log('实名认证失败',JSON.stringify(res))
+            mpx.showToast({
+                title: '实名认证失败',
+                icon: 'error',
+                duration: 2000
+            })
+        }else{
+            context.commit('setAuth', true)
+        }
+    }).catch(err => {
+        console.log('实名认证失败',JSON.stringify(err))
+        mpx.showToast({
+            title: '实名认证失败',
+            icon: 'error',
+            duration: 2000
+        })
+    })
+}
+
+
+export function phoneValidate(context, params){
+    // phone参数
+    request({
+        url:apis.phoneValidateAPI,
+        params:params,
+    }).then(res => {
+        if(res.errno){
+            console.log('手机号已经注册过了',JSON.stringify(res))
+            mpx.showToast({
+                title: '手机号已经注册过了',
+                icon: 'error',
+                duration: 2000
+            })
+        }else{
+            context.commit('setPhoneIsValidate', true)
+        }
+    }).catch(err => {
+        console.log('手机号已经注册过了',JSON.stringify(err))
+        mpx.showToast({
+            title: '手机号已经注册过了',
+            icon: 'error',
+            duration: 2000
+        })
+    })
+}
+
+export function sendAuthSms(context, params){
+    request({
+        url:apis.sendAuthSmsAPI,
+        params:params,
+        method:"POST"
+    }).then(res => {
+        if(res.code){
+            console.log('发送验证码失败',JSON.stringify(res))
+            mpx.showToast({
+                title: '发送验证码失败，请重新发送',
+                icon: 'error',
+                duration: 2000
+            })
+        }
+    }).catch(err => {
+        console.log('发送验证码失败',JSON.stringify(err))
+        mpx.showToast({
+            title: '发送验证码失败，请重新发送',
+            icon: 'error',
+            duration: 2000
+        })
     })
 }

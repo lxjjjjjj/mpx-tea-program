@@ -14,7 +14,10 @@ const state = {
     NFTTab: {},
     uuid: '',
     displayData: [],
-    displayPagination: {}
+    displayPagination: {},
+    couponPagination: {},
+    auth:false,
+    phoneIsValidate: false
 }
   
 export default state

@@ -5,13 +5,13 @@
                 {{item}}
             </view>
         </view>
-        <view wx:for="{{userCoupons[tabSelect]}}" wx:key="{{item.title}}" class="coupon-style">
+        <view wx:for="{{userCoupons}}" wx:key="{{item.title}}" class="coupon-style">
             <view class="coupon-content">
-                <view class="coupon-title">{{item.title}}</view>
-                <view class="coupon-num">剩余张数 : {{item.type}}</view>
-                <view class="coupon-effective">有效期 : {{item.date}}</view>
+                <view class="coupon-title">{{item.giftName}}</view>
+                <view class="coupon-num">剩余张数 : {{item.giftValue}}</view>
+                <view class="coupon-effective">有效期 : {{item.endDateText}}</view>
             </view>
-            <image src="{{item.image}}" class="coupon-image"/>
+            <image src="{{item.giftUrl}}" class="coupon-image"/>
         </view>
     </view>
 </template>
@@ -21,11 +21,11 @@
   import store from  '../store'  
   createPage({
       data: {
-        tabs: ['A级礼品券','B级礼品券'],
+        tabs: ['饮品兑换券','实物兑换券'],
         tabSelect: 0
       },
       computed:{
-          ...store.mapState(['userCoupons'])
+          ...store.mapState(['userCoupons','couponPagination'])
       },
       methods:{
         ...store.mapActions(['getUserCoupons']),
@@ -33,9 +33,20 @@
             this.tabSelect = index
         }   
       },
-      onLoad(){
-          this.getUserCoupons()
-      }
+      created(){
+          this.getUserCoupons({
+            pageNum: 1,
+            pageSize: 2,
+            type: this.tabSelect
+          })
+      },
+      onReachBottom: function() {
+        this.getUserCoupons({
+            pageNum: this.couponPagination.pageNum + 1,
+            pageSize: 2,
+            type: this.tabSelect
+        })
+    }
   });
 </script>
 <style lang="stylus">

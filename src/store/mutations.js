@@ -58,3 +58,12 @@ export function setDisplayData (state, data){
 export function setDisplayPagination (state, data){
   state.displayPagination = data
 }
+export function setCouponPagination (state, data){
+  state.couponPagination = data
+}
+export function setAuth (state, data){
+  state.auth = data
+}
+export function setPhoneIsValidate(state, data){
+  state.phoneIsValidate = data
+}
