@@ -1,0 +1,51 @@
+<template>
+    <view class="oops-wrapper">
+        <view class="oops-title"></view>
+        <view class="oops-content">抱歉，网络崩溃了</view>
+        <view class="oops-desc">点击右上角重新进入小程序</view>
+    </view>
+</template>
+
+<script>
+  import mpx,{ createPage } from '@mpxjs/core'
+  createPage({
+      data: {
+        
+      },
+      methods:{
+                
+      }
+  });
+</script>
+<style lang="stylus">
+    .oops-wrapper
+        height 100%
+        min-height 100vh
+        width 100vw
+        background-image url('https://static-qa.yimutea.com/test/home_bg.png')
+        background-size 100% 100%
+        display flex
+        flex-direction column
+        align-items center
+    .oops-title
+        width 182px
+        height 88px
+        margin-top 84px
+        background-image url('https://static-qa.yimutea.com/test/OOPS%403x.png')
+        background-size 100% 100%
+    .oops-content
+        color #D4D4D4
+        font-size 14px
+        margin-top 46px
+        text-align center 
+    .oops-desc
+        color #ADC6F4
+        margin-top 16px
+        font-size 11px
+        text-align center 
+</style>
+<script type="application/json">
+  {
+    "usingComponents": {}
+  }
+</script>

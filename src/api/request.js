@@ -1,5 +1,6 @@
 import mpx from '@mpxjs/core'
 import LoginPage from '../pages/login?resolve'
+import oopsPage from '../pages/oops.mpx'
 export default ({url,params,method="GET"}) => {
     return new Promise((resolve,reject)=>{
         wx.request({
@@ -12,7 +13,11 @@ export default ({url,params,method="GET"}) => {
             success (res) {
                 if (res.statusCode === 403) {
                     mpx.navigateTo({
-                        url:LoginPage
+                        url: LoginPage
+                    })
+                } else if(String(res.statusCode).startsWith('5')){
+                    mpx.navigateTo({
+                        url: oopsPage
                     })
                 } else {
                     resolve(res.data.data)
