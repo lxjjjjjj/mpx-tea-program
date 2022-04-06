@@ -70,3 +70,12 @@ export function setPhoneIsValidate(state, data){
 export function setAddressList(state, data){
   state.addressList = data
 }
+export function setAddrList(state, data){
+  state.addrList = data
+}
+export function setAddrPagination(state, data){
+  state.addrPagination = data
+}
+export function setUserAddrById(state, data){
+  state.userIdAddress = data
+}

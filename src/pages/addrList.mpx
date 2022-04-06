@@ -1,0 +1,127 @@
+<template>
+    <view class="addrList-wrapper">
+        <view class="addrList-title"></view>
+        <view class="addrList-item" wx:for="{{addrList}}" wx:key="index">
+            <view class="addrList-piece-one">
+                <view class="addrList-item-type" wx:if="{{item.type}}"/>
+                <view class="addrList-item-address" style="{{item.type ? 'width:200px;margin-left: 7px;' : 'width:238px'}}">{{item.address}}</view>
+                <view class="addrList-item-edit" bindtap="editAddr(item.id)"/>
+            </view>
+            <view class="addrList-piece-two">
+                <view class="addrList-item-consignee">{{item.consignee}}</view>
+                <view class="addrList-item-mobile">{{item.mobile}}</view>
+            </view>
+        </view>
+        <view class="addrList-new" bindtap="newAddr"></view>
+    </view>
+</template>
+
+<script>
+  import mpx,{ createPage } from '@mpxjs/core'
+  import addressPage from './address?resolve'
+  import store from '../store'
+  createPage({
+      data: {
+        
+      },
+      computed:{
+        ...store.mapState(['addrList'])
+      },
+      methods:{
+        ...store.mapActions(['getUserAddrList']),
+        newAddr(){
+            mpx.navigateTo({
+                url: addressPage
+            })
+        },
+        editAddr(id){
+            mpx.navigateTo({
+                url: `${addressPage}?id=${id}`
+            })
+        }
+      },
+      onShow(){
+        this.getUserAddrList({
+            pageNum:1,
+            pageSize:10
+        })
+      }
+  });
+</script>
+<style lang="stylus">
+    .addrList-wrapper
+        height 100%
+        min-height 100vh
+        width 100vw
+        background-image url('https://static-qa.yimutea.com/test/home_bg.png')
+        background-size 100% 100%
+        display flex
+        flex-direction column
+        align-items center
+    .addrList-new
+        width 276px
+        height 48px
+        margin 20px
+        background-size 100% 100%
+        background-image url('https://static-qa.yimutea.com/test/%E6%96%B0%E5%A2%9E%E6%94%B6%E8%B4%A7%E5%9C%B0%E5%9D%80%403x.png')
+    .addrList-title
+        width 170px
+        height 27px 
+        margin-top 30px
+        margin-left -100px
+        margin-bottom 30px
+        background-image url('https://static-qa.yimutea.com/test/%E5%9C%B0%E5%9D%80%E5%88%97%E8%A1%A8%E7%AE%A1%E7%90%86%403x.png')
+        background-size 100% 100%
+    .addrList-item
+        width 322px
+        margin 10px 20px
+        height 63px
+        display flex
+        flex-direction column
+        background-size 100% 100%
+        background-image url('https://static-qa.yimutea.com/test/addrbg%403x.png')
+        &-type 
+            height 14px
+            width 31px
+            background-size 100% 100%
+            background-image url('https://static-qa.yimutea.com/test/%E5%9B%BE%E6%A0%87_%E9%BB%98%E8%AE%A4%403x.png')
+        &-address
+            color #ffffff
+            font-size 13px
+            width 200px
+            text-overflow ellipsis
+            overflow hidden
+            white-space nowrap
+        &-consignee
+            color #6B7188
+            font-size 13px
+        &-mobile
+            margin-left 40px
+            color #6B7188
+            font-size 13px
+        &-edit
+            width 20px
+            height 20px
+            color #fff
+            position absolute 
+            right 7px
+            top 10px
+            background-size 100% 100%
+            background-image url('https://static-qa.yimutea.com/test/%E6%8C%89%E9%92%AE_%E7%BC%96%E8%BE%91%403x.png')
+    .addrList-piece-one   
+        display flex
+        justify-content flex-start
+        align-items center
+        padding 10px 16px 6px 16px
+        position relative
+    .addrList-piece-two   
+        display flex
+        justify-content flex-start
+        align-items center
+        padding 0px 16px 12px 16px
+</style>
+<script type="application/json">
+  {
+    "usingComponents": {}
+  }
+</script>

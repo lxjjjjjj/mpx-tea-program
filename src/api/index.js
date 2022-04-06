@@ -35,3 +35,9 @@ export const phoneValidateAPI = host + '/api/v1/user/phone/validate'
 export const addressListAPI = host + '/api/v1/userAddress/list'
 // 获取城市字典
 export const getAllAreaAPI = host + '/api/v1/area/getAll?userId=1'
+// 获取地址列表
+export const getUserAddrListAPI = host + '/api/v1/userAddress/list?userId=1'
+// 根据id跳转到地址详情
+export const getUserAddrByIdAPI = host + '/api/v1/userAddress/getById?userId=1'
+// 修改已有地址
+export const updateUserAddrAPI = host + '/api/v1/userAddress/update?userId=1'

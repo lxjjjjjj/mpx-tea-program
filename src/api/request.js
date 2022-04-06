@@ -1,6 +1,6 @@
 import mpx from '@mpxjs/core'
 import LoginPage from '../pages/login?resolve'
-import oopsPage from '../pages/oops.mpx'
+import oopsPage from '../pages/oops?resolve'
 export default ({url,params,method="GET"}) => {
     return new Promise((resolve,reject)=>{
         wx.request({

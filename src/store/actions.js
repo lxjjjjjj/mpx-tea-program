@@ -308,3 +308,64 @@ export function getAllArea(context, params){
         console.log('获取城市字典失败',JSON.stringify(err))
     })
 }
+
+export function getUserAddrList(context, params){
+    request({
+        url:apis.getUserAddrListAPI,
+        params:params,
+        method:"POST"
+    }).then(res => {
+        if(res.code){
+            console.log('获取用户收件地址失败',JSON.stringify(res))
+        }else{
+            context.commit('setAddrList',res.list)
+            context.commit('setAddrPagination',{
+                pageNum:res.pageNum,
+                pageSize:res.pageSize,
+                pages:res.pages,
+                total:res.total
+            })
+        }
+    }).catch(err => {
+        console.log('获取用户收件地址失败',JSON.stringify(err))
+    })
+}
+
+export function getUserAddrById(context, params){
+    request({
+        url:apis.getUserAddrByIdAPI,
+        params:params,
+        method:"POST"
+    }).then(res => {
+        if(res.code){
+            console.log('获取用户详细收件地址失败',JSON.stringify(res))
+        }else{
+            context.commit('setUserAddrById',res)
+        }
+    }).catch(err => {
+        console.log('获取用户详细收件地址失败',JSON.stringify(err))
+    })
+}
+
+export function updateUserAddrById(context, params){
+    request({
+        url:apis.updateUserAddrAPI,
+        params:params,
+        method:"POST"
+    }).then(res => {
+        if(res.code){
+            console.log('更新用户详细收件地址失败',JSON.stringify(res))
+        }else{
+            mpx.showToast({
+                title: '更新成功',
+                icon: 'success',
+                duration: 1000
+            })
+            mpx.navigateBack({
+                delta:1
+            })
+        }
+    }).catch(err => {
+        console.log('更新用户详细收件地址失败',JSON.stringify(err))
+    })
+}

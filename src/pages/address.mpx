@@ -59,9 +59,11 @@
         },
         defaultAddress:0,
         showArray:[],
-        regionId: [0,0,0]
+        regionId: [0,0,0],
+        addrId:0
     },
     computed:{
+        ...store.mapState(['userIdAddress']),
         yes(){
             return this.defaultAddress === 0
         },
@@ -82,10 +84,24 @@
                 this.showArray[2] = this.regionArray[2].filter(item=>item.parentId === cityId)
             },
             immediate:true
+        },
+        userIdAddress:{
+           handler(val){
+               if(val){
+                    this.address = val.address
+                    this.mobile = val.mobile
+                    this.consignee = val.consignee
+                    this.region = [val.provinceName,val.cityName,val.areaName]
+                    this.regionId = [val.provinceId,val.cityId,val.areaId]
+                    this.defaultAddress = val.type
+                    this.addrId = val.id
+               }
+           },
+           immediate:true
         }
     },
     methods:{
-        ...store.mapActions(['addUserAddress','getAllArea']),
+        ...store.mapActions(['addUserAddress','getAllArea','getUserAddrById','updateUserAddrById']),
         regionChange(e){
             e.detail.value.forEach((item, index)=>{
                 if(String(Number(item)) === 'NaN'){
@@ -114,7 +130,7 @@
                 this.isRightNumber = true
             } 
             if(this.consignee && this.mobile && this.address && !this.isRightNumber) {
-                this.addUserAddress({
+                this.addrId ? this.updateUserAddrById({
                     areaName: this.region[2],
                     areaId:this.regionId[2],
                     cityId:this.regionId[1],
@@ -125,8 +141,20 @@
                     mobile: this.mobile,
                     consignee: this.consignee,
                     type: this.defaultAddress,
-                    id:0
-                })
+                    id:this.addrId
+                }) : this.addUserAddress({
+                        areaName: this.region[2],
+                        areaId:this.regionId[2],
+                        cityId:this.regionId[1],
+                        cityName: this.region[1],
+                        provinceId: this.regionId[0],
+                        provinceName: this.region[0],
+                        address: this.address,
+                        mobile: this.mobile,
+                        consignee: this.consignee,
+                        type: this.defaultAddress,
+                        id:0
+                    })
             }
         },
         chooseDefault(type){
@@ -153,7 +181,9 @@
             }
         }
     },
-    onLoad(){
+    onShow(){
+        const { options: { id } } = this
+        id && this.getUserAddrById({ id: id})
         !wx.getStorageSync('area') && this.getAllArea()
     }
   });
