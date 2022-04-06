@@ -47,7 +47,8 @@
       "./pages/showDetail.mpx",
       "./pages/real.mpx",
       "./pages/oops.mpx",
-      "./pages/addrList.mpx"
+      "./pages/addrList.mpx",
+      "./pages/question.mpx"
     ],
     "tabBar": {
       "custom": true,

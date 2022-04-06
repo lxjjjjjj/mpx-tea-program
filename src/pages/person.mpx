@@ -18,6 +18,7 @@
   import store from '../store'
   import addressPage from './address?resolve'
   import servicePage from './service?resolve'
+  import questionPage from './question?resolve'
     // {
     //     image:"https://static-qa.yimutea.com/test/%E5%9B%BE%E6%A0%87_%E5%AE%9E%E5%90%8D%E8%AE%A4%E8%AF%81%403x.png",
     //     desc:"实名认证",
@@ -40,13 +41,14 @@
                 desc:"常见问题",
                 height:'41px',
                 width:'50px',
-                url: servicePage
+                url: questionPage
             },
             {
                 image:"https://static-qa.yimutea.com/test/%E5%9B%BE%E6%A0%87_%E6%9C%8D%E5%8A%A1%E5%8D%8F%E8%AE%AE%E5%8F%8A%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%96%403x.png",
                 desc:"服务协议及隐私政策",
                 height:'47px',
-                width:'42px'
+                width:'42px',
+                url: servicePage
             }
         ]
     },
