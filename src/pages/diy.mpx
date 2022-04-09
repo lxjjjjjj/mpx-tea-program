@@ -21,6 +21,12 @@
       <view class="image-container">
         <view class="image-wrapper" wx:for="{{showList}}" wx:key="item" wx:style="{{iconStyle}}">
           <image class="image-style" src="{{item.url}}" bindtap="changeImage(item)"/>
+          <view class="lock-one" wx:if="{{item.level !== vip}}"/>
+          <view class="lock-two" wx:if="{{item.level !== vip}}"/>
+          <view class="lock-three" wx:if="{{item.level !== vip}}"/>
+          <view class="lock-four" wx:if="{{item.level !== vip}}"/>
+          <view class="lock-five" wx:if="{{item.level !== vip}}"/>
+          <view class="lock-six" wx:if="{{item.level !== vip}}"/>
         </view>
       </view>
     </view>
@@ -57,11 +63,11 @@
           return this.typeSelect !== 'bg' ? `background-image:url(${IconBg});background-size:100% 100%;`:''
         }
       },
-      created(){
+      onShow(){
+        const { options: { vip } } = this
+        this.vip = Number(vip)
+        console.log('this.vip',this.vip)
         this.getNFTMaterial()
-      },
-      onLoad(params){
-        this.vip = params.vip
       },
       methods:{
         ...store.mapActions(['getNFTMaterial','NFTGenerate']),
@@ -218,6 +224,7 @@
           this.typeSelect = id
         },
         changeImage(item){
+          if(item.level !== this.vip) return
           if(this.typeSelect === '背景'){
             this.onChangeBgImage(item.url)
           }else{
@@ -297,6 +304,7 @@
     display flex
     justify-content center
     margin-top: 12px
+    position relative
   .image-style
       /*use rpx*/
       width 160rpx
@@ -311,6 +319,54 @@
   .image-wrapper:last-child:nth-child(4n-3) {
       margin-right: calc(72% + 8% / 3);
   }
+  .lock-one
+    background-image url('https://static-qa.yimutea.com/test/%E9%94%811%403x.png')
+    background-size 100% 100%
+    width 21px
+    height 27px
+    position absolute
+    left 0
+    top 0
+  .lock-two
+    background-image url('https://static-qa.yimutea.com/test/%E9%94%812%403x.png')
+    background-size 100% 100%
+    width 21px
+    height 27px
+    position absolute
+    left 0
+    top 0
+  .lock-three
+    background-image url('https://static-qa.yimutea.com/test/%E9%94%813%403x.png')
+    background-size 100% 100%
+    width 21px
+    height 27px
+    position absolute
+    left 0
+    top 0
+  .lock-four
+    background-image url('https://static-qa.yimutea.com/test/%E9%94%814%403x.png')
+    background-size 100% 100%
+    width 21px
+    height 27px
+    position absolute
+    left 0
+    top 0
+  .lock-five
+    background-image url('https://static-qa.yimutea.com/test/%E9%94%815%403x.png')
+    background-size 100% 100%
+    width 21px
+    height 27px
+    position absolute
+    left 0
+    top 0
+  .lock-six
+    background-image url('https://static-qa.yimutea.com/test/%E9%94%816%403x.png')
+    background-size 100% 100%
+    width 21px
+    height 27px
+    position absolute
+    left 0
+    top 0
 </style>
 <script type="application/json">
   {

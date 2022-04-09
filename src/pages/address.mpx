@@ -1,6 +1,6 @@
 <template>
     <view class="address">
-        <view class="address-title"/>
+        <view wx:class="{{addrId ? 'address-edit':'address-title'}}"/>
         <view class="address-user-wrapper">
             <view class="address-user">收货人</view>
             <input class="address-user-input" wx:model="{{consignee}}" bindfocus="bindfocus('consignee')"/>
@@ -203,6 +203,12 @@
             height 22px
             width 142px
             background-image url('https://static-qa.yimutea.com/test/%E6%A0%87%E9%A2%98_%E6%94%B6%E8%B4%A7%E5%9C%B0%E5%9D%80%E7%AE%A1%E7%90%86%403x.png')
+            background-size 100% 100%
+        &-edit
+            height 22px
+            width 142px
+            margin-left -200px
+            background-image url('https://static-qa.yimutea.com/test/%E7%BC%96%E8%BE%91%E6%94%B6%E8%B4%A7%E5%9C%B0%E5%9D%80%403x.png')
             background-size 100% 100%
         &-user-wrapper,
         &-phone-wrapper,

@@ -13,7 +13,7 @@
             </view>
             <view class="times-btn">
                 <image class="times-btn-image" wx:if="{{!item.count}}" src="https://static-qa.yimutea.com/test/%E6%8C%89%E9%92%AE_%E4%B8%8D%E5%8F%AF%E7%94%A8%403x.png"/>
-                <image class="times-btn-image" wx:else bindtap="gotoDIY(item.title)" src="https://static-qa.yimutea.com/test/%E6%8C%89%E9%92%AE_%E4%BD%BF%E7%94%A8%403x.png"/>
+                <image class="times-btn-image" wx:else bindtap="gotoDIY(item.level)" src="https://static-qa.yimutea.com/test/%E6%8C%89%E9%92%AE_%E4%BD%BF%E7%94%A8%403x.png"/>
         </view>
     </view>
 </template>
