@@ -101,7 +101,7 @@ export function getUserCoupons(context,params){
         if(res.errno){
             console.log('获取用户优惠券失败',JSON.stringify(res))
         }else{
-            context.commit('setUserCoupons', res.list)
+            context.commit('setUserCoupons', context.state.userCoupons.concat(res.list))
             context.commit('setCouponPagination', {
                 pageNum: res.pageNum,
                 pageSize: res.pageSize,
@@ -318,7 +318,7 @@ export function getUserAddrList(context, params){
         if(res.code){
             console.log('获取用户收件地址失败',JSON.stringify(res))
         }else{
-            context.commit('setAddrList',res.list)
+            context.commit('setAddrList',context.state.addrList.concat(res.list))
             context.commit('setAddrPagination',{
                 pageNum:res.pageNum,
                 pageSize:res.pageSize,

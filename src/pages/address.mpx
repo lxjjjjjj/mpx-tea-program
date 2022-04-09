@@ -87,14 +87,13 @@
         },
         userIdAddress:{
            handler(val){
-               if(val){
+               if(this.addrId){
                     this.address = val.address
                     this.mobile = val.mobile
                     this.consignee = val.consignee
                     this.region = [val.provinceName,val.cityName,val.areaName]
                     this.regionId = [val.provinceId,val.cityId,val.areaId]
                     this.defaultAddress = val.type
-                    this.addrId = val.id
                }
            },
            immediate:true
@@ -159,7 +158,6 @@
         },
         chooseDefault(type){
             this.defaultAddress = type
-            console.log('this.defaultAddress',this.defaultAddress)
         },
         back(){
             wx.navigateBack({
@@ -183,6 +181,7 @@
     },
     onShow(){
         const { options: { id } } = this
+        this.addrId = id
         id && this.getUserAddrById({ id: id})
         !wx.getStorageSync('area') && this.getAllArea()
     }
