@@ -16,7 +16,7 @@
 <script>
   import mpx,{ createPage } from '@mpxjs/core'
   import store from '../store'
-  import addressPage from './address?resolve'
+  import addrListPage from './addrList?resolve'
   import servicePage from './service?resolve'
   import questionPage from './question?resolve'
     // {
@@ -34,7 +34,7 @@
                 desc:"收货地址管理",
                 height:'47px',
                 width:'45px',
-                url: addressPage
+                url: addrListPage
             },
             {
                 image:"https://static-qa.yimutea.com/test/%E5%9B%BE%E6%A0%87_%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%403x.png",

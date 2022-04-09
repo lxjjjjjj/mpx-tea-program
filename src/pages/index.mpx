@@ -66,9 +66,7 @@
         }  
     },
     created(){
-        this.getHomeList({
-            params:'xxx'
-        })
+        this.getHomeList()
     }
   })
 </script>
