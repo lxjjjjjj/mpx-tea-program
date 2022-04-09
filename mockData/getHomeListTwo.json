@@ -10,7 +10,7 @@
         "frontPageList":[
             [
                 {
-                    "jumpUrl":"http://baidu.com",
+                    "jumpUrl":"",
                     "title":"what's NFT",
                     "imageUrl":"https://static-qa.yimutea.com/test/banner1%403x.png",
                     "summary":"这是一段描述这是一段描述这是一段描述这是一段描述这是一段描述这是一段描述这是一段描述这是一段描述这是一段描述",
@@ -18,7 +18,7 @@
                     "titleUrl":"https://static-qa.yimutea.com/test/%E5%8F%91%E8%A1%8C%E6%96%B9.png"
                 },
                 {
-                    "jumpUrl":"http://baidu.com",
+                    "jumpUrl":"",
                     "title":"what's NFT",
                     "imageUrl":"https://static-qa.yimutea.com/test/banner1%403x.png",
                     "summary":"这是一段描述",
@@ -26,7 +26,7 @@
                     "titleUrl":"https://static-qa.yimutea.com/test/%E5%8F%91%E8%A1%8C%E6%96%B9.png"
                 },
                 {
-                    "link":"http://baidu.com",
+                    "link":"",
                     "title":"what's NFT",
                     "imageUrl":"https://static-qa.yimutea.com/test/banner1%403x.png",
                     "summary":"这是一段描述",
@@ -37,7 +37,7 @@
             ],
             [   
                 {
-                    "link":"http://baidu.com",
+                    "link":"",
                     "title":"what's NFT",
                     "imageUrl":"https://static-qa.yimutea.com/test/banner2%403x.png",
                     "summary":"这是一段描述",
@@ -45,7 +45,7 @@
                     "titleUrl":"https://static-qa.yimutea.com/test/%E5%8F%91%E8%A1%8C%E6%96%B9.png"
                 },
                 {
-                    "link":"http://baidu.com",
+                    "link":"",
                     "title":"what's NFT",
                     "imageUrl":"https://static-qa.yimutea.com/test/banner2%403x.png",
                     "summary":"这是一段描述",
@@ -53,7 +53,7 @@
                     "titleUrl":"https://static-qa.yimutea.com/test/%E5%8F%91%E8%A1%8C%E6%96%B9.png"
                 },
                 {
-                    "link":"http://baidu.com",
+                    "link":"",
                     "title":"what's NFT",
                     "imageUrl":"https://static-qa.yimutea.com/test/banner2%403x.png",
                     "summary":"这是一段描述",
@@ -63,7 +63,7 @@
             ],
             [
                 {
-                    "link":"http://baidu.com",
+                    "link":"",
                     "title":"what's NFT",
                     "imageUrl":"https://static-qa.yimutea.com/test/banner3%403x.png",
                     "summary":"这是一段描述",
@@ -71,7 +71,7 @@
                     "titleUrl":"https://static-qa.yimutea.com/test/%E5%8F%91%E8%A1%8C%E6%96%B9.png"
                 },
                 {
-                    "link":"http://baidu.com",
+                    "link":"",
                     "title":"what's NFT",
                     "imageUrl":"https://static-qa.yimutea.com/test/banner3%403x.png",
                     "summary":"这是一段描述",
@@ -79,7 +79,7 @@
                     "titleUrl":"https://static-qa.yimutea.com/test/%E5%8F%91%E8%A1%8C%E6%96%B9.png"
                 },
                 {
-                    "link":"http://baidu.com",
+                    "link":"",
                     "title":"what's NFT",
                     "imageUrl":"https://static-qa.yimutea.com/test/banner3%403x.png",
                     "summary":"这是一段描述",

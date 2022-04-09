@@ -2,10 +2,10 @@
     <view class="show-wrapper">
         <view class="show">
             <view class="show-item-container" wx:for="{{flexDisPlayData}}" wx:for-item="flexdisplayData" wx:for-index="flexIndex">
-                <view wx:for="{{flexdisplayData}}" wx:key="index" class="show-item">
+                <view wx:for="{{flexdisplayData}}" wx:key="index" class="show-item" bindtap="goToShowDetail">
                     <image class="show-item-image" mode="widthFix" src="{{item.nftUrl}}"></image>
                     <view class="show-item-content">
-                        <view class="show-item-avatar-wrapper"><image class="show-item-avatar">{{item.userAvatar}}</image></view>
+                        <view class="show-item-avatar-wrapper"><image class="show-item-avatar" src="{{item.userAvatar}}"></image></view>
                         <view class="show-item-name">{{item.userName}}</view>
                     </view>
                 </view>
@@ -17,7 +17,7 @@
 <script>
   import mpx,{ createPage } from '@mpxjs/core'
   import store from '../store'
-  
+  import showDetailPage from './showDetail?resolve'
   createPage({
     data:{
         
@@ -40,7 +40,12 @@
         }
     },
     methods:{
-        ...store.mapActions(['getDisplayData'])
+        ...store.mapActions(['getDisplayData']),
+        goToShowDetail(){
+            mpx.navigateTo({
+                url: showDetailPage
+            })
+        }
     },
     created(){
         this.getDisplayData({

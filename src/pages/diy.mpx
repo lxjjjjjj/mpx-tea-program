@@ -35,7 +35,6 @@
 
 <script>
   import mpx,{ createPage } from '@mpxjs/core'
-  // import VerticalNavPage from './vertical-nav?resolve'
   import CanvasDrag from '../../scripts/canvas-drag';
   import store from '../store'
   createPage({

@@ -20,7 +20,7 @@ export default ({url,params,method="GET"}) => {
                         url: oopsPage
                     })
                 } else {
-                    resolve(res.data.data)
+                    resolve(res.data)
                 }
             },
             fail (reason) {

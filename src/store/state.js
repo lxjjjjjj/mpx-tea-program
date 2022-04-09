@@ -9,7 +9,7 @@ const state = {
     userNFTAll: [],
     userCreateTimes: [],
     nftInfo: {},
-    userCoupons: {},
+    userCoupons: [],
     NFTMaterial: [],
     NFTTab: {},
     uuid: '',

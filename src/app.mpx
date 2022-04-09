@@ -48,7 +48,8 @@
       "./pages/real.mpx",
       "./pages/oops.mpx",
       "./pages/addrList.mpx",
-      "./pages/question.mpx"
+      "./pages/question.mpx",
+      "./pages/webView.mpx"
     ],
     "tabBar": {
       "custom": true,

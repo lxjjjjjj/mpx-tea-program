@@ -13,7 +13,7 @@
         <scroll-view wx:if="{{homeList && homeList.length}}" scroll-y="true" class="home-container" show-scrollbar="false">
             <view wx:for="{{homeList}}" wx:key="index" class="home-container-swiper-container">
                 <swiper class="home-container-swiper"
-                    autoplay="{{false}}" 
+                    autoplay="{{true}}" 
                     interval="{{5000}}" 
                     duration="{{1000}}"
                     bindchange="swiperChange($event,index)"
@@ -45,6 +45,8 @@
 <script>
   import mpx,{ createPage } from '@mpxjs/core'
   import store from '../store'
+  import showPage from './show?resolve'
+  import webViewPage from './webView?resolve'
   createPage({
     data: {
         logo:"https://static-qa.yimutea.com/test/logo.png",
@@ -57,9 +59,15 @@
     methods:{
         ...store.mapActions(['getHomeList']),
         clickBtn(path){
-            mpx.navigateTo({
-                url:path
-            })
+            if(path) {
+                mpx.navigateTo({
+                    url:`${webViewPage}?url=${path}`
+                })
+            }else{
+                mpx.navigateTo({
+                    url:showPage
+                })
+            }
         },
         swiperChange(e,index){
             this.homeList[index].swiperCurrent = e.detail.current

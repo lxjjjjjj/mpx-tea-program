@@ -1,8 +1,9 @@
 {
     "code":0,
     "msg":"success",
-    "data":[
-        [{
+    "data":{
+        "list":[
+        {
             "giftUrl":"https://static-qa.yimutea.com/test/%E6%98%93%E4%BA%A9%E7%94%9F%E7%92%9E%E7%A4%BC%E5%93%81%E5%88%B81%403x.png",
             "giftName":"精品茶饮券",
             "endDateText":"2022-02-20",
@@ -42,11 +43,6 @@
             "giftName":"精品茶饮券",
             "endDateText":"2022-02-20",
             "giftValue":"8"
-        }],[{
-            "giftUrl":"https://static-qa.yimutea.com/test/%E6%98%93%E4%BA%A9%E7%94%9F%E7%92%9E%E7%A4%BC%E5%93%81%E5%88%B81%403x.png",
-            "giftName":"精品茶饮券",
-            "endDateText":"2022-02-20",
-            "giftValue":"8"
         },{
             "giftUrl":"https://static-qa.yimutea.com/test/%E6%98%93%E4%BA%A9%E7%94%9F%E7%92%9E%E7%A4%BC%E5%93%81%E5%88%B81%403x.png",
             "giftName":"精品茶饮券",
@@ -62,6 +58,16 @@
             "giftName":"精品茶饮券",
             "endDateText":"2022-02-20",
             "giftValue":"8"
-        }]
-    ]
+        },{
+            "giftUrl":"https://static-qa.yimutea.com/test/%E6%98%93%E4%BA%A9%E7%94%9F%E7%92%9E%E7%A4%BC%E5%93%81%E5%88%B81%403x.png",
+            "giftName":"精品茶饮券",
+            "endDateText":"2022-02-20",
+            "giftValue":"8"
+        }
+    ],
+    "pageNum":1,
+    "pageSize":10,
+    "pages":1,
+    "total":20
+}
 }

@@ -1,0 +1,27 @@
+<template>
+    <web-view  src="{{url}}"></web-view>
+</template>
+
+<script>
+  import mpx,{ createPage } from '@mpxjs/core'
+  import store from '../store'
+  import DIYPage from './diy.mpx?resolve'
+  createPage({
+    data:{
+        url:""
+    },
+    
+    onShow(){
+        const { options: { url } } = this
+        this.url = url
+        console.log('this.url',this.url)
+    }
+  });
+</script>
+<style lang="stylus">
+</style>
+<script type="application/json">
+  {
+    "usingComponents": {}
+  }
+</script>

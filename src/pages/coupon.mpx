@@ -5,7 +5,7 @@
                 {{item}}
             </view>
         </view>
-        <view wx:for="{{userCoupons}}" wx:key="{{item.title}}" class="coupon-style">
+        <view wx:for="{{userCoupons}}" wx:key="index" class="coupon-style">
             <view class="coupon-content">
                 <view class="coupon-title">{{item.giftName}}</view>
                 <view class="coupon-num">剩余张数 : {{item.giftValue}}</view>
@@ -31,19 +31,24 @@
         ...store.mapActions(['getUserCoupons']),
         changeTab(index){
             this.tabSelect = index
+            this.getUserCoupons({
+                pageNum: 1,
+                pageSize: 20,
+                type: this.tabSelect
+            })
         }   
       },
       onShow(){
           this.getUserCoupons({
             pageNum: 1,
-            pageSize: 2,
+            pageSize: 20,
             type: this.tabSelect
           })
       },
       onReachBottom: function() {
         this.getUserCoupons({
             pageNum: this.couponPagination.pageNum + 1,
-            pageSize: 2,
+            pageSize: 20,
             type: this.tabSelect
         })
     }
