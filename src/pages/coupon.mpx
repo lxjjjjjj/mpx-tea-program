@@ -33,7 +33,7 @@
             this.tabSelect = index
         }   
       },
-      created(){
+      onShow(){
           this.getUserCoupons({
             pageNum: 1,
             pageSize: 2,

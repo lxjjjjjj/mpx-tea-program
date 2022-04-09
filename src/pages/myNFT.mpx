@@ -92,7 +92,8 @@
     onShareAppMessage(){
         return {
             title: this.nftInfo.workName,
-            path: `/pages/myNFT/index?id=${this.collectId}`
+            path: `/pages/myNFT/index?id=${this.collectId}`,
+            imageUrl:this.nftInfo.nftUrl
         }
     },
     onShareTimeline(){
