@@ -1,18 +1,18 @@
 <template>
     <view class="my-wrapper">
         <view class="my-container" srcoll-y="true" show-scrollbar="false" enable-flex="true">
-            <view class="my-top">
-                <view class="my-avatar" bindtap="goToPerson"><image src="{{userInfo.avatar || defaultAvatar}}"/></view>
+            <view class="my-top" wx:if="{{userInfo}}">
+                <view class="my-avatar" bindtap="goToPerson"><image src="{{userInfo.avatar || avatarUrl ||defaultAvatar}}"/></view>
                 <view>
                     <view class="my-class">
                         <view class="my-class-msg">{{userInfo.level}}</view>
                         <image class="my-class-image" src="https://static-qa.yimutea.com/test/%E7%94%BB%E5%AE%B6BG%403x.png"/>
                     </view>
-                    <view class="my-name">{{userInfo.userName}}</view>
+                    <view class="my-name">{{userInfo.userName || nickName}}</view>
                 </view>
                 <view class="my-coupon" bindtap="goToCoupon"/>
             </view>
-            <view class="my-vip">
+            <view class="my-vip" wx:if="{{userInfo}}">
                 <view class="my-vip-content">
                     <view class="my-vip-title"/>
                     <view class="my-vip-level">{{userInfo.level}}</view>
@@ -22,13 +22,13 @@
                 <view class="my-vip-address"/>
                 <view class="my-vip-address-value">{{userInfo.walletAddr}}</view>
             </view>
-            <view class="my-times" bindtap="goToTimes">
+            <view class="my-times" bindtap="goToTimes" wx:if="{{userInfo.creationNftCount}}">
                 <view class="my-times-img"/>
                 <view class="my-times-title">创作次数 </view>
                 <view class="my-times-value">{{userInfo.creationNftCount}}</view>
                 <view class="my-times-go"></view>
             </view>
-            <view class="collect-container">
+            <view class="collect-container" wx:if="{{userNFTAll && userNFTAll.length}}">
                 <view class="collect-top">
                     <view class="collect-title"/>
                     <view class="collect-size">（{{userNFTAll.length}}）</view>
@@ -61,7 +61,7 @@
         defaultAvatar: "https://static-qa.yimutea.com/test/%E5%A4%B4%E5%83%8F%E9%81%AE%E7%BD%A9%403x.png"
       },
       computed:{
-          ...store.mapState(['userInfo','userNFTAll'])
+          ...store.mapState(['userInfo','userNFTAll','avatarUrl','nickName'])
       },
       methods:{   
           ...store.mapActions(['getUserInfo','getUserNFTAll','getNFTById']),

@@ -1,8 +1,8 @@
 <template>
     <view class="show-wrapper">
         <view class="show">
-            <view class="show-item-container" wx:for="{{flexDisPlayData}}" wx:for-item="flexdisplayData" wx:for-index="flexIndex">
-                <view wx:for="{{flexdisplayData}}" wx:key="index" class="show-item" bindtap="goToShowDetail">
+            <view class="show-item-container" wx:if="{{flexDisPlayData && flexDisPlayData.length}}"wx:for="{{flexDisPlayData}}" wx:for-item="flexdisplayData" wx:for-index="flexIndex">
+                <view wx:for="{{flexdisplayData}}"wx:if="{{flexdisplayData && flexdisplayData.length}}" wx:key="index" class="show-item" bindtap="goToShowDetail">
                     <image class="show-item-image" mode="widthFix" src="{{item.nftUrl}}"></image>
                     <view class="show-item-content">
                         <view class="show-item-avatar-wrapper"><image class="show-item-avatar" src="{{item.userAvatar}}"></image></view>

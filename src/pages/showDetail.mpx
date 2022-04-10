@@ -1,7 +1,7 @@
 <template>
     <view class="show-detail-wrapper">
        <view class="show-detail-share-wrapper"><button class="show-detail-share" open-type="share"/></view>
-       <view class="show-detail-item" wx:for="{{displayData}}" wx:key="index">
+       <view class="show-detail-item" wx:if="{{displayData && displayData.length}}"wx:for="{{displayData}}" wx:key="index">
            <image class="show-detail-item-image" mode="widthFix" src="{{item.nftUrl}}"></image>
            <view class="show-detail-item-desc">{{item.nftDescription}}</view>
            <view class="show-detail-item-content">

@@ -16,10 +16,10 @@
     </view>
     <view class="change-container">
       <view class="operation-list">
-        <view bindtap="changeSelect(item)" wx:for="{{NFTTab}}"  wx:key="item" class="change-btn {{typeSelect === item ? 'change-select' : ''}}">{{item}}</view>
+        <view bindtap="changeSelect(item)" wx:if="{{NFTTab && NFTTab.length}}"wx:for="{{NFTTab}}"  wx:key="item" class="change-btn {{typeSelect === item ? 'change-select' : ''}}">{{item}}</view>
       </view>
       <view class="image-container">
-        <view class="image-wrapper" wx:for="{{showList}}" wx:key="item" wx:style="{{iconStyle}}">
+        <view class="image-wrapper" wx:if="{{showList && showList.length}}" wx:for="{{showList}}" wx:key="item" wx:style="{{iconStyle}}">
           <image class="image-style" src="{{item.url}}" bindtap="changeImage(item)"/>
           <view class="lock-one" wx:if="{{item.level !== vip}}"/>
           <view class="lock-two" wx:if="{{item.level !== vip}}"/>

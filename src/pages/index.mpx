@@ -20,6 +20,7 @@
                     >
                     <block>
                         <swiper-item class="home-container-swiper-item" 
+                            wx:if="{{item.swiperList && item.swiperList.length}}"
                             wx:for="{{item.swiperList}}" 
                             wx:for-index="idx" 
                             wx:for-item="swiperItem"

@@ -1,9 +1,9 @@
 <template>
     <view class="person-wrapper">
-        <view class="person-top">
+        <view class="person-top" wx:if="{{userInfo}}">
             <view class="person-image"/>
-            <view class="person-avatar"><image src="{{userInfo.avatar || defaultAvatar}}"/></view>
-            <view class="person-name">{{userInfo.name}}</view>
+            <view class="person-avatar"><image src="{{userInfo.avatar || avatarUrl || defaultAvatar}}"/></view>
+            <view class="person-name">{{userInfo.name || nickName}}</view>
         </view>
         <view class="person-list" wx:for="{{list}}" wx:key="index" bindtap="goToPage(item)">
             <image class="person-list-image" wx:style="height:{{item.height}};width:{{item.width}}"src="{{item.image}}"/>
@@ -55,7 +55,7 @@
         ]
     },
     computed:{
-        ...store.mapState(['userInfo'])
+        ...store.mapState(['userInfo','avatarUrl','nickName'])
     }, 
     methods:{
         goToPage(item){
@@ -103,6 +103,8 @@
         position absolute
         left 50%
         top 133px
+        color #FFFFFF
+        font-size 18px
         text-align center
         transform translateX(-50%)
         background-image url('https://static-qa.yimutea.com/test/namebg%403x.png')

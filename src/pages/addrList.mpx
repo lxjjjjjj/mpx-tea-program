@@ -1,7 +1,7 @@
 <template>
     <view class="addrList-wrapper">
         <view class="addrList-title"></view>
-        <view class="addrList-item" wx:for="{{addrList}}" wx:key="index">
+        <view class="addrList-item" wx:if="{{addrList && addrList.length}}" wx:for="{{addrList}}" wx:key="index">
             <view class="addrList-piece-one">
                 <view class="addrList-item-type" wx:if="{{item.type}}"/>
                 <view class="addrList-item-address" style="{{item.type ? 'width:200px;margin-left: 7px;' : 'width:238px'}}">{{item.address}}</view>

@@ -1,6 +1,6 @@
 <template>
     <view class="times-wrapper">
-        <view wx:for="{{userCreateTimes}}" wx:key="item" class="times-style">
+        <view wx:if="{{userCreateTimes && userCreateTimes.length}}"wx:for="{{userCreateTimes}}" wx:key="item" class="times-style">
             <view class="times-image-wrapper">
             <image src="{{imageMap[item.level]}}" class="times-image"/>
             </view>

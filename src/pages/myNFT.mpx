@@ -1,5 +1,5 @@
 <template>
-    <view class="nft-wrapper">
+    <view class="nft-wrapper" wx:if="{{nftInfo}}">
         <view class="nft-top-wrapper">
             <view class="nft-top">
                 <view class="nft-title"/>
@@ -57,7 +57,7 @@
             </view>
             <view class="nft-record-line"></view>
             <view class="nft-record-content-wrapper">
-                <view class="nft-record-content" wx:for="{{nftInfo.recordList}}" wx:key="index">
+                <view class="nft-record-content" wx:if="{{nftInfo.recordList && nftInfo.recordList.length}}" wx:for="{{nftInfo.recordList}}" wx:key="index">
                     <view class="nft-record-content-item">{{item.from}}</view>
                     <view class="nft-record-content-item">{{item.to}}</view>
                     <view class="nft-record-content-item">{{item.hash}}</view>
