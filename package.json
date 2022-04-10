@@ -6,6 +6,7 @@
   "scripts": {
     "watch": "node ./build/build.js -w",
     "watch:prod": "node ./build/build.js -w -p",
+    "prod": "node ./build/build.js -p",
     "build": "node ./build/build.js -p",
     "build:dev": "node ./build/build.js",
     "watch:cross": "npm run watch --modes=wx,ali,web",
