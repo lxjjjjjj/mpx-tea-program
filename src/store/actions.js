@@ -475,8 +475,7 @@ export function updateUserAddrById(context, params){
  
 export function getMyNftTradeList(context, params){
     request({
-        url:`https://wx.yimutea.com/api/v1/nft/${params.id}/trade/list`,
-        params:params
+        url:`https://wx.yimutea.com/api/v1/nft/${params.id}/trade/list`
     }).then(res => {
         if(Number(res.code)){
             console.log('获取用户nft交易记录失败',JSON.stringify(res.msg))
