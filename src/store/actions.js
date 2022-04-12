@@ -7,7 +7,7 @@ export function getHomeList(context, params){
         url:apis.getHomeListAPI,
         params
     }).then(res=>{
-        if(res.code){
+        if(Number(res.code)){
             console.log('获取首页数据失败',JSON.stringify(res.msg))
             mpx.showToast({
                 title: res.msg,
@@ -15,7 +15,9 @@ export function getHomeList(context, params){
                 duration: 2000
             })
         }else{
-            res?.data?.frontPageList && context.commit('setHomeList',res.data.frontPageList)
+            let frontPageList
+            res?.data?.frontPageList && (frontPageList = [res.data.frontPageList.splice(0,3),res.data.frontPageList.splice(0,3),res.data.frontPageList.splice(0,3)])
+            res?.data?.frontPageList && context.commit('setHomeList',frontPageList)
             res?.data?.frontVersion && context.commit('setFrontVersion',res.data.frontVersion)
         }
     }).catch(err=>{
@@ -27,13 +29,15 @@ export function Login(context, params){
         url:apis.loginAPI,
         params
     }).then(res=>{
-        if(res.code){
+        if(Number(res.code)){
             console.log('登陆失败',JSON.stringify(res.msg))
             mpx.showToast({
                 title: '登陆失败',
                 icon: 'error',
                 duration: 2000
             })
+        }else{
+            setToken(res.data)
         }
     }).catch(err=>{
         console.log('登陆失败',err)
@@ -47,9 +51,10 @@ export function Login(context, params){
 export function fillUserPhone(context, params){
     request({
         url: apis.fillUserPhoneAPI,
-        params
+        params,
+        method:"POST"
     }).then(res=>{
-        if(res.code){
+        if(Number(res.code)){
             console.log('获取手机号失败',JSON.stringify(res.msg))
             mpx.showToast({
                 title: res.msg,
@@ -66,7 +71,7 @@ export function getUserInfo(context, params){
         url: apis.userInfoAPI,
         params
     }).then(res=>{
-        if(res.code){
+        if(Number(res.code)){
             console.log('获取用户信息失败',JSON.stringify(res.msg))
             mpx.showToast({
                 title: res.msg,
@@ -86,7 +91,7 @@ export function getUserNFTAll(context, params){
         url: apis.userNFTAllAPI,
         params
     }).then(res => {
-        if(res.code){
+        if(Number(res.code)){
             console.log('获取用户所有NFT失败',JSON.stringify(res.msg))
             mpx.showToast({
                 title: res.msg,
@@ -106,7 +111,7 @@ export function getUserCreationAll(context,params){
         url: apis.userCreationAPI,
         params
     }).then(res => {
-        if(res.code){
+        if(Number(res.code)){
             console.log('获取用户创作次数失败',JSON.stringify(res.msg))
             mpx.showToast({
                 title: res.msg,
@@ -125,7 +130,7 @@ export function getNFTById(context,params){
     request({
         url: apis.getNftByIdAPI + `/${params.id}`,
     }).then(res => {
-        if(res.code){
+        if(Number(res.code)){
             console.log('通过id获取用户NFT失败',JSON.stringify(res.msg))
             mpx.showToast({
                 title: res.msg,
@@ -146,7 +151,7 @@ export function getUserCoupons(context,params){
         params,
         method:'POST'
     }).then(res => {
-        if(res.code){
+        if(Number(res.code)){
             console.log('获取用户优惠券失败',JSON.stringify(res.msg))
             mpx.showToast({
                 title: res.msg,
@@ -175,7 +180,7 @@ export function addUserAddress(context,params){
         params,
         method:"POST"
     }).then(res => {
-        if(res.code){
+        if(Number(res.code)){
             console.log('新增地址失败',JSON.stringify(res.msg))
             mpx.showToast({
                 title: res.msg,
@@ -199,7 +204,7 @@ export function getNFTMaterial(context,params){
         url: apis.getNFTMaterialAPI,
         params
     }).then(res => {
-        if(res.code){
+        if(Number(res.code)){
             console.log('获取NFT素材失败',JSON.stringify(res.msg))
             mpx.showToast({
                 title: res.msg,
@@ -225,7 +230,7 @@ export function NFTGenerate(context, params){
         params:params,
         method:"POST"
     }).then(res => {
-        if(res.code){
+        if(Number(res.code)){
             console.log('铸造NFT失败',JSON.stringify(res.msg))
             mpx.showToast({
                 title: res.msg,
@@ -249,7 +254,7 @@ export function getDisplayData(context, params){
         url:apis.getDisplayAPI,
         params:params
     }).then(res => {
-        if(res.code){
+        if(Number(res.code)){
             console.log('获取展览馆数据失败',JSON.stringify(res.msg))
             mpx.showToast({
                 title: res.msg,
@@ -273,7 +278,7 @@ export function userAuth(context, params){
         params:params,
         method:"POST"
     }).then(res => {
-        if(res.code){
+        if(Number(res.code)){
             console.log('实名认证失败',JSON.stringify(res.msg))
             mpx.showToast({
                 title: '实名认证失败',
@@ -300,7 +305,7 @@ export function phoneValidate(context, params){
         url:apis.phoneValidateAPI,
         params:params,
     }).then(res => {
-        if(res.code){
+        if(Number(res.code)){
             console.log('手机号已经注册过了',JSON.stringify(res.msg))
             mpx.showToast({
                 title: JSON.stringify(res.msg),
@@ -326,7 +331,7 @@ export function sendAuthSms(context, params){
         params:params,
         method:"POST"
     }).then(res => {
-        if(res.code){
+        if(Number(res.code)){
             console.log('发送验证码失败',JSON.stringify(res.msg))
             mpx.showToast({
                 title: '发送验证码失败，请重新发送',
@@ -350,7 +355,7 @@ export function getAddresssList(context, params){
         params:params,
         method:"POST"
     }).then(res => {
-        if(res.code){
+        if(Number(res.code)){
             console.log('获取用户地址列表失败',JSON.stringify(res.msg))
             mpx.showToast({
                 title: '获取地址列表失败',
@@ -376,7 +381,7 @@ export function getAllArea(context, params){
         params:params,
         method:"POST"
     }).then(res => {
-        if(res.code){
+        if(Number(res.code)){
             console.log('获取城市字典失败',JSON.stringify(res.msg))
             mpx.showToast({
                 title: res.msg,
@@ -397,7 +402,7 @@ export function getUserAddrList(context, params){
         params:params,
         method:"POST"
     }).then(res => {
-        if(res.code){
+        if(Number(res.code)){
             console.log('获取用户收件地址失败',JSON.stringify(res.msg))
             mpx.showToast({
                 title: res.msg,
@@ -426,7 +431,7 @@ export function getUserAddrById(context, params){
         params:params,
         method:"POST"
     }).then(res => {
-        if(res.code){
+        if(Number(res.code)){
             console.log('获取用户详细收件地址失败',JSON.stringify(res.msg))
             mpx.showToast({
                 title: res.msg,
@@ -447,7 +452,7 @@ export function updateUserAddrById(context, params){
         params:params,
         method:"POST"
     }).then(res => {
-        if(res.code){
+        if(Number(res.code)){
             console.log('更新用户详细收件地址失败',JSON.stringify(res.msg))
             mpx.showToast({
                 title: res.msg,

@@ -22,7 +22,8 @@ const state = {
     allArea:{},
     addrList:[],
     addrPagination:{},
-    userIdAddress:{}
+    userIdAddress:{},
+    token:''
 }
   
 export default state

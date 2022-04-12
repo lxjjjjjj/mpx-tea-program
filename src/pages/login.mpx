@@ -69,11 +69,11 @@
                                         var userInfo = res.userInfo
                                         store.commit('setAvatarUrl', userInfo.avatarUrl)
                                         store.commit('setNickName', userInfo.nickName)
-                                        store.commit('setPhoneNumberShow',true)
                                         mpx.login({
                                             success (res) {
                                                 if (res.code) {
                                                     store.dispatch('Login',{ code: res.code })
+                                                    store.commit('setPhoneNumberShow',true)
                                                 } else {
                                                     wx.showToast({
                                                         title: '登陆失败',
@@ -103,7 +103,29 @@
                             }
                         },
                         fail(err){
-                            console.log('fail',err)
+                            console.log('login fail',err)
+                            wx.login({
+                                success (res) {
+                                    if (res.code) {
+                                        store.dispatch('Login',{ code: res.code })
+                                        store.commit('setPhoneNumberShow',true)
+                                    } else {
+                                        wx.showToast({
+                                            title: '登陆失败',
+                                            icon: 'error',
+                                            duration: 2000
+                                        })
+                                        console.log('登录失败！' + res.errMsg)
+                                    }
+                                },
+                                fail(){
+                                    wx.showToast({
+                                        title: '登陆失败',
+                                        icon: 'error',
+                                        duration: 2000
+                                    })
+                                }
+                            })
                         }
                     })
                 }else{
