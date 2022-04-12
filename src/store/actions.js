@@ -475,7 +475,7 @@ export function updateUserAddrById(context, params){
  
 export function getMyNftTradeList(context, params){
     request({
-        url:`/api/v1/nft/${params.id}/trade/list`,
+        url:`https://wx.yimutea.com/api/v1/nft/${params.id}/trade/list`,
         params:params
     }).then(res => {
         if(Number(res.code)){
