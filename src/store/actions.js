@@ -37,7 +37,7 @@ export function Login(context, params){
                 duration: 2000
             })
         }else{
-            setToken(res.data)
+            context.commit('setToken',res.data.token)
         }
     }).catch(err=>{
         console.log('登陆失败',err)
@@ -51,8 +51,7 @@ export function Login(context, params){
 export function fillUserPhone(context, params){
     request({
         url: apis.fillUserPhoneAPI,
-        params,
-        method:"POST"
+        params
     }).then(res=>{
         if(Number(res.code)){
             console.log('获取手机号失败',JSON.stringify(res.msg))
@@ -471,5 +470,30 @@ export function updateUserAddrById(context, params){
         }
     }).catch(err => {
         console.log('更新用户详细收件地址失败',JSON.stringify(err))
+    })
+}
+ 
+export function getMyNftTradeList(context, params){
+    request({
+        url:`/api/v1/nft/${params.id}/trade/list`,
+        params:params
+    }).then(res => {
+        if(Number(res.code)){
+            console.log('获取用户nft交易记录失败',JSON.stringify(res.msg))
+            mpx.showToast({
+                title: res.msg,
+                icon: 'error',
+                duration: 2000
+            })
+        }else{
+            mpx.showToast({
+                title: '获取成功',
+                icon: 'success',
+                duration: 1000
+            })
+            context.commit('setMyNftTradeList',res.data)
+        }
+    }).catch(err => {
+        console.log('获取用户nft交易记录失败',JSON.stringify(err))
     })
 }

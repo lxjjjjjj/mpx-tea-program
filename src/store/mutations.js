@@ -82,3 +82,6 @@ export function setUserAddrById(state, data){
 export function setToken(state, data){
   state.token = data
 }
+export function setMyNftTradeList(state, data){
+  state.myNftTradeList = data
+}

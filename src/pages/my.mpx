@@ -64,7 +64,7 @@
           ...store.mapState(['userInfo','userNFTAll','avatarUrl','nickName'])
       },
       methods:{   
-          ...store.mapActions(['getUserInfo','getUserNFTAll','getNFTById']),
+          ...store.mapActions(['getUserInfo','getUserNFTAll']),
           goToCoupon(){
               mpx.navigateTo({
                   url:couponPage
@@ -77,9 +77,8 @@
           },
           getUserNFTById(id){
               if(id){
-                this.getNFTById({ id })
                 mpx.navigateTo({
-                    url:myNFT
+                    url:`${myNFT}?id=${id}`
                 })
               }
           },

@@ -16,6 +16,7 @@
                     autoplay="{{true}}" 
                     interval="{{5000}}" 
                     duration="{{1000}}"
+                    circular="{{true}}"
                     bindchange="swiperChange($event,index)"
                     >
                     <block>
