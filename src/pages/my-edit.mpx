@@ -1,0 +1,257 @@
+<template>
+    <view class="my-edit-wrapper">
+        <view class="my-edit">
+            <view class="my-edit-avatar">
+                <view class="my-edit-avatar-text">头像</view>
+                <image class="my-edit-avatar-value" src="{{avatar}}"></image>
+            </view>
+            <view class="my-edit-name">
+                <view class="my-edit-name-text">昵称</view>
+                <input class="my-edit-name-value" wx:model="{{name}}"></input>
+                <view class="my-edit-name-edit"></view>
+            </view>
+            <view class="my-edit-birthday">
+                <view class="my-edit-birthday-text">生日</view>
+                <picker class="my-edit-birthday-value" mode="date" value="{{birthday}}" bindchange="bindDateChange">
+                    <view class="birthday">{{birthday}}</view>
+                </picker>
+                <view class="my-edit-icon-wrapper"><view class="my-edit-icon"></view></view>
+            </view>
+            <view class="my-edit-sex">
+                <view class="my-edit-sex-text">性别</view>
+                <view class="my-edit-sex-value">
+                    <view wx:class="{{ { 'my-edit-sex-btnTwo' : yes } }}" class="my-edit-sex-btnOne" bindtap="chooseSex(0)"></view>
+                    <view class="my-edit-sex-btnText"> 男 </view>
+                    <view wx:class="{{ { 'my-edit-sex-btnTwo' : no } }}" class="my-edit-sex-btnOne" bindtap="chooseSex(1)"></view>
+                    <view class="my-edit-sex-btnText"> 女 </view>
+                </view>
+            </view>
+            <view class="my-edit-phone">
+                <view class="my-edit-phone-text">电话</view>
+                <view class="my-edit-phone-value">{{telephone}}</view>
+            </view>
+            <view class="my-edit-email">
+                <view class="my-edit-email-text">邮箱</view>
+                <input class="my-edit-email-value" wx:model="{{email}}"></input>
+                <view class="my-edit-name-edit"></view>
+            </view>
+            <view class="my-edit-btn">
+                <view class="my-edit-btn-return" bindtap="back"/>
+                <view class="my-edit-btn-new" bindtap="editPerson"/>
+            </view>
+        </view>
+    </view>
+</template>
+
+<script>
+  import mpx,{ createPage } from '@mpxjs/core'
+  import store from '../store'
+  import addrListPage from './addrList?resolve'
+  import servicePage from './service?resolve'
+  import questionPage from './question?resolve'
+  import realPage from './real?resolve'
+  createPage({
+    data:{
+        defaultAvatar: "https://static-qa.yimutea.com/test/%E5%A4%B4%E5%83%8F%E9%81%AE%E7%BD%A9%403x.png",
+        sex:0,
+        avatar:"",
+        name:'',
+        email:'1732749825@qq.com',
+        birthday:'2021-01-26',
+        telephone:'18846087938',
+        rulesMap: {
+            name: false,
+            email: false,
+            birthday: false,
+            telephone: false
+        }
+    },
+    computed:{
+        ...store.mapState(['userInfo']),
+        yes(){
+            return this.sex === 0
+        },
+        no(){
+            return this.sex === 1
+        },
+    }, 
+    methods:{
+        chooseSex(type){
+            this.sex = type
+        },
+        bindDateChange: function(e) {
+            this.birthday = e.detail.value
+        },
+        back(){
+            wx.navigateBack({
+                delta: 1
+            })
+        },
+        editPerson(){
+            if (!this.name) {
+                this.rulesMap.name = true
+            } 
+            if (!this.email) {
+                this.rulesMap.email = true
+            } 
+            if (!this.telephone) {
+                this.rulesMap.telephone = true
+            } 
+            if (!this.birthday){
+                this.rulesMap.birthday = true
+            } 
+            if(this.name && this.email && this.telephone && this.birthday) {
+                this.editPersonInfo({
+                    birthDate:this.birthday,
+                    email:this.email,
+                    sex:this.sex,
+                    userId:this.userInfo.userId,
+                    nickName:this.name
+                })
+            }
+        },
+    },
+    onShow(){
+        this.avatar = this.userInfo.avatar
+        this.name = this.userInfo.name
+    }
+  });
+</script>
+<style lang="stylus">
+    .my-edit
+        display flex 
+        flex-direction column
+        align-items center
+        &-wrapper
+            height 100%
+            min-height 100vh
+            width 100vw
+            background-image url('https://static-qa.yimutea.com/test/home_bg.png')
+            background-size 100% 100%
+        &-avatar,
+        &-name,
+        &-birthday,
+        &-sex,
+        &-phone,
+        &-email
+            width 290px
+            height 40px
+            margin-top 30px
+            border-bottom 1px solid rgba(107,113,136,0.1)
+            display flex
+            align-items center
+            position relative
+            &-text
+                color #6B7188
+                font-size 15px
+                padding 8px 15px 
+            &-value
+                width 200px
+                height 30px
+                font-size 16px
+                color #ffffff
+                text-align center
+        &-avatar
+            height 70px
+            margin-top 54px
+            border-bottom none 
+        &-avatar-value
+            width 60px
+            height 60px
+            border-radius 50%
+            margin-left 25px
+        &-sex-value
+            display flex
+            align-items center
+        &-sex-btnOne
+            background-image url('https://static-qa.yimutea.com/test/%E9%80%89%E6%8B%A91%403x.png')
+            background-size 100% 100%
+            height 28px
+            width 28px
+            margin-left 30px
+        &-sex-btnTwo
+            background-image url('https://static-qa.yimutea.com/test/%E9%80%89%E6%8B%A92%403x.png')
+            background-size 100% 100%
+            height 28px
+            width 28px
+        &-sex-btnText
+            margin-left 20px
+            color #FFFFFF
+            font-size 15px
+        &-birthday-value
+            .birthday
+                color #ffffff
+                font-size 16px
+        &-name-edit
+            background-image url('https://static-qa.yimutea.com/test/%E6%8C%89%E9%92%AE_%E7%BC%96%E8%BE%91%403x.png')
+            background-size 100% 100%
+            height 16px
+            width 16px
+            position absolute
+            top 10px
+            right 10px
+        &-icon
+            width: 0
+            height: 0
+            border-color: #888 transparent transparent transparent;
+            border-style: solid
+            border-width: 10px
+            transform-origin:center center;
+            transform: rotate(0deg);
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(deg);
+            -ms-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transition: transform 0.5s; 
+            -moz-transition: -moz-transform 0.5s; 
+            -moz-transition: -moz-transform 0.5s; 
+            -o-transition: -o-transform 0.5s; 
+            -ms-transition: -ms-transform 0.5s; 
+        &-icon-active-wrapper
+            margin-top -25px
+        &-icon-wrapper
+            width 25px
+            height 25px
+            display flex
+            align-items center
+            justify-content center
+            position absolute 
+            right 14px
+        &-icon-active
+            border-color: transparent transparent #888 transparent;
+            transform-origin:center center;
+            transform: rotate(360deg);
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            transition: transform 1s;
+            -moz-transition: -moz-transform 1s; 
+            -moz-transition: -moz-transform 1s; 
+            -o-transition: -o-transform 1s; 
+            -ms-transition: -ms-transform 1s; 
+        &-btn
+            display flex
+            align-items center
+            margin-top 100px
+            width 276px
+            justify-content space-between
+            &-return
+                background-image url('https://static-qa.yimutea.com/test/%E8%BF%94%E5%9B%9E%403x%20(1).png')
+                background-size 100% 100%
+                height 43px
+                width 127px
+            &-new
+                background-image url('https://static-qa.yimutea.com/test/%E6%96%B0%E5%A2%9E%403x.png')
+                background-size 100% 100%
+                height 43px
+                width 127px
+
+</style>
+<script type="application/json">
+  {
+    "usingComponents": {},
+    "navigationBarTitleText":"个人中心",
+    "navigationBarTextStyle":"white"
+  }
+</script>

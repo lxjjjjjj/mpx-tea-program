@@ -49,7 +49,8 @@
       "./pages/oops.mpx",
       "./pages/addrList.mpx",
       "./pages/question.mpx",
-      "./pages/webView.mpx"
+      "./pages/webView.mpx",
+      "./pages/my-edit.mpx"
     ],
     "tabBar": {
       "custom": true,

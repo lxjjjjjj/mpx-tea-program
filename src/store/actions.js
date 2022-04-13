@@ -496,3 +496,28 @@ export function getMyNftTradeList(context, params){
         console.log('获取用户nft交易记录失败',JSON.stringify(err))
     })
 }
+
+export function editPersonInfo(context, params){
+    request({
+        url:apis.editPersonInfoAPI,
+        params:params,
+        method:'POST'
+    }).then(res => {
+        if(Number(res.code)){
+            console.log('更新用户信息失败',JSON.stringify(res.msg))
+            mpx.showToast({
+                title: res.msg,
+                icon: 'error',
+                duration: 2000
+            })
+        }else{
+            mpx.showToast({
+                title: '更新成功',
+                icon: 'success',
+                duration: 1000
+            })
+        }
+    }).catch(err => {
+        console.log('更新用户信息失败',JSON.stringify(err))
+    })
+}

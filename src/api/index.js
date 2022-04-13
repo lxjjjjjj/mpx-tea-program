@@ -41,3 +41,5 @@ export const getUserAddrListAPI = host + '/api/v1/userAddress/list'
 export const getUserAddrByIdAPI = host + '/api/v1/userAddress/getById'
 // 修改已有地址
 export const updateUserAddrAPI = host + '/api/v1/userAddress/update'
+// 修改个人信息
+export const editPersonInfoAPI = host + '/api/v1/user/updateUserInfo'
