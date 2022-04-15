@@ -28,16 +28,18 @@
     methods:{
         ...store.mapActions(['getDisplayData'])
     },
-    created(){
+    onShow(){
         this.getDisplayData({
             page: 1,
-            pageSize: 20
+            pageSize: 20,
+            isNew:true
         })
     },
     onReachBottom: function() {
         this.getDisplayData({
             page: this.displayPagination.page + 1,
-            pageSize: 20
+            pageSize: 20,
+            isNew:false
         })
     },
     onShareAppMessage(){

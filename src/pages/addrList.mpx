@@ -43,13 +43,15 @@
     onShow(){
         this.getUserAddrList({
             pageNum:1,
-            pageSize:10
+            pageSize:10,
+            isNew:true
         })
     },
     onReachBottom: function() {
         this.getUserAddrList({
-            page: this.addrPagination.pageNum + 1,
-            pageSize: 20
+            pageNum: this.addrPagination.pageNum + 1,
+            pageSize: 10,
+            isNew:false
         })
     }
   });

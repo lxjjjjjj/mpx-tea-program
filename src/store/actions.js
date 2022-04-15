@@ -145,6 +145,8 @@ export function getNFTById(context,params){
 }
 
 export function getUserCoupons(context,params){
+    const isNew = parmas.isNew
+    delete params.isNew
     request({
         url: apis.getUserCouponsAPI,
         params,
@@ -159,7 +161,11 @@ export function getUserCoupons(context,params){
             })
         }else{
             if(res?.data?.list?.length){
-                context.commit('setUserCoupons', context.state.userCoupons.concat(res.data.list))
+                if(isNew){
+                    context.commit('setUserCoupons', res.data.list)
+                }else{
+                    context.commit('setUserCoupons', context.state.userCoupons.concat(res.data.list))
+                }
                 context.commit('setCouponPagination', {
                     pageNum: res?.data?.pageNum,
                     pageSize: res?.data?.pageSize,
@@ -249,6 +255,8 @@ export function NFTGenerate(context, params){
 }
 
 export function getDisplayData(context, params){
+    const isNew = params.isNew
+    delete params.isNew
     request({
         url:apis.getDisplayAPI,
         params:params
@@ -262,7 +270,11 @@ export function getDisplayData(context, params){
             })
         }else{
             if(res?.data?.items?.length){
-                context.commit('setDisplayData', context.state.displayData.concat(res.data.items))
+                if(isNew){
+                    context.commit('setDisplayData', res.data.items)
+                }else{
+                    context.commit('setDisplayData', context.state.displayData.concat(res.data.items))
+                }
                 context.commit('setDisplayPagination', res.data.pagination)
             }
         }
@@ -286,6 +298,9 @@ export function userAuth(context, params){
             })
         }else{
             context.commit('setAuth', true)
+            mpx.navigateBack({
+                delta:1
+            })
         }
     }).catch(err => {
         console.log('实名认证失败',JSON.stringify(err))
@@ -396,9 +411,13 @@ export function getAllArea(context, params){
 }
 
 export function getUserAddrList(context, params){
+    const isNew = params.isNew
+    console.log('isNew',isNew)
+    delete params.isNew
+    const realParams = params
     request({
         url:apis.getUserAddrListAPI,
-        params:params,
+        params:realParams,
         method:"POST"
     }).then(res => {
         if(Number(res.code)){
@@ -410,7 +429,11 @@ export function getUserAddrList(context, params){
             })
         }else{
             if(res?.data?.list?.length){
-                context.commit('setAddrList',context.state.addrList.concat(res.data.list))
+                if(isNew){
+                    context.commit('setAddrList',res.data.list)
+                }else{
+                    context.commit('setAddrList',context.state.addrList.concat(res.data.list))
+                }
                 context.commit('setAddrPagination',{
                     pageNum:res.data.pageNum,
                     pageSize:res.data.pageSize,

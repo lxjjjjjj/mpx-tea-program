@@ -34,7 +34,8 @@
             this.getUserCoupons({
                 pageNum: 1,
                 pageSize: 20,
-                type: this.tabSelect
+                type: this.tabSelect,
+                isNew:true
             })
         }   
       },
@@ -42,14 +43,16 @@
           this.getUserCoupons({
             pageNum: 1,
             pageSize: 20,
-            type: this.tabSelect
+            type: this.tabSelect,
+            isNew:true
           })
       },
       onReachBottom: function() {
         this.getUserCoupons({
             pageNum: this.couponPagination.pageNum + 1,
             pageSize: 20,
-            type: this.tabSelect
+            type: this.tabSelect,
+            isNew: false
         })
     }
   });

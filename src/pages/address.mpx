@@ -34,8 +34,8 @@
             </view>
         </view>
         <view class="address-btn">
-            <view class="address-btn-return" bindtap="back"/>
-            <view class="address-btn-new" bindtap="newAddress"/>
+            <view class="address-btn-return" catchtap="back"/>
+            <view class="address-btn-new" catchtap="newAddress"/>
         </view>
     </view>
 </template>
