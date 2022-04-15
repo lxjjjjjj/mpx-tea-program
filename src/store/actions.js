@@ -145,7 +145,7 @@ export function getNFTById(context,params){
 }
 
 export function getUserCoupons(context,params){
-    const isNew = parmas.isNew
+    const isNew = params.isNew
     delete params.isNew
     request({
         url: apis.getUserCouponsAPI,
@@ -412,12 +412,10 @@ export function getAllArea(context, params){
 
 export function getUserAddrList(context, params){
     const isNew = params.isNew
-    console.log('isNew',isNew)
     delete params.isNew
-    const realParams = params
     request({
         url:apis.getUserAddrListAPI,
-        params:realParams,
+        params:params,
         method:"POST"
     }).then(res => {
         if(Number(res.code)){
