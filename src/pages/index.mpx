@@ -75,7 +75,7 @@
             this.homeList[index].swiperCurrent = e.detail.current
         }  
     },
-    created(){
+    onShow(){
         this.getHomeList()
     }
   })

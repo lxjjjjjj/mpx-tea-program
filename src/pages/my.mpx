@@ -89,9 +89,6 @@
           }
       },
       onShow(){
-        // TODO 是否登陆的校验
-      },
-      created(){
         this.getUserInfo()
         this.getUserNFTAll()
       }
