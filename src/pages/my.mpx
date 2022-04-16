@@ -22,7 +22,7 @@
                 <view class="my-vip-address"/>
                 <view class="my-vip-address-value">{{userInfo.walletAddr}}</view>
             </view>
-            <view class="my-times" bindtap="goToTimes" wx:if="{{userInfo.creationNftCount}}">
+            <view class="my-times" bindtap="goToTimes">
                 <view class="my-times-img"/>
                 <view class="my-times-title">创作次数 </view>
                 <view class="my-times-value">{{userInfo.creationNftCount}}</view>

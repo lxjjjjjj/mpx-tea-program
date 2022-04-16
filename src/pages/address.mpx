@@ -27,15 +27,16 @@
         <view class="address-default-wrapper">
             <view class="address-default">设为默认</view>
             <view class="address-default-input">
-                <view wx:class="{{ { 'address-default-btnTwo' : yes } }}" class="address-default-btnOne" bindtap="chooseDefault(0)"></view>
+                <view wx:class="{{ { 'address-default-btnTwo' : yes } }}" class="address-default-btnOne" bindtap="chooseDefault(1)"></view>
                 <view class="addresss-default-btnText"> 是 </view>
-                <view wx:class="{{ { 'address-default-btnTwo' : no } }}" class="address-default-btnOne" bindtap="chooseDefault(1)"></view>
+                <view wx:class="{{ { 'address-default-btnTwo' : no } }}" class="address-default-btnOne" bindtap="chooseDefault(0)"></view>
                 <view class="addresss-default-btnText"> 否</view>
             </view>
         </view>
         <view class="address-btn">
             <view class="address-btn-return" catchtap="back"/>
-            <view class="address-btn-new" catchtap="newAddress"/>
+            <view class="address-btn-edit" catchtap="newAddress" wx:if="{{addrId}}"/>
+            <view class="address-btn-new" catchtap="newAddress" wx:else/>
         </view>
     </view>
 </template>
@@ -57,7 +58,7 @@
             consignee: false,
             region: false
         },
-        defaultAddress:0,
+        defaultAddress:1,
         showArray:[],
         regionId: [0,0,0],
         addrId:0
@@ -65,10 +66,10 @@
     computed:{
         ...store.mapState(['userIdAddress']),
         yes(){
-            return this.defaultAddress === 0
+            return this.defaultAddress === 1
         },
         no(){
-            return this.defaultAddress === 1
+            return this.defaultAddress === 0
         },
         regionArray(){
             return formatArea(wx.getStorageSync('area'))
@@ -287,6 +288,11 @@
                 width 127px
             &-new
                 background-image url('https://static-qa.yimutea.com/test/%E6%96%B0%E5%A2%9E%403x.png')
+                background-size 100% 100%
+                height 43px
+                width 127px
+            &-edit
+                background-image url('https://static-qa.yimutea.com/test/%E4%BF%9D%E5%AD%98%403x.png')
                 background-size 100% 100%
                 height 43px
                 width 127px
