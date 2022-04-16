@@ -42,10 +42,10 @@
 </template>
 
 <script>
-  import mpx,{ createPage } from '@mpxjs/core'
-  import store from '../store'
-  import { formatArea } from '../utils'
-  createPage({
+import mpx,{ createPage } from '@mpxjs/core'
+import store from '../store'
+import { formatArea } from '../utils'
+createPage({
     data:{
         region: ['北京','北京','东城区'],
         address: '',
@@ -64,7 +64,7 @@
         addrId:0
     },
     computed:{
-        ...store.mapState(['userIdAddress']),
+        ...store.mapState(['userIdAddress', 'allArea']),
         yes(){
             return this.defaultAddress === 1
         },
@@ -72,32 +72,34 @@
             return this.defaultAddress === 0
         },
         regionArray(){
-            return formatArea(wx.getStorageSync('area'))
+            const allArea = this.allArea.length ? this.allArea : wx.getStorageSync('area') || []
+            return formatArea(allArea)
         }
     },
     watch:{
         regionArray:{
-            handler(){
-                this.showArray[0] = this.regionArray[0]
-                const provinceId = this.regionArray[0].filter(item=>item.areaName === this.region[0])[0].id
-                this.showArray[1] = this.regionArray[1].filter(item=>item.parentId === provinceId)
-                const cityId = this.regionArray[1].filter(item=>item.areaName === this.region[1])[0].id
-                this.showArray[2] = this.regionArray[2].filter(item=>item.parentId === cityId)
+            handler(allArea){
+                if (!allArea.length) return;
+                this.showArray[0] = allArea[0]
+                const provinceId = allArea[0].filter(item=>item.areaName === this.region[0])[0].id
+                this.showArray[1] = allArea[1].filter(item=>item.parentId === provinceId)
+                const cityId = allArea[1].filter(item=>item.areaName === this.region[1])[0].id
+                this.showArray[2] = allArea[2].filter(item=>item.parentId === cityId)
             },
             immediate:true
         },
         userIdAddress:{
-           handler(val){
-               if(this.addrId){
+            handler(val){
+                if(this.addrId){
                     this.address = val.address
                     this.mobile = val.mobile
                     this.consignee = val.consignee
                     this.region = [val.provinceName,val.cityName,val.areaName]
                     this.regionId = [val.provinceId,val.cityId,val.areaId]
                     this.defaultAddress = val.type
-               }
-           },
-           immediate:true
+                }
+            },
+            immediate:true
         }
     },
     methods:{
@@ -120,15 +122,15 @@
         newAddress(){
             if (!this.consignee) {
                 this.rulesMap.consignee = true
-            } 
+            }
             if (!this.mobile) {
                 this.rulesMap.mobile = true
-            } 
+            }
             if (!this.address) {
                 this.rulesMap.address = true
             } else if (!/^1(3[0-9]|5[012356789]|7[678]|8[0-9])(?=\d{8}$)/g.test(this.mobile)){
                 this.isRightNumber = true
-            } 
+            }
             if(this.consignee && this.mobile && this.address && !this.isRightNumber) {
                 this.addrId ? this.updateUserAddrById({
                     areaName: this.region[2],
@@ -143,18 +145,18 @@
                     type: this.defaultAddress,
                     id:this.addrId
                 }) : this.addUserAddress({
-                        areaName: this.region[2],
-                        areaId:this.regionId[2],
-                        cityId:this.regionId[1],
-                        cityName: this.region[1],
-                        provinceId: this.regionId[0],
-                        provinceName: this.region[0],
-                        address: this.address,
-                        mobile: this.mobile,
-                        consignee: this.consignee,
-                        type: this.defaultAddress,
-                        id:0
-                    })
+                    areaName: this.region[2],
+                    areaId:this.regionId[2],
+                    cityId:this.regionId[1],
+                    cityName: this.region[1],
+                    provinceId: this.regionId[0],
+                    provinceName: this.region[0],
+                    address: this.address,
+                    mobile: this.mobile,
+                    consignee: this.consignee,
+                    type: this.defaultAddress,
+                    id:0
+                })
             }
         },
         chooseDefault(type){
@@ -183,122 +185,122 @@
     onShow(){
         const { options: { id } } = this
         this.addrId = id
-        id && this.getUserAddrById({ id: id})
+        id && this.getUserAddrById({ id: id});
         !wx.getStorageSync('area') && this.getAllArea()
     }
-  });
+});
 </script>
 <style lang="stylus">
-   .address
-        height 100%
-        min-height 100vh
-        width 100vw
-        display flex
-        flex-direction column
-        align-items center
-        padding-top 58px
-        background-image url('https://static-qa.yimutea.com/test/home_bg.png')
+.address
+    height 100%
+    min-height 100vh
+    width 100vw
+    display flex
+    flex-direction column
+    align-items center
+    padding-top 58px
+    background-image url('https://static-qa.yimutea.com/test/home_bg.png')
+    background-size 100% 100%
+    &-title
+        height 22px
+        width 142px
+        background-image url('https://static-qa.yimutea.com/test/%E6%A0%87%E9%A2%98_%E6%94%B6%E8%B4%A7%E5%9C%B0%E5%9D%80%E7%AE%A1%E7%90%86%403x.png')
         background-size 100% 100%
-        &-title
-            height 22px
-            width 142px
-            background-image url('https://static-qa.yimutea.com/test/%E6%A0%87%E9%A2%98_%E6%94%B6%E8%B4%A7%E5%9C%B0%E5%9D%80%E7%AE%A1%E7%90%86%403x.png')
+    &-edit
+        height 22px
+        width 142px
+        margin-left -200px
+        background-image url('https://static-qa.yimutea.com/test/%E7%BC%96%E8%BE%91%E6%94%B6%E8%B4%A7%E5%9C%B0%E5%9D%80%403x.png')
+        background-size 100% 100%
+    &-user-wrapper,
+    &-phone-wrapper,
+    &-local-wrapper,
+    &-detail-wrapper,
+    &-default-wrapper
+        margin-top 89px
+        background-image url('https://static-qa.yimutea.com/test/bg%403x.png') 
+        background-size 100% 100%
+        width calc(100% - 60px)
+        height 48px
+        margin-top: 23px;
+        display: flex;
+        align-items: center;
+    &-detail-wrapper
+        height 74px !important
+        align-items flex-start !important
+        padding-top 10px
+        background-image url('https://static-qa.yimutea.com/test/addressbg%403x.png') !important
+    &-default-wrapper
+        background-image none
+    &-user,
+    &-phone,
+    &-local,
+    &-detail,
+    &-default
+        color: #6B7188
+        margin-left 20px
+        margin-right 10px
+        font-family MicrosoftYaHei
+        font-size 15px
+        width 60px
+    &-user-input,
+    &-detail-input,
+    &-local-input,
+    &-phone-input,
+    &-default-input
+        width 200px
+        color #fff
+    &-default-input
+        display flex
+        align-items center
+        margin-top 8px
+    &-detail-input
+        height 100px !important
+    &-user-danger
+        color #6b7188
+        margin-left 80px
+        margin-right 10px
+        font-family MicrosoftYaHei
+        font-size 15px
+        margin-top 10px
+        width calc(100% - 180px)
+    &-default-btnOne
+        background-image url('https://static-qa.yimutea.com/test/%E9%80%89%E6%8B%A91%403x.png')
+        background-size 100% 100%
+        height 28px
+        width 28px
+        margin-left 30px
+    &-default-btnTwo
+        background-image url('https://static-qa.yimutea.com/test/%E9%80%89%E6%8B%A92%403x.png')
+        background-size 100% 100%
+        height 28px
+        width 28px
+    &-default-btnText
+        margin-left 20px
+    &-btn
+        display flex
+        align-items center
+        margin-top 100px
+        width 276px
+        justify-content space-between
+        &-return
+            background-image url('https://static-qa.yimutea.com/test/%E8%BF%94%E5%9B%9E%403x%20(1).png')
             background-size 100% 100%
+            height 43px
+            width 127px
+        &-new
+            background-image url('https://static-qa.yimutea.com/test/%E6%96%B0%E5%A2%9E%403x.png')
+            background-size 100% 100%
+            height 43px
+            width 127px
         &-edit
-            height 22px
-            width 142px
-            margin-left -200px
-            background-image url('https://static-qa.yimutea.com/test/%E7%BC%96%E8%BE%91%E6%94%B6%E8%B4%A7%E5%9C%B0%E5%9D%80%403x.png')
+            background-image url('https://static-qa.yimutea.com/test/%E4%BF%9D%E5%AD%98%403x.png')
             background-size 100% 100%
-        &-user-wrapper,
-        &-phone-wrapper,
-        &-local-wrapper,
-        &-detail-wrapper,
-        &-default-wrapper
-            margin-top 89px
-            background-image url('https://static-qa.yimutea.com/test/bg%403x.png') 
-            background-size 100% 100%
-            width calc(100% - 60px)
-            height 48px
-            margin-top: 23px;
-            display: flex;
-            align-items: center;
-        &-detail-wrapper
-            height 74px !important
-            align-items flex-start !important
-            padding-top 10px
-            background-image url('https://static-qa.yimutea.com/test/addressbg%403x.png') !important
-        &-default-wrapper
-            background-image none
-        &-user,
-        &-phone,
-        &-local,
-        &-detail,
-        &-default
-            color: #6B7188
-            margin-left 20px
-            margin-right 10px
-            font-family MicrosoftYaHei
-            font-size 15px
-            width 60px
-        &-user-input,
-        &-detail-input,
-        &-local-input,
-        &-phone-input,
-        &-default-input
-            width 200px
-            color #fff  
-        &-default-input
-            display flex
-            align-items center
-            margin-top 8px
-        &-detail-input
-            height 100px !important
-        &-user-danger
-            color #6b7188
-            margin-left 80px
-            margin-right 10px
-            font-family MicrosoftYaHei
-            font-size 15px
-            margin-top 10px
-            width calc(100% - 180px)
-        &-default-btnOne
-            background-image url('https://static-qa.yimutea.com/test/%E9%80%89%E6%8B%A91%403x.png')
-            background-size 100% 100%
-            height 28px
-            width 28px
-            margin-left 30px
-        &-default-btnTwo
-            background-image url('https://static-qa.yimutea.com/test/%E9%80%89%E6%8B%A92%403x.png')
-            background-size 100% 100%
-            height 28px
-            width 28px
-        &-default-btnText
-            margin-left 20px
-        &-btn
-            display flex
-            align-items center
-            margin-top 100px
-            width 276px
-            justify-content space-between
-            &-return
-                background-image url('https://static-qa.yimutea.com/test/%E8%BF%94%E5%9B%9E%403x%20(1).png')
-                background-size 100% 100%
-                height 43px
-                width 127px
-            &-new
-                background-image url('https://static-qa.yimutea.com/test/%E6%96%B0%E5%A2%9E%403x.png')
-                background-size 100% 100%
-                height 43px
-                width 127px
-            &-edit
-                background-image url('https://static-qa.yimutea.com/test/%E4%BF%9D%E5%AD%98%403x.png')
-                background-size 100% 100%
-                height 43px
-                width 127px
+            height 43px
+            width 127px
 </style>
 <script type="application/json">
-  {
+{
     "usingComponents": {}
-  }
+}
 </script>

@@ -88,10 +88,11 @@ export function identityIDCard(code) {
  * @param { String } allList 平铺的城市数据
  */
 export function formatArea(allList) {
+  if (!allList.length) return []
   let provinces = []
   let cityList = []
   let areaList = []
-  allList.length && allList.forEach(item => {
+  allList.forEach(item => {
     if(item.areaType === 1){
       provinces.push(item)
     }else if(item.areaType === 2){

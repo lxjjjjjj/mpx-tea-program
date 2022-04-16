@@ -85,3 +85,6 @@ export function setToken(state, data){
 export function setMyNftTradeList(state, data){
   state.myNftTradeList = data
 }
+export function setAllArea(state, data) {
+  state.allArea = data
+}

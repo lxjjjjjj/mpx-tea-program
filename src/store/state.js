@@ -19,12 +19,12 @@ const state = {
     auth:false,
     phoneIsValidate: false,
     addressList:[],
-    allArea:{},
+    allArea: [],
     addrList:[],
     addrPagination:{},
     userIdAddress:{},
     token:'',
     myNftTradeList:[]
 }
-  
+
 export default state

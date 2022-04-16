@@ -197,7 +197,7 @@ export function addUserAddress(context,params){
                 title: '新建地址成功',
                 icon: 'success',
                 duration: 2000
-            })  
+            })
         }
     }).catch(err=>{
         console.log('新增地址失败',JSON.stringify(err))
@@ -403,7 +403,10 @@ export function getAllArea(context, params){
                 duration: 2000
             })
         }else{
-            res.data && wx.setStorageSync('area',res.data)
+            if (res.data) {
+                wx.setStorageSync('area',res.data)
+                context.commit('setAllArea',res.data)
+            }
         }
     }).catch(err => {
         console.log('获取城市字典失败',JSON.stringify(err))
