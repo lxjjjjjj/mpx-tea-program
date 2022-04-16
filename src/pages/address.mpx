@@ -61,7 +61,8 @@ createPage({
         defaultAddress:1,
         showArray:[],
         regionId: [0,0,0],
-        addrId:0
+        addrId:0,
+        regionArray: []
     },
     computed:{
         ...store.mapState(['userIdAddress', 'allArea']),
@@ -70,23 +71,26 @@ createPage({
         },
         no(){
             return this.defaultAddress === 0
-        },
-        regionArray(){
-            const allArea = this.allArea.length ? this.allArea : wx.getStorageSync('area') || []
-            return formatArea(allArea)
         }
     },
     watch:{
-        regionArray:{
+        allArea: {
             handler(allArea){
-                if (!allArea.length) return;
-                this.showArray[0] = allArea[0]
-                const provinceId = allArea[0].filter(item=>item.areaName === this.region[0])[0].id
-                this.showArray[1] = allArea[1].filter(item=>item.parentId === provinceId)
-                const cityId = allArea[1].filter(item=>item.areaName === this.region[1])[0].id
-                this.showArray[2] = allArea[2].filter(item=>item.parentId === cityId)
+                this.regionArray = formatArea(allArea);
+            }
+        },
+        regionArray: {
+            handler(regionArray) {
+                if (!regionArray.length) return;
+                const showArray = []
+                showArray[0] = regionArray[0]
+                const provinceId = regionArray[0].filter(item=>item.areaName === this.region[0])[0].id
+                showArray[1] = regionArray[1].filter(item=>item.parentId === provinceId)
+                const cityId = regionArray[1].filter(item=>item.areaName === this.region[1])[0].id
+                showArray[2] = regionArray[2].filter(item=>item.parentId === cityId)
+                this.showArray = showArray;
             },
-            immediate:true
+            immediate: true
         },
         userIdAddress:{
             handler(val){
@@ -185,8 +189,12 @@ createPage({
     onShow(){
         const { options: { id } } = this
         this.addrId = id
-        id && this.getUserAddrById({ id: id});
-        !wx.getStorageSync('area') && this.getAllArea()
+        id && this.getUserAddrById({ id });
+        if (wx.getStorageSync('area')) {
+            this.regionArray = formatArea(wx.getStorageSync('area'));
+        } else {
+            this.getAllArea()
+        }
     }
 });
 </script>
