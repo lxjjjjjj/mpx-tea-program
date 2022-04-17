@@ -87,6 +87,10 @@
         },
         editLogo(){
             const self = this
+            const nickName = this.name
+            const birthDate = this.birthday
+            const sex = this.sex
+            const email = this.email
             wx.chooseImage({
                 count: 1,
                 mediaType: ['image'],
@@ -115,6 +119,10 @@
                           })
                         }else{
                           self.logo = data?.data?.url
+                          self.sex = sex
+                          self.name = nickName
+                          self.birthday = birthDate
+                          self.email = email
                           mpx.showToast({
                             title: '上传头像成功',
                             icon: 'error',
@@ -174,6 +182,7 @@
         this.name = this.userInfo.nickName || this.nickName
         this.birthday = this.userInfo.birthDate
         this.telephone = this.userInfo.mobile
+        this.sex = this.userInfo.sex
         this.email = this.userInfo.email
     }
   });
