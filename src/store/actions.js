@@ -37,7 +37,7 @@ export function Login(context, params){
                 duration: 2000
             })
         }else{
-            context.commit('setToken',res.data.token)
+            wx.setStorageSync('token',res.data.token)
         }
     }).catch(err=>{
         console.log('登陆失败',err)
