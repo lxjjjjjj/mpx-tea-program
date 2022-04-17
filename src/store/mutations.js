@@ -17,7 +17,7 @@ export function setAvatarUrl (state, data){
   state.avatarUrl = data
 }
 export function setNickName (state, data){
-  state.nikeName = data
+  state.nickName = data
 }
 export function setPhoneNumberShow (state, data){
   state.getPhoneNumber = data

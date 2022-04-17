@@ -3,7 +3,7 @@
         <view class="person-top" wx:if="{{userInfo}}">
             <view class="person-image"/>
             <view class="person-avatar"><image src="{{userInfo.avatar || avatarUrl || defaultAvatar}}"/></view>
-            <view class="person-name">{{userInfo.name || nickName}}</view>
+            <view class="person-name">{{userInfo.userName || nickName}}</view>
         </view>
         <view class="person-list" wx:for="{{list}}" wx:key="index" bindtap="goToPage(item)">
             <image class="person-list-image" wx:style="height:{{item.height}};width:{{item.width}}"src="{{item.image}}"/>
