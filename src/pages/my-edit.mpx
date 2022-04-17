@@ -3,13 +3,15 @@
         <view class="my-edit">
             <view class="my-edit-avatar">
                 <view class="my-edit-avatar-text">头像</view>
-                <image class="my-edit-avatar-value" src="{{avatar}}"></image>
+                <view class="my-edit-avatar-value-wrapper" bindtap="editLogo"><image class="my-edit-avatar-value" src="{{logo}}"></image></view>
             </view>
+            <view class="my-edit-danger" wx:if="{{rulesMap.logo}}">头像不能为空</view>
             <view class="my-edit-name">
                 <view class="my-edit-name-text">昵称</view>
-                <input class="my-edit-name-value" wx:model="{{name}}"></input>
+                <input class="my-edit-name-value" wx:model="{{name}}" bindfocus="bindfocus('name')"></input>
                 <view class="my-edit-name-edit"></view>
             </view>
+            <view class="my-edit-danger" wx:if="{{rulesMap.name}}">昵称不能为空</view>
             <view class="my-edit-birthday">
                 <view class="my-edit-birthday-text">生日</view>
                 <picker class="my-edit-birthday-value" mode="date" value="{{birthday}}" bindchange="bindDateChange">
@@ -17,6 +19,7 @@
                 </picker>
                 <view class="my-edit-icon-wrapper"><view class="my-edit-icon"></view></view>
             </view>
+            <view class="my-edit-danger" wx:if="{{rulesMap.birthday}}">出生日期不能为空</view>
             <view class="my-edit-sex">
                 <view class="my-edit-sex-text">性别</view>
                 <view class="my-edit-sex-value">
@@ -30,11 +33,13 @@
                 <view class="my-edit-phone-text">电话</view>
                 <view class="my-edit-phone-value">{{telephone}}</view>
             </view>
+            <view class="my-edit-danger" wx:if="{{rulesMap.telephone}}">电话不能为空</view>
             <view class="my-edit-email">
                 <view class="my-edit-email-text">邮箱</view>
-                <input class="my-edit-email-value" wx:model="{{email}}"></input>
+                <input class="my-edit-email-value" wx:model="{{email}}" bindfocus="bindfocus('email')"></input>
                 <view class="my-edit-name-edit"></view>
             </view>
+            <view class="my-edit-danger" wx:if="{{rulesMap.email}}">邮箱不能为空</view>
             <view class="my-edit-btn">
                 <view class="my-edit-btn-return" bindtap="back"/>
                 <view class="my-edit-btn-new" bindtap="editPerson"/>
@@ -46,28 +51,25 @@
 <script>
   import mpx,{ createPage } from '@mpxjs/core'
   import store from '../store'
-  import addrListPage from './addrList?resolve'
-  import servicePage from './service?resolve'
-  import questionPage from './question?resolve'
-  import realPage from './real?resolve'
   createPage({
     data:{
         defaultAvatar: "https://static-qa.yimutea.com/test/%E5%A4%B4%E5%83%8F%E9%81%AE%E7%BD%A9%403x.png",
         sex:0,
-        avatar:"",
+        logo:"",
         name:'',
-        email:'1732749825@qq.com',
-        birthday:'2021-01-26',
-        telephone:'18846087938',
+        email:'',
+        birthday:'',
+        telephone:'',
         rulesMap: {
             name: false,
             email: false,
             birthday: false,
-            telephone: false
+            telephone: false,
+            logo:false
         }
     },
     computed:{
-        ...store.mapState(['userInfo']),
+        ...store.mapState(['userInfo','nickName','avatarUrl']),
         yes(){
             return this.sex === 0
         },
@@ -76,11 +78,25 @@
         },
     }, 
     methods:{
+        ...store.mapActions(['editPersonInfo']),
         chooseSex(type){
             this.sex = type
         },
         bindDateChange: function(e) {
             this.birthday = e.detail.value
+        },
+        editLogo(){
+            wx.chooseImage({
+                count: 1,
+                mediaType: ['image'],
+                sourceType: ['album', 'camera'],
+                maxDuration: 60,
+                sizeType:['compressed'],
+                camera: 'front',
+                success: (res) => {
+                    this.logo = res.tempFilePaths[0]
+                }
+            })
         },
         back(){
             wx.navigateBack({
@@ -88,6 +104,7 @@
             })
         },
         editPerson(){
+            console.log('editPerson')
             if (!this.name) {
                 this.rulesMap.name = true
             } 
@@ -100,20 +117,30 @@
             if (!this.birthday){
                 this.rulesMap.birthday = true
             } 
-            if(this.name && this.email && this.telephone && this.birthday) {
+            if (!this.logo){
+                this.rulesMap.logo = true
+            }
+            if(this.name && this.email && this.telephone && this.birthday && this.logo) {
                 this.editPersonInfo({
                     birthDate:this.birthday,
                     email:this.email,
                     sex:this.sex,
+                    logo:this.logo,
                     userId:this.userInfo.userId,
                     nickName:this.name
                 })
             }
         },
+        bindfocus(type){
+            this.rulesMap[type] = false
+        }
     },
     onShow(){
-        this.avatar = this.userInfo.avatar
-        this.name = this.userInfo.name
+        this.logo = this.avatarUrl || this.userInfo.logo
+        this.name = this.nickName || this.userInfo.nickName
+        this.birthday = this.userInfo.birthday || '1998-01-26'
+        this.telephone = this.userInfo.telephone || '18846087938'
+        this.email = this.userInfo.email
     }
   });
 </script>
@@ -155,11 +182,28 @@
             height 70px
             margin-top 54px
             border-bottom none 
+        &-danger
+            color #6b7188
+            margin-left 80px
+            margin-right 10px
+            font-family MicrosoftYaHei
+            font-size 15px
+            margin-top 10px
+            width calc(100% - 180px)
         &-avatar-value
             width 60px
             height 60px
             border-radius 50%
             margin-left 25px
+            position absolute
+            top 7px
+            left -17px
+            &-wrapper
+                background url('https://static-qa.yimutea.com/test/%E5%A4%B4%E5%83%8F%E6%A1%86%403x.png')
+                background-size 100% 100%
+                height 77px
+                width 77px
+                position relative
         &-sex-value
             display flex
             align-items center
@@ -233,7 +277,7 @@
         &-btn
             display flex
             align-items center
-            margin-top 100px
+            margin-top 40px
             width 276px
             justify-content space-between
             &-return
@@ -242,7 +286,7 @@
                 height 43px
                 width 127px
             &-new
-                background-image url('https://static-qa.yimutea.com/test/%E6%96%B0%E5%A2%9E%403x.png')
+                background-image url('https://static-qa.yimutea.com/test/%E4%BF%9D%E5%AD%98%403x.png')
                 background-size 100% 100%
                 height 43px
                 width 127px

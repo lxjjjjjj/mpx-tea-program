@@ -44,7 +44,6 @@
       "./pages/myNFT.mpx",
       "./pages/service.mpx",
       "./pages/show.mpx",
-      "./pages/showDetail.mpx",
       "./pages/real.mpx",
       "./pages/oops.mpx",
       "./pages/addrList.mpx",

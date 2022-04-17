@@ -5,12 +5,21 @@
                 <view class="my-avatar" bindtap="goToPerson"><image src="{{userInfo.avatar || avatarUrl || defaultAvatar}}"/></view>
                 <view>
                     <view class="my-class">
-                        <view class="my-class-msg">{{userInfo.userLevel}}</view>
+                        <view class="my-class-msg">V{{userInfo.userLevel}}画家</view>
                         <image class="my-class-image" src="https://static-qa.yimutea.com/test/%E7%94%BB%E5%AE%B6BG%403x.png"/>
                     </view>
                     <view class="my-name">{{userInfo.userName || nickName}}</view>
                 </view>
-                <view class="my-coupon" bindtap="goToCoupon"/>
+                <view>
+                    <view class="my-real" wx:if="{{!Number(userInfo.identityType)}}"></view>
+                    <view class="my-couponCount">
+                        电子券
+                        <view class="my-couponNum">{{userInfo.couponCount}}</view>
+                    </view>
+                </view>
+                <view class="my-coupon" bindtap="goToCoupon">
+                    <view class="my-coupon-num">{{userInfo.couponCount}}</view>
+                </view>
             </view>
             <view class="my-vip" wx:if="{{userInfo}}">
                 <view class="my-vip-content">
@@ -28,12 +37,12 @@
                 <view class="my-times-value">{{userInfo.creationNftCount}}</view>
                 <view class="my-times-go"></view>
             </view>
-            <view class="collect-container" wx:if="{{userNFTAll && userNFTAll.length}}">
+            <view class="collect-container">
                 <view class="collect-top">
                     <view class="collect-title"/>
-                    <view class="collect-size">（{{userNFTAll.length}}）</view>
+                    <view class="collect-size" wx:if="{{userNFTAll}}">（{{userNFTAll.length}}）</view>
                 </view>
-                <view class="collect-list">
+                <view class="collect-list" wx:if="{{userNFTAll && userNFTAll.length}}">
                     <view class="collect-item" wx:for="{{userNFTAll}}" wx:key="item">
                         <view class="collect-item-wrapper" bindtap="getUserNFTById(item.id)">
                             <image mode="widthFix" class="collect-picture" src="{{item.nftUrl}}"/>
@@ -89,8 +98,8 @@ createPage({
         }
     },
     onShow(){
-    this.getUserInfo()
-    this.getUserNFTAll()
+        this.getUserInfo()
+        this.getUserNFTAll()
     }
 });
 </script>
@@ -101,6 +110,21 @@ createPage({
         min-height 100vh
         height 100%
         width 100vw
+    .my-real
+        background url('https://static-qa.yimutea.com/test/%E5%BE%85%E5%AE%9E%E5%90%8D%E8%AE%A4%E8%AF%81%403x.png')
+        background-size 100% 100%
+        height 20px
+        width 57px
+    .my-couponCount
+        font-size 10px
+        color #ffffff
+        display flex
+        align-items center
+        width 57px
+    .my-couponNum
+        font-size 15px
+        color #98D661
+        margin-left 15px
     .my-container
         height calc(100vh - 85px)
         width calc(100vw - 40px)
@@ -158,6 +182,7 @@ createPage({
             top 50%
             transform translate(-50%,-50%)
             z-index 4
+            width 40px
         &-image
             width 50px
             height 18px
@@ -185,6 +210,10 @@ createPage({
         font-size 16px
         color #ffffff
         font-weight 500
+        width 80px
+        text-overflow ellipsis
+        overflow hidden
+        white-space nowrap
     .my-coupon
         background-image url('https://static-qa.yimutea.com/test/%E5%8D%A1%E5%8C%85%403x.png')
         background-size 100% 100%
@@ -192,6 +221,18 @@ createPage({
         height 40px
         position absolute
         right 20px
+        &-num
+            width 24px
+            height 14px
+            background-image url('https://static-qa.yimutea.com/test/%E6%95%B0%E9%87%8F%E6%8F%90%E7%A4%BA%E8%83%8C%E6%99%AF%403x.png')
+            background-size 100% 100%
+            position absolute
+            right -3px
+            top -4px
+            text-align center
+            font-size 12px
+            color #fff
+            line-height 14px
     .my-vip
         background-image url('https://static-qa.yimutea.com/test/VIP%E8%83%8C%E6%99%AF1%403x.png')
         background-size 100% 100%

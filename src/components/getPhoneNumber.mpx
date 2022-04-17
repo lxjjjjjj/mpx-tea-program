@@ -12,7 +12,7 @@
   import myPage from '../pages/my?resolve'
   createComponent({
       methods:{
-          ...store.mapActions(['fillUserPhone']),
+          ...store.mapActions(['fillUserPhone','fillUserInfo']),
           returnTap(){
               this.show = false
               return false
@@ -21,6 +21,11 @@
               store.commit('setPhoneNumberShow',false)
               if(e.detail.code){
                 this.fillUserPhone({ code: e.detail.code })
+                this.fillUserInfo({
+                    nickName:store.state.nickName,
+                    userName:store.state.nickName,
+                    logo:store.state.avatarUrl
+                })
               }
               mpx.switchTab({
                 url: myPage

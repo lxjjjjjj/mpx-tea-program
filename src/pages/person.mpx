@@ -2,7 +2,7 @@
     <view class="person-wrapper">
         <view class="person-top" wx:if="{{userInfo}}">
             <view class="person-image"/>
-            <view class="person-avatar"><image src="{{userInfo.avatar || avatarUrl || defaultAvatar}}"/></view>
+            <view class="person-avatar" bindtap="editPerson"><image src="{{userInfo.avatar || avatarUrl || defaultAvatar}}"/></view>
             <view class="person-name">{{userInfo.userName || nickName}}</view>
         </view>
         <view class="person-list" wx:for="{{list}}" wx:key="index" bindtap="goToPage(item)">
@@ -20,6 +20,7 @@
   import servicePage from './service?resolve'
   import questionPage from './question?resolve'
   import realPage from './real?resolve'
+  import myEditPage from './my-edit?resolve'
   createPage({
     data:{
         defaultAvatar: "https://static-qa.yimutea.com/test/%E5%A4%B4%E5%83%8F%E9%81%AE%E7%BD%A9%403x.png",
@@ -61,6 +62,11 @@
         goToPage(item){
             item.url && mpx.navigateTo({
                 url:item.url
+            })
+        },
+        editPerson(){
+            mpx.navigateTo({
+                url:myEditPage
             })
         }
     }

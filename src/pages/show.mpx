@@ -1,5 +1,6 @@
 <template>
     <view class="show-wrapper">
+        <view class="show-detail-share-wrapper"><button class="show-detail-share" open-type="share"/></view>
         <view class="show">
             <view class="show-item-container" wx:if="{{flexDisPlayData && flexDisPlayData.length}}"wx:for="{{flexDisPlayData}}" wx:for-item="flexdisplayData" wx:for-index="flexIndex">
                 <view wx:for="{{flexdisplayData}}"wx:if="{{flexdisplayData && flexdisplayData.length}}" wx:key="index" class="show-item" bindtap="goToShowDetail">
@@ -17,7 +18,7 @@
 <script>
   import mpx,{ createPage } from '@mpxjs/core'
   import store from '../store'
-  import showDetailPage from './showDetail?resolve'
+  import myNFTPage from './myNFT?resolve'
   createPage({
     data:{
         
@@ -43,7 +44,7 @@
         ...store.mapActions(['getDisplayData']),
         goToShowDetail(){
             mpx.navigateTo({
-                url: showDetailPage
+                url: myNFTPage
             })
         }
     },
@@ -60,11 +61,38 @@
             pageSize: 20,
             isNew:false
         })
+    },
+    onShareAppMessage(){
+        return {
+            title: '易亩茶园NFT数字藏品',
+            path: `/pages/show/index`
+        }
+    },
+    onShareTimeline(){
+        return {
+            title: '易亩茶园NFT数字藏品'
+        }
     }
   });
 </script>
 
 <style lang="stylus">
+    .show-detail
+        &-share
+            width 60px !important
+            height 36px !important
+            background-image url('https://static-qa.yimutea.com/test/%E6%8C%89%E9%92%AE%E5%88%86%E4%BA%AB%403x.png')
+            background-size 100% 100%
+            position absolute 
+            right 28px
+            -webkit-tap-highlight-color: transparent;
+            background-color: transparent !important
+            border none !important
+            &-wrapper
+                height 36px
+                width 100%
+                position relative
+                padding-top 10px
     .show-wrapper
         height 100%
         min-height 100vh

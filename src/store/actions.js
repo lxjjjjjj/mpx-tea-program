@@ -545,3 +545,28 @@ export function editPersonInfo(context, params){
         console.log('更新用户信息失败',JSON.stringify(err))
     })
 }
+
+export function fillUserInfo(context, params){
+    request({
+        url:apis.fillUserInfoAPI,
+        params:params,
+        method:'POST'
+    }).then(res => {
+        if(Number(res.code)){
+            console.log('补充用户微信名和头像失败',JSON.stringify(res.msg))
+            mpx.showToast({
+                title: res.msg,
+                icon: 'error',
+                duration: 2000
+            })
+        }else{
+            mpx.showToast({
+                title: '更新成功',
+                icon: 'success',
+                duration: 1000
+            })
+        }
+    }).catch(err => {
+        console.log('补充用户微信名和头像失败',JSON.stringify(err))
+    })
+}

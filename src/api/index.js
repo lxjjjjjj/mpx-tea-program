@@ -43,3 +43,5 @@ export const getUserAddrByIdAPI = host + '/api/v1/userAddress/getById'
 export const updateUserAddrAPI = host + '/api/v1/userAddress/update'
 // 修改个人信息
 export const editPersonInfoAPI = host + '/api/v1/user/updateUserInfo'
+// 新增头像和微信名接口
+export const fillUserInfoAPI = host + '/api/v1/user/fillUserInfo'
