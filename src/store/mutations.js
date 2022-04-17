@@ -88,3 +88,6 @@ export function setMyNftTradeList(state, data){
 export function setAllArea(state, data) {
   state.allArea = data
 }
+export function setDisplayNFT(state, data){
+  state.displayNFT = data
+}

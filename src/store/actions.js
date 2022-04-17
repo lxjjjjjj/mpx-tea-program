@@ -540,6 +540,9 @@ export function editPersonInfo(context, params){
                 icon: 'success',
                 duration: 1000
             })
+            mpx.navigateBack({
+                delta:1
+            })
         }
     }).catch(err => {
         console.log('更新用户信息失败',JSON.stringify(err))
@@ -568,5 +571,24 @@ export function fillUserInfo(context, params){
         }
     }).catch(err => {
         console.log('补充用户微信名和头像失败',JSON.stringify(err))
+    })
+}
+
+export function getDisplayNFTById(context, params){
+    request({
+        url:`${apis.getDisplayNFTByIdAPI}/${params.id}`
+    }).then(res => {
+        if(Number(res.code)){
+            console.log('获取nft详情失败',JSON.stringify(res.msg))
+            mpx.showToast({
+                title: res.msg,
+                icon: 'error',
+                duration: 2000
+            })
+        }else{
+            context.commit('setDisplayNFT',res.data)
+        }
+    }).catch(err => {
+        console.log('获取nft详情失败',JSON.stringify(err))
     })
 }

@@ -3,11 +3,11 @@
         <view class="show-detail-share-wrapper"><button class="show-detail-share" open-type="share"/></view>
         <view class="show">
             <view class="show-item-container" wx:if="{{flexDisPlayData && flexDisPlayData.length}}"wx:for="{{flexDisPlayData}}" wx:for-item="flexdisplayData" wx:for-index="flexIndex">
-                <view wx:for="{{flexdisplayData}}"wx:if="{{flexdisplayData && flexdisplayData.length}}" wx:key="index" class="show-item" bindtap="goToShowDetail">
+                <view wx:for="{{flexdisplayData}}"wx:if="{{flexdisplayData && flexdisplayData.length}}" wx:key="index" class="show-item" bindtap="goToShowDetail(item.id)">
                     <image class="show-item-image" mode="widthFix" src="{{item.nftUrl}}"></image>
                     <view class="show-item-content">
                         <view class="show-item-avatar-wrapper"><image class="show-item-avatar" src="{{item.userAvatar}}"></image></view>
-                        <view class="show-item-name">{{item.userName}}</view>
+                        <view class="show-item-name">{{item.nickName}}</view>
                     </view>
                 </view>
             </view>
@@ -42,9 +42,9 @@
     },
     methods:{
         ...store.mapActions(['getDisplayData']),
-        goToShowDetail(){
+        goToShowDetail(id){
             mpx.navigateTo({
-                url: myNFTPage
+                url: `${myNFTPage}?id=${id}&show=${true}`
             })
         }
     },
@@ -121,6 +121,7 @@
             &-avatar
                 width 26px
                 height 26px
+                border-radius 50%
                 &-wrapper
                     height 29px
                     width 29px

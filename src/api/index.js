@@ -45,3 +45,5 @@ export const updateUserAddrAPI = host + '/api/v1/userAddress/update'
 export const editPersonInfoAPI = host + '/api/v1/user/updateUserInfo'
 // 新增头像和微信名接口
 export const fillUserInfoAPI = host + '/api/v1/user/fillUserInfo'
+// 新增展览馆根据id获取详情
+export const getDisplayNFTByIdAPI = host + '/api/v1/nft/query'

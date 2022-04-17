@@ -129,9 +129,6 @@
             const self = this
             CanvasDrag.export()
                 .then((filePath) => {
-                    // wx.previewImage({
-                    //     urls: [filePath]
-                    // })
                     //上传图片
                     wx.uploadFile({
                       url: 'https://wx.yimutea.com/api/v1/nft/upload',
@@ -139,20 +136,31 @@
                       name: 'file',
                       header: {
                         'Content-Type': 'multipart/form-data',
+                        'authorization':`${store.state.token}`
                       },
                       method: "post",
                       success(res) {
-                        const data = JSON.parse(JSON.parse(res.data).toString())
-                        console.log('data',data)
-                        store.commit('setNFTUploadUUID',data)
-                        self.NFTGenerate({
-                            name:'test',
-                            level:1,
-                            summary:'zheshiyiduanmiaoshu',
-                            nft:'630f3a9d-5188-46c9-bc51-1fcdfb859bd4'
-                        })
+                        let data
+                        res?.data && (data = JSON.parse(res.data))
+                        if(Number(data?.code)){
+                          mpx.showToast({
+                            title: '发布NFT失败',
+                            icon: 'error',
+                            duration: 2000
+                          })
+                        }else{
+                          self.NFTGenerate({
+                            level:self.vip,
+                            nft:data?.data?.uuid
+                          })
+                        }
                       },
                       fail() {
+                        mpx.showToast({
+                          title: '发布NFT失败',
+                          icon: 'error',
+                          duration: 2000
+                        })
                       }
                     })
                 })

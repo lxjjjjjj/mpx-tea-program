@@ -86,6 +86,7 @@
             this.birthday = e.detail.value
         },
         editLogo(){
+            const self = this
             wx.chooseImage({
                 count: 1,
                 mediaType: ['image'],
@@ -94,7 +95,41 @@
                 sizeType:['compressed'],
                 camera: 'front',
                 success: (res) => {
-                    this.logo = res.tempFilePaths[0]
+                    wx.uploadFile({
+                      url: 'https://wx.yimutea.com/api/v1/user/upload',
+                      filePath: res.tempFilePaths[0],
+                      name: 'file',
+                      header: {
+                        'Content-Type': 'multipart/form-data',
+                        'authorization':`${store.state.token}`
+                      },
+                      method: "post",
+                      success(res) {
+                        let data
+                        res?.data && (data = JSON.parse(res.data))
+                        if(Number(data?.code)){
+                          mpx.showToast({
+                            title: '上传头像失败',
+                            icon: 'error',
+                            duration: 2000
+                          })
+                        }else{
+                          self.logo = data?.data?.url
+                          mpx.showToast({
+                            title: '上传头像成功',
+                            icon: 'error',
+                            duration: 2000
+                          })
+                        }
+                      },
+                      fail() {
+                        mpx.showToast({
+                          title: '上传头像失败',
+                          icon: 'error',
+                          duration: 2000
+                        })
+                      }
+                    })
                 }
             })
         },
@@ -126,7 +161,6 @@
                     email:this.email,
                     sex:this.sex,
                     logo:this.logo,
-                    userId:this.userInfo.userId,
                     nickName:this.name
                 })
             }
@@ -138,8 +172,8 @@
     onShow(){
         this.logo = this.avatarUrl || this.userInfo.logo
         this.name = this.nickName || this.userInfo.nickName
-        this.birthday = this.userInfo.birthday || '1998-01-26'
-        this.telephone = this.userInfo.telephone || '18846087938'
+        this.birthday = this.userInfo.birthDate
+        this.telephone = this.userInfo.mobile
         this.email = this.userInfo.email
     }
   });

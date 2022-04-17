@@ -1,5 +1,5 @@
 <template>
-    <view class="nft-wrapper" wx:if="{{nftInfo}}">
+    <view class="nft-wrapper" wx:if="{{nftInfo || displayNFT}}">
         <view class="nft-top-wrapper">
             <view class="nft-top">
                 <view class="nft-title"/>
@@ -7,9 +7,9 @@
             </view>
         </view>
         <view class="nft-image">
-            <image src="{{nftInfo.nftUrl}}"/> 
+            <image src="{{nftInfo.nftUrl || displayNFT.url}}"/> 
             <view class="nft-image-share">
-                <view class="nft-image-share-name">{{nftInfo.workName}}</view>
+                <view class="nft-image-share-name">{{nftInfo.workName || displayNFT.name}}</view>
                 <button class="nft-image-share-btn" open-type="share"></button>
             </view>
             <!-- wx:if="{{nftInfo.image}}" -->
@@ -17,37 +17,37 @@
         <view class="nft-desc">
             <view class="nft-provider">
                 <view class="nft-provider-key">创作者</view>
-                <view class="nft-provider-value">{{nftInfo.provider}}</view>
+                <view class="nft-provider-value">{{nftInfo.publisher || displayNFT.publisher }}</view>
             </view>
             <view class="nft-msg">
                 <view class="nft-msg-key">简 介</view>
-                <view class="nft-msg-value">{{nftInfo.summary}}</view>
+                <view class="nft-msg-value">{{nftInfo.summary ||displayNFT.summary}}</view>
             </view>
         </view>
         <view class="nft-ID">
-            <view class="nft-ID-num">NO.{{nftInfo.id}}</view>
+            <view class="nft-ID-num">NO.{{nftInfo.id || displayNFT.id}}</view>
             <view class="nft-ID-title"/>
-            <view class="nft-ID-special">{{nftInfo.specialID}}</view>
+            <view class="nft-ID-special">{{nftInfo.tokenId || displayNFT.tokenId}}</view>
         </view>
         <view class="nft-desc">
             <view class="nft-msg-right">
                 <view class="nft-msg-key">拥有人</view>
-                <view class="nft-msg-value">{{nftInfo.provider}}</view>
+                <view class="nft-msg-value">{{nftInfo.owner || displayNFT.owner}}</view>
             </view>
             <view class="nft-msg-right">
                 <view class="nft-msg-key">领取时间</view>
-                <view class="nft-msg-value">{{nftInfo.provider}}</view>
+                <view class="nft-msg-value">{{nftInfo.receiveTime || displayNFT.receiveTime}}</view>
             </view>
             <view class="nft-msg-right">
                 <view class="nft-msg-key">发行时间</view>
-                <view class="nft-msg-value">{{nftInfo.provider}}</view>
+                <view class="nft-msg-value">{{nftInfo.publishTime || displayNFT.publishTime}}</view>
             </view>
             <view class="nft-msg-right">
                 <view class="nft-msg-key">发行方</view>
-                <view class="nft-msg-value">{{nftInfo.provider}}</view>
+                <view class="nft-msg-value">{{nftInfo.publisher || displayNFT.publisher}}</view>
             </view>
         </view>
-        <view class="nft-record">
+        <view class="nft-record" wx:if="{{myNftTradeList && myNftTradeList.length}}">
             <view class="nft-record-title"></view>
             <view class="nft-record-list-title">
                 <view class="nft-record-list-title-item">from</view>
@@ -57,7 +57,7 @@
             </view>
             <view class="nft-record-line"></view>
             <view class="nft-record-content-wrapper">
-                <view class="nft-record-content" wx:if="{{nftInfo.recordList && nftInfo.recordList.length}}" wx:for="{{nftInfo.recordList}}" wx:key="index">
+                <view class="nft-record-content" wx:for="{{myNftTradeList}}" wx:key="index">
                     <view class="nft-record-content-item">{{item.from}}</view>
                     <view class="nft-record-content-item">{{item.to}}</view>
                     <view class="nft-record-content-item">{{item.hash}}</view>
@@ -76,20 +76,25 @@
         collectId:0
     },
     computed:{
-        ...store.mapState(['nftInfo'])
+        ...store.mapState(['nftInfo','myNftTradeList','displayNFT'])
     }, 
     onShow(){
-        const { options: { id } } = this
-        this.collectId = id
-        this.getNFTById({ id: id })
-        this.getMyNftTradeList({ id: id })
+        const { options: { id, show } } = this
+        if(show){
+            this.collectId = id
+            this.getDisplayNFTById({ id: id })
+        }else{
+            this.collectId = id
+            this.getNFTById({ id: id })
+            this.getMyNftTradeList({ id: id })
+        }
         wx.showShareMenu({
             withShareTicket: true,
             menus: ['shareAppMessage', 'shareTimeline']
         });
     },
     methods:{
-        ...store.mapActions(['getNFTById','getMyNftTradeList'])
+        ...store.mapActions(['getNFTById','getMyNftTradeList','getDisplayNFTById'])
     },
     onShareAppMessage(){
         return {
