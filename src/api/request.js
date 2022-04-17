@@ -10,7 +10,7 @@ export default ({url,params,method="GET"}) => {
             method: method,
             header: {
                 'content-type': 'application/json',
-                'authorization':`${store.state.token}`
+                'authorization':`${wx.getStorageSync('token')}`
             },
             success (res) {
                 if (res.statusCode === 403) {

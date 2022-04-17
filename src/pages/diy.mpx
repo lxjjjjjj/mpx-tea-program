@@ -136,7 +136,7 @@
                       name: 'file',
                       header: {
                         'Content-Type': 'multipart/form-data',
-                        'authorization':`${store.state.token}`
+                        'authorization':`${wx.getStorageSync('token')}`
                       },
                       method: "post",
                       success(res) {

@@ -23,7 +23,6 @@ const state = {
     addrList:[],
     addrPagination:{},
     userIdAddress:{},
-    token:'',
     myNftTradeList:[],
     displayNFT:{}
 }

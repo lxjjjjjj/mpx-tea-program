@@ -540,6 +540,11 @@ export function editPersonInfo(context, params){
                 icon: 'success',
                 duration: 1000
             })
+            context.state.userInfo.logo = params.logo
+            context.state.userInfo.nickName = params.nickName
+            context.state.userInfo.birthDate = params.birthDate
+            context.state.userInfo.sex = params.sex
+            context.state.userInfo.email = params.email
             mpx.navigateBack({
                 delta:1
             })

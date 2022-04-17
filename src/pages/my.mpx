@@ -2,13 +2,13 @@
     <view class="my-wrapper">
         <view class="my-container" srcoll-y="true" show-scrollbar="false" enable-flex="true">
             <view class="my-top" wx:if="{{userInfo}}">
-                <view class="my-avatar" bindtap="goToPerson"><image src="{{userInfo.avatar || avatarUrl || defaultAvatar}}"/></view>
+                <view class="my-avatar" bindtap="goToPerson"><image src="{{userInfo.logo || avatarUrl || defaultAvatar}}"/></view>
                 <view>
                     <view class="my-class">
                         <view class="my-class-msg">V{{userInfo.userLevel}}画家</view>
                         <image class="my-class-image" src="https://static-qa.yimutea.com/test/%E7%94%BB%E5%AE%B6BG%403x.png"/>
                     </view>
-                    <view class="my-name">{{userInfo.userName || nickName}}</view>
+                    <view class="my-name">{{userInfo.nickName || nickName}}</view>
                 </view>
                 <view>
                     <view class="my-real" wx:if="{{!Number(userInfo.identityType)}}"></view>

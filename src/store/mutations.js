@@ -79,9 +79,6 @@ export function setAddrPagination(state, data){
 export function setUserAddrById(state, data){
   state.userIdAddress = data
 }
-export function setToken(state, data){
-  state.token = data
-}
 export function setMyNftTradeList(state, data){
   state.myNftTradeList = data
 }

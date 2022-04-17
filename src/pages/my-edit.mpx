@@ -101,7 +101,7 @@
                       name: 'file',
                       header: {
                         'Content-Type': 'multipart/form-data',
-                        'authorization':`${store.state.token}`
+                        'authorization':`${wx.getStorageSync('token')}`
                       },
                       method: "post",
                       success(res) {
@@ -170,8 +170,8 @@
         }
     },
     onShow(){
-        this.logo = this.avatarUrl || this.userInfo.logo
-        this.name = this.nickName || this.userInfo.nickName
+        this.logo = this.userInfo.logo || this.avatarUrl
+        this.name = this.userInfo.nickName || this.nickName
         this.birthday = this.userInfo.birthDate
         this.telephone = this.userInfo.mobile
         this.email = this.userInfo.email
