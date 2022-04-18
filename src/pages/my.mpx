@@ -11,7 +11,7 @@
                     <view class="my-name">{{userInfo.nickName || nickName}}</view>
                 </view>
                 <view>
-                    <view class="my-real" wx:if="{{!Number(userInfo.identityType)}}"></view>
+                    <view class="my-real" wx:if="{{!identityType}}"></view>
                     <view class="my-couponCount">
                         电子券
                         <view class="my-couponNum">{{userInfo.couponCount}}</view>
@@ -70,7 +70,7 @@ createPage({
     defaultAvatar: "https://static-qa.yimutea.com/test/%E5%A4%B4%E5%83%8F%E9%81%AE%E7%BD%A9%403x.png"
     },
     computed:{
-        ...store.mapState(['userInfo','userNFTAll','avatarUrl','nickName'])
+        ...store.mapState(['userInfo','userNFTAll','avatarUrl','nickName','identityType'])
     },
     methods:{
         ...store.mapActions(['getUserInfo','getUserNFTAll']),

@@ -79,6 +79,7 @@ export function getUserInfo(context, params){
             })
         }else{
             res.data && context.commit('setUserInfo', res.data)
+            res.data && context.commit('setIdentityType', res.data.identityType) 
         }
     }).catch(err=>{
         console.log('获取用户信息失败',JSON.stringify(err))

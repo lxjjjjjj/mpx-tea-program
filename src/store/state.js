@@ -24,7 +24,8 @@ const state = {
     addrPagination:{},
     userIdAddress:{},
     myNftTradeList:[],
-    displayNFT:{}
+    displayNFT:{},
+    identityType:0
 }
 
 export default state

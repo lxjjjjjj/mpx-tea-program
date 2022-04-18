@@ -28,6 +28,9 @@ export function setSwitchTab (state, data){
 export function setUserInfo (state, data){
   state.userInfo = data
 }
+export function setIdentityType (state, data){
+  state.identityType = Number(data)
+}
 export function setUserNFTAll (state, data){
   state.userNFTAll = data
 }
