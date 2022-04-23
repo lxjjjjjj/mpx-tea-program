@@ -248,6 +248,9 @@ export function NFTGenerate(context, params){
                 icon: 'success',
                 duration: 2000
             })
+            mpx.navigateBack({
+                delta:1
+            })
         }
     }).catch(err=>{
         console.log('铸造NFT失败',JSON.stringify(err))
