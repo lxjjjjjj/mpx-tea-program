@@ -12,6 +12,7 @@
                 </view>
                 <view>
                     <view class="my-real" wx:if="{{!identityType}}"></view>
+                    <view class="my-real-already" wx:if="{{identityType}}">已实名</view>
                     <view class="my-couponCount">
                         电子券
                         <view class="my-couponNum">{{userInfo.couponCount}}</view>
@@ -115,6 +116,9 @@ createPage({
         background-size 100% 100%
         height 20px
         width 57px
+        &-already
+            font-size 11px
+            color #464b5f
     .my-couponCount
         font-size 10px
         color #ffffff

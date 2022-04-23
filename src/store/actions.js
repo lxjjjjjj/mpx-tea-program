@@ -199,6 +199,9 @@ export function addUserAddress(context,params){
                 icon: 'success',
                 duration: 2000
             })
+            mpx.navigateBack({
+                delta:1
+            })
         }
     }).catch(err=>{
         console.log('新增地址失败',JSON.stringify(err))

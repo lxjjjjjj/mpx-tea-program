@@ -265,7 +265,7 @@ createPage({
     &-detail-input
         height 100px !important
     &-user-danger
-        color #6b7188
+        color #ffffff
         margin-left 80px
         margin-right 10px
         font-family MicrosoftYaHei
