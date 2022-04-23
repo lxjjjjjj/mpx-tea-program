@@ -35,6 +35,12 @@
               })
           }
       }    
+    },
+    onShow(){
+        console.log('this.active_tab',this.active_tab)
+        mpx.switchTab({
+            url: this.active_tab==='left' ? IndexPage : myPage
+        })
     }
   });
 </script>
