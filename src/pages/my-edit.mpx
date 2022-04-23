@@ -215,11 +215,13 @@
             &-text
                 color #6B7188
                 font-size 15px
+                font-family SourceHanSansOLD-Normal
                 padding 8px 15px 
             &-value
                 width 200px
                 height 30px
                 font-size 16px
+                font-family SourceHanSansOLD-Normal
                 color #ffffff
                 text-align center
         &-avatar
@@ -266,10 +268,12 @@
             margin-left 20px
             color #FFFFFF
             font-size 15px
+            font-family SourceHanSansOLD-Normal
         &-birthday-value
             .birthday
                 color #ffffff
                 font-size 16px
+                font-family SourceHanSansOLD-Normal
         &-name-edit
             background-image url('https://static-qa.yimutea.com/test/%E6%8C%89%E9%92%AE_%E7%BC%96%E8%BE%91%403x.png')
             background-size 100% 100%

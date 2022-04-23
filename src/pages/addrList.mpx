@@ -96,6 +96,7 @@
         &-address
             color #ffffff
             font-size 13px
+            font-family SourceHanSansOLD-Normal
             width 200px
             text-overflow ellipsis
             overflow hidden
@@ -103,10 +104,12 @@
         &-consignee
             color #6B7188
             font-size 13px
+            font-family SourceHanSansOLD-Normal
         &-mobile
             margin-left 40px
             color #6B7188
             font-size 13px
+            font-family SourceHanSansOLD-Normal
         &-edit
             width 20px
             height 20px

@@ -122,6 +122,7 @@
         top 135px
         color #FFFFFF
         font-size 16px
+        font-family SourceHanSansOLD-Normal
         text-align center
         transform translateX(-50%)
         background-image url('https://static-qa.yimutea.com/test/namebg%403x.png')
@@ -141,6 +142,7 @@
             font-family SourceHanSansOLD-Normal
             color #ffffff
             font-size 15px
+            font-family SourceHanSansOLD-Normal
             margin-left 10px
         &-go
             position absolute 

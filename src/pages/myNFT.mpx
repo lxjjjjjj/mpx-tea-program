@@ -143,6 +143,7 @@
             top -5px
             color #FDD065
             font-size 12px
+            font-family SourceHanSansOLD-Normal
         &-title
             background-image url('https://static-qa.yimutea.com/test/%E6%95%B0%E5%AD%97%E8%97%8F%E5%93%81ID%403x.png')
             background-size 100% 100%
@@ -159,6 +160,7 @@
             left 20px
             top 25px
             font-size 12px
+            font-family SourceHanSansOLD-Normal
             word-wrap break-word
             text-overflow ellipsis
             overflow hidden
@@ -207,6 +209,7 @@
         &-name
             color #FFFFFF
             font-size 20px
+            font-family SourceHanSansOLD-Normal
             margin-left 16px
             position absolute
             top 50%
@@ -290,6 +293,7 @@
                 text-align center
                 color #6B7188
                 font-size 12px
+                font-family SourceHanSansOLD-Normal
         &-line  
             width calc(100% - 24px)
             height 1px
@@ -315,6 +319,7 @@
                 width 25%
                 color #ADC6F4
                 font-size 10px
+                font-family SourceHanSansOLD-Normal
                 height 45px
                 text-align center
                 word-wrap break-word

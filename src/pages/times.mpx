@@ -90,15 +90,18 @@
     .times-title
         font-size:16px;
         color #fff
+        font-family: SourceHanSansOLD-Normal;
         margin-left 10px
     .times-time
         font-size:12px;
+        font-family: SourceHanSansOLD-Normal;
         color:#888;
     .times-desc
         margin-top:20px;
         margin-left:20px;
         color: #D4D4D4
         font-size: 12px;
+        font-family: SourceHanSansOLD-Normal;
 </style>
 <script type="application/json">
   {

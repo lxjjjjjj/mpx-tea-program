@@ -36,12 +36,14 @@
     .oops-content
         color #D4D4D4
         font-size 14px
+        font-family SourceHanSansOLD-Normal
         margin-top 46px
         text-align center 
     .oops-desc
         color #ADC6F4
         margin-top 16px
         font-size 11px
+        font-family SourceHanSansOLD-Normal
         text-align center 
 </style>
 <script type="application/json">

@@ -130,6 +130,7 @@
                     background-image url('https://static-qa.yimutea.com/test/%E5%A4%B4%E5%83%8F%E6%A1%86%403x.png')
             &-name
                 font-size 12px
+                font-family SourceHanSansOLD-Normal
                 color #B0B3FF
                 margin-left 5px
                 word-wrap break-word

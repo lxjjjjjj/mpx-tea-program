@@ -76,6 +76,7 @@
             position relative
             font-size 12px
             margin: 0px 6px;
+            font-family SourceHanSansOLD-Normal
         &-item-active
             background-image url("https://static-qa.yimutea.com/test/%E9%80%89%E4%B8%AD%E7%A4%BC%E5%93%81%E5%88%B8%E8%83%8C%E6%99%AF%403x.png")
             background-size 100% 100%
@@ -110,6 +111,7 @@
     }
     .coupon-title{
         font-size:15px;
+        font-family SourceHanSansOLD-Normal
         color:#fff;
         margin-top:12px;
         margin-left:20px;
@@ -118,12 +120,14 @@
         margin-top:10px;
         margin-left:20px;
         font-size: 10px;
+        font-family SourceHanSansOLD-Normal
         color:#ADC6F4;
     }
     .coupon-num{
         margin-top:10px;
         margin-left:20px;
         font-size: 12px;
+        font-family SourceHanSansOLD-Normal
         color:#F6D977;
     }
 </style>

@@ -261,6 +261,7 @@
         align-items center
     .third-real-content{
         font-size 12px
+        font-family SourceHanSansOLD-Normal
         color #6171AB
     }
     .third-real-image

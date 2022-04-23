@@ -67,6 +67,7 @@
         overflow hidden
         color #ADC6F4
         font-size 11px
+        font-family SourceHanSansOLD-Normal
         margin-top 20px
         &-active
           height 100px
@@ -86,6 +87,7 @@
         &-content
           color #ffffff
           font-size 14px
+          font-family SourceHanSansOLD-Normal
           margin-left 10px
         &-bg
           background-image url('https://static-qa.yimutea.com/test/%E6%95%B0%E5%AD%97%403x.png')

@@ -118,15 +118,18 @@ createPage({
         width 57px
         &-already
             font-size 11px
+            font-family SourceHanSansOLD-Normal
             color #464b5f
     .my-couponCount
         font-size 10px
+        font-family SourceHanSansOLD-Normal
         color #ffffff
         display flex
         align-items center
         width 57px
     .my-couponNum
         font-size 15px
+        font-family SourceHanSansOLD-Normal
         color #98D661
         margin-left 15px
     .my-container
@@ -212,6 +215,7 @@ createPage({
             top: 7px;
     .my-name
         font-size 16px
+        font-family SourceHanSansOLD-Normal
         color #ffffff
         font-weight 500
         width 80px
@@ -235,6 +239,7 @@ createPage({
             top -4px
             text-align center
             font-size 12px
+            font-family SourceHanSansOLD-Normal
             color #fff
             line-height 14px
     .my-vip
@@ -252,6 +257,7 @@ createPage({
         &-level
             margin-left 10px
             font-size 20px
+            font-family SourceHanSansOLD-Normal
             color #fff
         &-title
             background-image url('https://static-qa.yimutea.com/test/VIP%403x.png')
@@ -269,6 +275,7 @@ createPage({
         &-score
             color #FADC78
             font-size 12px
+            font-family SourceHanSansOLD-Normal
             height 15px
             position absolute
             top 60px
@@ -285,6 +292,7 @@ createPage({
             height 20px
             width calc(100% - 70px)
             font-size 12px
+            font-family SourceHanSansOLD-Normal
             color #fff
             position absolute
             left 30px
@@ -304,6 +312,7 @@ createPage({
             background-size 100% 100%
         &-size
             font-size 15px
+            font-family SourceHanSansOLD-Normal
             color #6171AB
             font-family SourceHanSansOLD-Normal
         &-item
@@ -329,13 +338,16 @@ createPage({
             border-radius 15px
         &-name
             font-size 15px
+            font-family SourceHanSansOLD-Normal
             color #fff
         &-ID
             color #696E88
             font-size 9px
+            font-family SourceHanSansOLD-Normal
             margin-top 5px
         &-desc
             font-size 12px
+            font-family SourceHanSansOLD-Normal
             color #ADC6F4
             margin-top 5px
             text-overflow ellipsis
