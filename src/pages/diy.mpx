@@ -21,12 +21,12 @@
       <view class="image-container">
         <view class="image-wrapper" wx:if="{{showList && showList.length}}" wx:for="{{showList}}" wx:key="item" wx:style="{{iconStyle}}">
           <image class="image-style" src="{{item.url}}" bindtap="changeImage(item)"/>
-          <view class="lock-one" wx:if="{{item.level !== vip}}"/>
-          <view class="lock-two" wx:if="{{item.level !== vip}}"/>
-          <view class="lock-three" wx:if="{{item.level !== vip}}"/>
-          <view class="lock-four" wx:if="{{item.level !== vip}}"/>
-          <view class="lock-five" wx:if="{{item.level !== vip}}"/>
-          <view class="lock-six" wx:if="{{item.level !== vip}}"/>
+          <view class="lock-one" wx:if="{{item.level === 1 && vip !== 1}}"/>
+          <view class="lock-two" wx:if="{{item.level === 2 && vip !== 2}}"/>
+          <view class="lock-three" wx:if="{{item.level === 3 && vip !== 3}}"/>
+          <view class="lock-four" wx:if="{{item.level === 4 && vip !== 4}}"/>
+          <view class="lock-five" wx:if="{{item.level === 5 && vip !== 5}}"/>
+          <view class="lock-six" wx:if="{{item.level === 6 && vip !== 6}}"/>
         </view>
       </view>
     </view>
