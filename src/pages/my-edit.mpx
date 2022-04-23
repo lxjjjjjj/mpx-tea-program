@@ -51,6 +51,7 @@
 <script>
   import mpx,{ createPage } from '@mpxjs/core'
   import store from '../store'
+  import { formatDate } from '../utils'
   createPage({
     data:{
         defaultAvatar: "https://static-qa.yimutea.com/test/%E5%A4%B4%E5%83%8F%E9%81%AE%E7%BD%A9%403x.png",
@@ -58,7 +59,7 @@
         logo:"",
         name:'',
         email:'',
-        birthday:'1998-01-26',
+        birthday:'',
         telephone:'',
         rulesMap: {
             name: false,
@@ -180,7 +181,7 @@
     onShow(){
         this.logo = this.userInfo.logo || this.avatarUrl
         this.name = this.userInfo.nickName || this.nickName
-        this.birthday = this.userInfo.birthDate || this.birthday
+        this.birthday = this.userInfo.birthDate || formatDate()
         this.telephone = this.userInfo.mobile
         this.sex = this.userInfo.sex || 0
         this.email = this.userInfo.email
