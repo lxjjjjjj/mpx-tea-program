@@ -248,7 +248,7 @@ createPage({
         color: #6B7188
         margin-left 20px
         margin-right 10px
-        font-family MicrosoftYaHei
+        font-family SourceHanSansOLD-Normal
         font-size 15px
         width 60px
     &-user-input,
@@ -268,7 +268,7 @@ createPage({
         color #ffffff
         margin-left 80px
         margin-right 10px
-        font-family MicrosoftYaHei
+        font-family SourceHanSansOLD-Normal
         font-size 15px
         margin-top 10px
         width calc(100% - 180px)

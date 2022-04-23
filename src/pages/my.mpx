@@ -159,13 +159,13 @@ createPage({
             margin-left 12px
         &-title
             font-size 14px
-            font-family MicrosoftYaHei
+            font-family SourceHanSansOLD-Bold
             color #ffffff
             margin-left 10px
         &-value
             color #FEE170
             font-size 14px
-            font-family MicrosoftYaHei
+            font-family SourceHanSansOLD-Normal
             margin-left 5px
         &-go
             background-image url('https://static-qa.yimutea.com/test/%E7%AE%AD%E5%A4%B4%403x.png')
@@ -179,7 +179,7 @@ createPage({
         position relative
         &-msg
             font-size 12px
-            font-family MicrosoftYaHei
+            font-family SourceHanSansOLD-Normal
             color #fff
             position absolute
             left 50%
@@ -305,7 +305,7 @@ createPage({
         &-size
             font-size 15px
             color #6171AB
-            font-family MicrosoftYaHei
+            font-family SourceHanSansOLD-Normal
         &-item
             width 158px
             height 219px

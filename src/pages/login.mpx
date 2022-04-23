@@ -163,7 +163,7 @@
     }
     .login-desc
         font-size 12px
-        font-family MicrosoftYaHeiLight
+        font-family SourceHanSansOLD-Normal
         margin-top 10px
         color #333
     .wx-login
@@ -193,13 +193,13 @@
         color: #6B7188
         margin-left 20px
         margin-right 10px
-        font-family MicrosoftYaHei
+        font-family SourceHanSansOLD-Normal
         font-size 15px
     .login-number
         color #6B7188
         margin-left 20px
         margin-right 10px
-        font-family MicrosoftYaHei
+        font-family SourceHanSansOLD-Normal
         font-size 15px
     .get-login-number{
         background-image url('https://static-qa.yimutea.com/test/%E6%8C%89%E9%92%AE%E9%AA%8C%E8%AF%81%E7%A0%81%403x.png')
@@ -223,7 +223,7 @@
         margin-top 20px
     .login-message
         width 249px
-        font-family MicrosoftYaHei
+        font-family SourceHanSansOLD-Normal
         color #6171AB
         font-size 12px
     .login-checkbox

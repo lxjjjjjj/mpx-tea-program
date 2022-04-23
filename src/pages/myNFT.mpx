@@ -251,7 +251,7 @@
     .nft-msg-key
         color #6B7188
         font-size 12px
-        font-family MicrosoftYaHei
+        font-family SourceHanSansOLD-Normal
         width 80px
         flex-shrink 0
     .nft-provider-value,
@@ -259,7 +259,7 @@
     .nft-msg-value
         color #ADC6F4
         font-size 12px
-        font-family FZZHJW--GB1-0
+        font-family SourceHanSansOLD-Normal
     .nft-record
         background-image url('https://static-qa.yimutea.com/test/collectbg%403x.png')
         background-size 100% 100%
