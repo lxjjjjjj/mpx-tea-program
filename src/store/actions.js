@@ -9,10 +9,9 @@ export function getHomeList(context, params){
     }).then(res=>{
         if(Number(res.code)){
             console.log('获取首页数据失败',JSON.stringify(res.msg))
-            mpx.showToast({
-                title: res.msg,
-                icon: 'error',
-                duration: 2000
+            wx.showModal({
+                title:res.msg,
+                showCancel:false
             })
         }else{
             let frontPageList = []
@@ -61,10 +60,9 @@ export function fillUserPhone(context, params){
     }).then(res=>{
         if(Number(res.code)){
             console.log('获取手机号失败',JSON.stringify(res.msg))
-            mpx.showToast({
-                title: res.msg,
-                icon: 'error',
-                duration: 2000
+            wx.showModal({
+                title:res.msg,
+                showCancel:false
             })
         }
     }).catch(err=>{
@@ -78,10 +76,9 @@ export function getUserInfo(context, params){
     }).then(res=>{
         if(Number(res.code)){
             console.log('获取用户信息失败',JSON.stringify(res.msg))
-            mpx.showToast({
-                title: res.msg,
-                icon: 'error',
-                duration: 2000
+            wx.showModal({
+                title:res.msg,
+                showCancel:false
             })
         }else{
             res.data && context.commit('setUserInfo', res.data)
@@ -99,10 +96,9 @@ export function getUserNFTAll(context, params){
     }).then(res => {
         if(Number(res.code)){
             console.log('获取用户所有NFT失败',JSON.stringify(res.msg))
-            mpx.showToast({
-                title: res.msg,
-                icon: 'error',
-                duration: 2000
+            wx.showModal({
+                title:res.msg,
+                showCancel:false
             })
         }else{
             res.data && context.commit('setUserNFTAll', res.data)
@@ -119,10 +115,9 @@ export function getUserCreationAll(context,params){
     }).then(res => {
         if(Number(res.code)){
             console.log('获取用户创作次数失败',JSON.stringify(res.msg))
-            mpx.showToast({
-                title: res.msg,
-                icon: 'error',
-                duration: 2000
+            wx.showModal({
+                title:res.msg,
+                showCancel:false
             })
         }else{
             res.data && context.commit('setUserCreateTimes', res.data)
@@ -138,10 +133,9 @@ export function getNFTById(context,params){
     }).then(res => {
         if(Number(res.code)){
             console.log('通过id获取用户NFT失败',JSON.stringify(res.msg))
-            mpx.showToast({
-                title: res.msg,
-                icon: 'error',
-                duration: 2000
+            wx.showModal({
+                title:res.msg,
+                showCancel:false
             })
         }else{
             res.data && context.commit('setNFTByIdInfo', res.data)
@@ -161,10 +155,9 @@ export function getUserCoupons(context,params){
     }).then(res => {
         if(Number(res.code)){
             console.log('获取用户优惠券失败',JSON.stringify(res.msg))
-            mpx.showToast({
-                title: res.msg,
-                icon: 'error',
-                duration: 2000
+            wx.showModal({
+                title:res.msg,
+                showCancel:false
             })
         }else{
             if(res?.data?.list?.length){
@@ -194,14 +187,13 @@ export function addUserAddress(context,params){
     }).then(res => {
         if(Number(res.code)){
             console.log('新增地址失败',JSON.stringify(res.msg))
-            mpx.showToast({
-                title: res.msg,
-                icon: 'error',
-                duration: 2000
+            wx.showModal({
+                title:res.msg,
+                showCancel:false
             })
         }else{
             mpx.showToast({
-                title: '新建地址成功',
+                title: '新建成功',
                 icon: 'success',
                 duration: 2000
             })
@@ -221,10 +213,9 @@ export function getNFTMaterial(context,params){
     }).then(res => {
         if(Number(res.code)){
             console.log('获取NFT素材失败',JSON.stringify(res.msg))
-            mpx.showToast({
-                title: res.msg,
-                icon: 'error',
-                duration: 2000
+            wx.showModal({
+                title:res.msg,
+                showCancel:false
             })
         }else{
             const materialNameMap = res?.data?.map(item => {
@@ -247,14 +238,13 @@ export function NFTGenerate(context, params){
     }).then(res => {
         if(Number(res.code)){
             console.log('铸造NFT失败',JSON.stringify(res.msg))
-            mpx.showToast({
-                title: res.msg,
-                icon: 'error',
-                duration: 2000
+            wx.showModal({
+                title:res.msg,
+                showCancel:false
             })
         }else{
             mpx.showToast({
-                title: '提交铸造nft成功',
+                title: '铸造成功',
                 icon: 'success',
                 duration: 2000
             })
@@ -273,10 +263,9 @@ export function getDisplayData(context, params){
     }).then(res => {
         if(Number(res.code)){
             console.log('获取展览馆数据失败',JSON.stringify(res.msg))
-            mpx.showToast({
-                title: res.msg,
-                icon: 'error',
-                duration: 2000
+            wx.showModal({
+                title:res.msg,
+                showCancel:false
             })
         }else{
             if(res?.data?.items?.length){
@@ -302,14 +291,14 @@ export function userAuth(context, params){
         if(Number(res.code)){
             console.log('实名认证失败',JSON.stringify(res.msg))
             mpx.showToast({
-                title: '实名认证失败',
+                title: '认证失败',
                 icon: 'error',
                 duration: 2000
             })
         }else{
             context.commit('setAuth', true)
             mpx.showToast({
-                title: '实名认证成功',
+                title: '认证成功',
                 icon: 'error',
                 duration: 2000
             })
@@ -320,7 +309,7 @@ export function userAuth(context, params){
     }).catch(err => {
         console.log('实名认证失败',JSON.stringify(err))
         mpx.showToast({
-            title: '实名认证失败',
+            title: '认证失败',
             icon: 'error',
             duration: 2000
         })
@@ -336,10 +325,9 @@ export function phoneValidate(context, params){
     }).then(res => {
         if(Number(res.code)){
             console.log('手机号已经注册过了',JSON.stringify(res.msg))
-            mpx.showToast({
-                title: JSON.stringify(res.msg),
-                icon: 'error',
-                duration: 2000
+            wx.showModal({
+                title:res.msg,
+                showCancel:false
             })
         }else{
             context.commit('setPhoneIsValidate', true)
@@ -347,7 +335,7 @@ export function phoneValidate(context, params){
     }).catch(err => {
         console.log('手机号已经注册过了',JSON.stringify(err))
         mpx.showToast({
-            title: '手机号已经注册过了',
+            title: '已经注册',
             icon: 'error',
             duration: 2000
         })
@@ -363,7 +351,7 @@ export function sendAuthSms(context, params){
         if(Number(res.code)){
             console.log('发送验证码失败',JSON.stringify(res.msg))
             mpx.showToast({
-                title: '发送验证码失败，请重新发送',
+                title: '发送失败',
                 icon: 'error',
                 duration: 2000
             })
@@ -371,7 +359,7 @@ export function sendAuthSms(context, params){
     }).catch(err => {
         console.log('发送验证码失败',JSON.stringify(err))
         mpx.showToast({
-            title: '发送验证码失败，请重新发送',
+            title: '发送失败',
             icon: 'error',
             duration: 2000
         })
@@ -387,7 +375,7 @@ export function getAddresssList(context, params){
         if(Number(res.code)){
             console.log('获取用户地址列表失败',JSON.stringify(res.msg))
             mpx.showToast({
-                title: '获取地址列表失败',
+                title: '获取失败',
                 icon: 'error',
                 duration: 1000
             })
@@ -397,7 +385,7 @@ export function getAddresssList(context, params){
     }).catch(err => {
         console.log('获取用户地址列表失败',JSON.stringify(err))
         mpx.showToast({
-            title: '获取地址列表失败',
+            title: '获取失败',
             icon: 'error',
             duration: 1000
         })
@@ -412,10 +400,9 @@ export function getAllArea(context, params){
     }).then(res => {
         if(Number(res.code)){
             console.log('获取城市字典失败',JSON.stringify(res.msg))
-            mpx.showToast({
-                title: res.msg,
-                icon: 'error',
-                duration: 2000
+            wx.showModal({
+                title:res.msg,
+                showCancel:false
             })
         }else{
             if (res.data) {
@@ -438,10 +425,9 @@ export function getUserAddrList(context, params){
     }).then(res => {
         if(Number(res.code)){
             console.log('获取用户收件地址失败',JSON.stringify(res.msg))
-            mpx.showToast({
-                title: res.msg,
-                icon: 'error',
-                duration: 2000
+            wx.showModal({
+                title:res.msg,
+                showCancel:false
             })
         }else{
             if(res?.data?.list?.length){
@@ -471,10 +457,9 @@ export function getUserAddrById(context, params){
     }).then(res => {
         if(Number(res.code)){
             console.log('获取用户详细收件地址失败',JSON.stringify(res.msg))
-            mpx.showToast({
-                title: res.msg,
-                icon: 'error',
-                duration: 2000
+            wx.showModal({
+                title:res.msg,
+                showCancel:false
             })
         }else{
             res.data && context.commit('setUserAddrById',res.data)
@@ -492,10 +477,9 @@ export function updateUserAddrById(context, params){
     }).then(res => {
         if(Number(res.code)){
             console.log('更新用户详细收件地址失败',JSON.stringify(res.msg))
-            mpx.showToast({
-                title: res.msg,
-                icon: 'error',
-                duration: 2000
+            wx.showModal({
+                title:res.msg,
+                showCancel:false
             })
         }else{
             mpx.showToast({
@@ -518,10 +502,9 @@ export function getMyNftTradeList(context, params){
     }).then(res => {
         if(Number(res.code)){
             console.log('获取用户nft交易记录失败',JSON.stringify(res.msg))
-            mpx.showToast({
-                title: res.msg,
-                icon: 'error',
-                duration: 2000
+            wx.showModal({
+                title:res.msg,
+                showCancel:false
             })
         }else{
             mpx.showToast({
@@ -544,10 +527,9 @@ export function editPersonInfo(context, params){
     }).then(res => {
         if(Number(res.code)){
             console.log('更新用户信息失败',JSON.stringify(res.msg))
-            mpx.showToast({
-                title: res.msg,
-                icon: 'error',
-                duration: 2000
+            wx.showModal({
+                title:res.msg,
+                showCancel:false
             })
         }else{
             mpx.showToast({
@@ -579,10 +561,9 @@ export function fillUserInfo(context, params){
     }).then(res => {
         if(Number(res.code)){
             console.log('补充用户微信名和头像失败',JSON.stringify(res.msg))
-            mpx.showToast({
-                title: res.msg,
-                icon: 'error',
-                duration: 2000
+            wx.showModal({
+                title:res.msg,
+                showCancel:false
             })
         }else{
             mpx.showToast({
@@ -602,10 +583,9 @@ export function getDisplayNFTById(context, params){
     }).then(res => {
         if(Number(res.code)){
             console.log('获取nft详情失败',JSON.stringify(res.msg))
-            mpx.showToast({
-                title: res.msg,
-                icon: 'error',
-                duration: 2000
+            wx.showModal({
+                title:res.msg,
+                showCancel:false
             })
         }else{
             context.commit('setDisplayNFT',res.data)
