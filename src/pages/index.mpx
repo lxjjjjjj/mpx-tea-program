@@ -61,13 +61,13 @@
     methods:{
         ...store.mapActions(['getHomeList']),
         clickBtn(path){
-            if(path) {
+            if(path.includes('Exhibition')) {
                 mpx.navigateTo({
-                    url:`${webViewPage}?url=${path}`
+                    url:showPage
                 })
             }else{
                 mpx.navigateTo({
-                    url:showPage
+                    url:`${webViewPage}?url=${path}`
                 })
             }
         },

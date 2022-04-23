@@ -15,8 +15,14 @@ export function getHomeList(context, params){
                 duration: 2000
             })
         }else{
-            let frontPageList
-            res?.data?.frontPageList && (frontPageList = [res.data.frontPageList.splice(0,3),res.data.frontPageList.splice(0,3),res.data.frontPageList.splice(0,3)])
+            let frontPageList = []
+            res?.data?.frontPageList && res.data.frontPageList.forEach(item => {
+                if(!frontPageList[Number(item.type)-1]) {
+                    frontPageList[Number(item.type)-1] = []
+                } else {
+                    frontPageList[Number(item.type)-1].push(item)
+                }
+            })
             res?.data?.frontPageList && context.commit('setHomeList',frontPageList)
             res?.data?.frontVersion && context.commit('setFrontVersion',res.data.frontVersion)
         }
@@ -302,6 +308,11 @@ export function userAuth(context, params){
             })
         }else{
             context.commit('setAuth', true)
+            mpx.showToast({
+                title: '实名认证成功',
+                icon: 'error',
+                duration: 2000
+            })
             mpx.navigateBack({
                 delta:1
             })

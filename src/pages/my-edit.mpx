@@ -58,7 +58,7 @@
         logo:"",
         name:'',
         email:'',
-        birthday:'',
+        birthday:'1998-01-26',
         telephone:'',
         rulesMap: {
             name: false,
@@ -180,9 +180,9 @@
     onShow(){
         this.logo = this.userInfo.logo || this.avatarUrl
         this.name = this.userInfo.nickName || this.nickName
-        this.birthday = this.userInfo.birthDate
+        this.birthday = this.userInfo.birthDate || this.birthday
         this.telephone = this.userInfo.mobile
-        this.sex = this.userInfo.sex
+        this.sex = this.userInfo.sex || 0
         this.email = this.userInfo.email
     }
   });
