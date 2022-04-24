@@ -41,7 +41,8 @@
       data: {
           graph: {},
           vip:0,
-          typeSelect:'背景'
+          typeSelect:'背景',
+          bgImage: ''
       },
       computed:{
         ...store.mapState(['NFTMaterial', 'NFTTab']),
@@ -65,7 +66,6 @@
       onShow(){
         const { options: { vip } } = this
         this.vip = Number(vip)
-        console.log('this.vip',this.vip)
         this.getNFTMaterial()
       },
       methods:{
@@ -89,25 +89,6 @@
                   }
               }
           })
-          // wx.chooseImage({
-          //   success: (res) => {
-          //     wx.getImageInfo({
-          //       src: res.tempFilePaths[0],
-          //       success (res) {
-          //         proportion = res.height / res.width
-          //         h = h * proportion
-          //       }
-          //     })
-          //     this.setData({
-          //         graph: {
-          //           w: 200,
-          //           h: h,
-          //           type: 'image',
-          //           url: res.tempFilePaths[0],
-          //         }
-          //     });
-          //   }
-          // })
         },
 
         /**
@@ -127,6 +108,13 @@
          */
         onExport() {
             const self = this
+            if (!this.bgImage) {
+              return mpx.showToast({
+                title: '请选择背景',
+                icon: 'error',
+                duration: 2000
+              })
+            }
             CanvasDrag.export()
                 .then((filePath) => {
                     //上传图片
@@ -233,6 +221,7 @@
         changeImage(item){
           if(item.level !== this.vip) return
           if(this.typeSelect === '背景'){
+            this.bgImage = item.url
             this.onChangeBgImage(item.url)
           }else{
             this.onAddImage(item.url)
@@ -272,6 +261,8 @@
     justify-content center
     background-image: url('https://static-qa.yimutea.com/test/%E5%8C%BA%E5%9F%9F%E8%83%8C%E6%99%AF%403x.png')
   .operation-btn
+    background-color transparentify
+    border-radius: 15px
     height 30px
     width 78px
     background-image url('https://static-qa.yimutea.com/test/%E5%8F%91%E5%B8%83%403x.png')

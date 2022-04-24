@@ -46,10 +46,10 @@
                 <view class="collect-list" wx:if="{{userNFTAll && userNFTAll.length}}">
                     <view class="collect-item" wx:for="{{userNFTAll}}" wx:key="item">
                         <view class="collect-item-wrapper" bindtap="getUserNFTById(item.id)">
-                            <image mode="widthFix" class="collect-picture" src="{{item.nftUrl}}"/>
+                            <image mode="widthFix" class="collect-picture" src="{{item.url}}"/>
                             <view class="collect-name">{{item.name}}</view>
-                            <view class="collect-ID">数字藏品ID : {{item.number}}</view>
-                            <view class="collect-desc">作品描述 : {{item.summary}}</view>
+                            <view class="collect-ID">数字藏品ID : {{item.id}}</view>
+                            <view class="collect-desc" wx:if="{{item.summary}}">作品描述 : {{item.summary}}</view>
                         </view>
                     </view>
                 </view>
@@ -147,6 +147,7 @@ createPage({
         padding 10px 0
         position relative
     .my-times
+        position relative
         background-image url('https://static-qa.yimutea.com/test/mytimesbg%403x.png')
         background-size 100% 100%
         width 100%
@@ -175,7 +176,8 @@ createPage({
             background-size 100% 100%
             height 15px
             width 9px
-            margin-left 160px
+            position absolute
+            right 16px
     .my-class
         width 50px
         height 18px
@@ -317,12 +319,14 @@ createPage({
             font-family SourceHanSansOLD-Normal
         &-item
             width 158px
-            height 219px
+            min-height 160px
             margin 10px 0
         &-item-wrapper
-            width 148px
-            height 209px
-            padding 5px
+            width 134px
+            min-height 150px
+            padding 12px
+            background-color: rgba(255,255,255,0.08)
+            border-radius 10px
         &-top
             display flex
             align-items center
@@ -354,8 +358,9 @@ createPage({
             white-space nowrap
             overflow hidden
         &-picture
-            width 148px
+            width 134px
             height 148px
+            border-radius 5px
         &-container
             width 100%
 

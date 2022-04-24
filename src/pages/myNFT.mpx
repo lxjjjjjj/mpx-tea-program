@@ -7,17 +7,16 @@
             </view>
         </view>
         <view class="nft-image">
-            <image src="{{nftInfo.nftUrl || displayNFT.url}}"/> 
+            <image src="{{nftInfo.url || displayNFT.url}}"/>
             <view class="nft-image-share">
-                <view class="nft-image-share-name">{{nftInfo.workName || displayNFT.name}}</view>
+                <view class="nft-image-share-name">{{nftInfo.name || displayNFT.name}}</view>
                 <button class="nft-image-share-btn" open-type="share"></button>
             </view>
-            <!-- wx:if="{{nftInfo.image}}" -->
         </view>
         <view class="nft-desc">
             <view class="nft-provider">
                 <view class="nft-provider-key">创作者</view>
-                <view class="nft-provider-value">{{nftInfo.publisher || displayNFT.publisher }}</view>
+                <view class="nft-provider-value">{{nftInfo.creator || displayNFT.creator }}</view>
             </view>
             <view class="nft-msg">
                 <view class="nft-msg-key">简 介</view>
@@ -25,7 +24,7 @@
             </view>
         </view>
         <view class="nft-ID">
-            <view class="nft-ID-num">NO.{{nftInfo.id || displayNFT.id}}</view>
+            <view class="nft-ID-num">NO.{{nftInfo.number || displayNFT.number}}</view>
             <view class="nft-ID-title"/>
             <view class="nft-ID-special">{{nftInfo.tokenId || displayNFT.tokenId}}</view>
         </view>
@@ -36,11 +35,11 @@
             </view>
             <view class="nft-msg-right">
                 <view class="nft-msg-key">领取时间</view>
-                <view class="nft-msg-value">{{nftInfo.receiveTime || displayNFT.receiveTime}}</view>
+                <view class="nft-msg-value">{{nftInfo.receiveTime || displayNFT.receiveTime || 0}}</view>
             </view>
             <view class="nft-msg-right">
                 <view class="nft-msg-key">发行时间</view>
-                <view class="nft-msg-value">{{nftInfo.publishTime || displayNFT.publishTime}}</view>
+                <view class="nft-msg-value">{{nftInfo.publishTime || displayNFT.publishTime || 0}}</view>
             </view>
             <view class="nft-msg-right">
                 <view class="nft-msg-key">发行方</view>
@@ -60,8 +59,8 @@
                 <view class="nft-record-content" wx:for="{{myNftTradeList}}" wx:key="index">
                     <view class="nft-record-content-item">{{item.from}}</view>
                     <view class="nft-record-content-item">{{item.to}}</view>
-                    <view class="nft-record-content-item">{{item.hash}}</view>
-                    <view class="nft-record-content-item">{{item.date}}</view>
+                    <view class="nft-record-content-item">{{item.txHash}}</view>
+                    <view class="nft-record-content-item">{{item.createTime}}</view>
                 </view>
             </view>
         </view>
@@ -69,15 +68,15 @@
 </template>
 
 <script>
-  import mpx,{ createPage } from '@mpxjs/core'
-  import store from '../store'
-  createPage({
+import mpx,{ createPage } from '@mpxjs/core'
+import store from '../store'
+createPage({
     data:{
         collectId:0
     },
     computed:{
         ...store.mapState(['nftInfo','myNftTradeList','displayNFT'])
-    }, 
+    },
     onShow(){
         const { options: { id, show } } = this
         if(show){
@@ -98,29 +97,30 @@
     },
     onShareAppMessage(){
         return {
-            title: this.nftInfo.workName,
+            title: this.nftInfo.name,
             path: `/pages/myNFT/index?id=${this.collectId}`,
-            imageUrl:this.nftInfo.nftUrl
+            imageUrl: this.nftInfo.url
         }
     },
     onShareTimeline(){
         return {
-            title: this.nftInfo.workName,
+            title: this.nftInfo.name,
             query: `id=${this.collectId}`,
-            imageUrl: this.nftInfo.nftUrl
+            imageUrl: this.nftInfo.url
         }
     }
-  });
+});
 </script>
 <style lang="stylus">
     button::after
         border none
-   .nft-wrapper
+    .nft-wrapper
         background url('https://static-qa.yimutea.com/test/home_bg.png')
         background-size 100% 100%
         min-height 100vh
         height 100%
         width 100vw
+        padding-bottom 30px
     .nft-title
         background url('https://static-qa.yimutea.com/test/logo%403x.png')
         background-size 100% 100%
@@ -137,9 +137,8 @@
         margin 20px 25px
         position relative
         &-num
-            position absolute 
-            /*use rpx*/
-            right 45px 
+            position absolute
+            right 30px
             top -5px
             color #FDD065
             font-size 12px
@@ -264,7 +263,8 @@
         font-size 12px
         font-family SourceHanSansOLD-Normal
     .nft-record
-        background-image url('https://static-qa.yimutea.com/test/collectbg%403x.png')
+        background-color rgba(186, 185, 198, 0.1)
+        border-radius 15px
         background-size 100% 100%
         height 228px
         margin 16px 25px 0
@@ -310,7 +310,7 @@
             &-wrapper
                 position absolute
                 top 84px
-                height 170px
+                min-height 170px
                 width 100%
                 overflow-y scroll
             &-wrapper::-webkit-scrollbar
