@@ -42,7 +42,8 @@
           graph: {},
           vip:0,
           typeSelect:'背景',
-          bgImage: ''
+          bgImage: '',
+          publish:true
       },
       computed:{
         ...store.mapState(['NFTMaterial', 'NFTTab']),
@@ -107,6 +108,10 @@
          * 导出图片
          */
         onExport() {
+            if(!this.publish){
+              return 
+            }
+            this.publish = false
             const self = this
             if (!this.bgImage) {
               return mpx.showToast({
@@ -136,10 +141,15 @@
                             icon: 'error',
                             duration: 2000
                           })
+                          self.publish = true
                         }else{
                           self.NFTGenerate({
                             level:self.vip,
                             nft:data?.data?.uuid
+                          }).then(()=>{
+                            self.publish = true
+                          },()=>{
+                            self.publish = true
                           })
                         }
                       },
@@ -149,11 +159,13 @@
                           icon: 'error',
                           duration: 2000
                         })
+                        self.publish = true
                       }
                     })
                 })
                 .catch((e) => {
                     console.error(e);
+                    this.publish = true
                 })
         },
 

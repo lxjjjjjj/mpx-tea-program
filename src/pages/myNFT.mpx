@@ -7,7 +7,7 @@
             </view>
         </view>
         <view class="nft-image">
-            <image src="{{nftInfo.url || displayNFT.url}}"/>
+            <image class="nft-image-bg" src="{{nftInfo.url || displayNFT.url}}"/>
             <view class="nft-image-share">
                 <view class="nft-image-share-name">{{nftInfo.name || displayNFT.name}}</view>
                 <button class="nft-image-share-btn" open-type="share"></button>
@@ -79,6 +79,7 @@ createPage({
     },
     onShow(){
         const { options: { id, show } } = this
+        console.log('id',id)
         if(show){
             this.collectId = id
             this.getDisplayNFTById({ id: id })
@@ -98,7 +99,7 @@ createPage({
     onShareAppMessage(){
         return {
             title: this.nftInfo.name,
-            path: `/pages/myNFT/index?id=${this.collectId}`,
+            path: `/pages/myNFT?id=${this.collectId}`,
             imageUrl: this.nftInfo.url
         }
     },
@@ -195,6 +196,9 @@ createPage({
         image
             width calc(100% -10px)
             height calc(100% -10px)
+        &-bg
+            width 300px
+            height 378px
     .nft-image-share
         /*use rpx*/
         height 110rpx

@@ -230,30 +230,34 @@ export function getNFTMaterial(context,params){
 }
 
 export function NFTGenerate(context, params){
-    console.log('params',params)
-    request({
-        url:apis.NFTGenerateAPI,
-        params:params,
-        method:"POST"
-    }).then(res => {
-        if(Number(res.code)){
-            console.log('铸造NFT失败',JSON.stringify(res.msg))
-            wx.showModal({
-                title:res.msg,
-                showCancel:false
-            })
-        }else{
-            mpx.showToast({
-                title: '铸造成功',
-                icon: 'success',
-                duration: 2000
-            })
-            mpx.navigateBack({
-                delta:1
-            })
-        }
-    }).catch(err=>{
-        console.log('铸造NFT失败',JSON.stringify(err))
+    return new Promise((resolve, reject)=>{
+        request({
+            url:apis.NFTGenerateAPI,
+            params:params,
+            method:"POST"
+        }).then(res => {
+            if(Number(res.code)){
+                console.log('铸造NFT失败',JSON.stringify(res.msg))
+                wx.showModal({
+                    title:res.msg,
+                    showCancel:false
+                })
+                reject()
+            }else{
+                mpx.showToast({
+                    title: '铸造成功',
+                    icon: 'success',
+                    duration: 2000
+                })
+                mpx.navigateBack({
+                    delta:1
+                })
+                resolve()
+            }
+        }).catch(err=>{
+            console.log('铸造NFT失败',JSON.stringify(err))
+            reject()
+        })
     })
 }
 
