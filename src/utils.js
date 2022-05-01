@@ -110,3 +110,13 @@ export function formatDate(){
   const day = date.getDate()
   return `${year}-${month}-${day}`
 }
+export function formatExactDate(time){
+  const date = new Date(time)
+  const year = date.getFullYear()
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  const h = date.getHours().length === 1 ? '0' + date.getHours() : date.getHours()
+  const m = date.getMinutes().length === 1 ? '0' + date.getMinutes() : date.getMinutes()
+  const s = date.getSeconds().length === 1 ? '0' + date.getSeconds() : date.getSeconds()
+  return `${year}-${month}-${day} ${h}:${m}:${s}`
+}

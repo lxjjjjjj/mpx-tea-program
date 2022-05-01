@@ -35,18 +35,18 @@
             </view>
             <view class="nft-msg-right">
                 <view class="nft-msg-key">领取时间</view>
-                <view class="nft-msg-value">{{nftInfo.receiveTime || displayNFT.receiveTime || 0}}</view>
+                <view class="nft-msg-value">{{formatReceiveTime}}</view>
             </view>
             <view class="nft-msg-right">
                 <view class="nft-msg-key">发行时间</view>
-                <view class="nft-msg-value">{{nftInfo.publishTime || displayNFT.publishTime || 0}}</view>
+                <view class="nft-msg-value">{{formatPublishTime}}</view>
             </view>
             <view class="nft-msg-right">
                 <view class="nft-msg-key">发行方</view>
                 <view class="nft-msg-value">{{nftInfo.publisher || displayNFT.publisher}}</view>
             </view>
         </view>
-        <view class="nft-record" wx:if="{{myNftTradeList && myNftTradeList.length}}">
+        <!-- <view class="nft-record" wx:if="{{myNftTradeList && myNftTradeList.length}}">
             <view class="nft-record-title"></view>
             <view class="nft-record-list-title">
                 <view class="nft-record-list-title-item">from</view>
@@ -63,19 +63,26 @@
                     <view class="nft-record-content-item">{{item.createTime}}</view>
                 </view>
             </view>
-        </view>
+        </view> -->
     </view>
 </template>
 
 <script>
 import mpx,{ createPage } from '@mpxjs/core'
 import store from '../store'
+import { formatExactDate } from '../utils'
 createPage({
     data:{
         collectId:0
     },
     computed:{
-        ...store.mapState(['nftInfo','myNftTradeList','displayNFT'])
+        ...store.mapState(['nftInfo','myNftTradeList','displayNFT']),
+        formatReceiveTime(){
+            return formatExactDate(this.nftInfo.receiveTime) || formatExactDate(this.displayNFT.receiveTime) || 0
+        },
+        formatPublishTime(){
+            return formatExactDate(this.nftInfo.publishTime) || formatExactDate(this.displayNFT.publishTime) || 0
+        }
     },
     onShow(){
         const { options: { id, show } } = this
