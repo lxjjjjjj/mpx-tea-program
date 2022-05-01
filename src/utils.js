@@ -111,6 +111,7 @@ export function formatDate(){
   return `${year}-${month}-${day}`
 }
 export function formatExactDate(time){
+  if(!time) return ''
   const date = new Date(time)
   const year = date.getFullYear()
   const month = date.getMonth() + 1

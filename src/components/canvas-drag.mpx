@@ -405,6 +405,7 @@
           },
           onGraphChange(n, o) {
               if (JSON.stringify(n) === '{}') return;
+              this.drawArr = []
               this.drawArr.push(new dragGraph(Object.assign({
                   x: 30,
                   y: 30,

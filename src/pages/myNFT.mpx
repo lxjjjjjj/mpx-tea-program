@@ -78,10 +78,10 @@ createPage({
     computed:{
         ...store.mapState(['nftInfo','myNftTradeList','displayNFT']),
         formatReceiveTime(){
-            return formatExactDate(this.nftInfo.receiveTime) || formatExactDate(this.displayNFT.receiveTime) || 0
+            return formatExactDate(this.nftInfo.receiveTime)
         },
         formatPublishTime(){
-            return formatExactDate(this.nftInfo.publishTime) || formatExactDate(this.displayNFT.publishTime) || 0
+            return formatExactDate(this.nftInfo.publishTime)
         }
     },
     onShow(){
