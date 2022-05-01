@@ -1,5 +1,5 @@
 <template>
-    <view class="nft-wrapper" wx:if="{{nftInfo || displayNFT}}">
+    <view class="app-image nft-wrapper" wx:if="{{nftInfo || displayNFT}}">
         <view class="nft-top-wrapper">
             <view class="nft-top">
                 <view class="nft-title"/>
@@ -78,10 +78,10 @@ createPage({
     computed:{
         ...store.mapState(['nftInfo','myNftTradeList','displayNFT']),
         formatReceiveTime(){
-            return formatExactDate(this.nftInfo.receiveTime)
+            return formatExactDate(this.nftInfo.receiveTime) || formatExactDate(this.displayNFT.receiveTime)
         },
         formatPublishTime(){
-            return formatExactDate(this.nftInfo.publishTime)
+            return formatExactDate(this.nftInfo.publishTime) || formatExactDate(this.displayNFT.publishTime)
         }
     },
     onShow(){
@@ -123,7 +123,6 @@ createPage({
     button::after
         border none
     .nft-wrapper
-        background url('https://static-qa.yimutea.com/test/home_bg.png')
         background-size 100% 100%
         min-height 100vh
         height 100%
@@ -141,7 +140,8 @@ createPage({
         background-image url('https://static-qa.yimutea.com/test/id%E6%A1%86%403x.png')
         background-size 100% 100%
         height 68px
-        width calc(100% - 50px)
+        /*use rpx*/
+        width 650rpx
         margin 20px 25px
         position relative
         &-num
@@ -160,7 +160,8 @@ createPage({
             top 10px
             left 20px
         &-special
-            width calc(100% - 48px)
+            /*use rpx*/
+            width 600rpx
             height 32px
             color #ffffff
             position absolute 

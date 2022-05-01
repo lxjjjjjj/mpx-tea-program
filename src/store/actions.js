@@ -128,6 +128,7 @@ export function getUserCreationAll(context,params){
 }
 
 export function getNFTById(context,params){
+    context.commit('setNFTByIdInfo', {})
     request({
         url: apis.getNftByIdAPI + `/${params.id}`,
     }).then(res => {
@@ -585,6 +586,7 @@ export function fillUserInfo(context, params){
 }
 
 export function getDisplayNFTById(context, params){
+    context.commit('setDisplayNFT', {})
     request({
         url:`${apis.getDisplayNFTByIdAPI}/${params.id}`
     }).then(res => {

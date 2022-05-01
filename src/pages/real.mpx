@@ -1,5 +1,5 @@
 <template>
-    <view class="real-wrapper">
+    <view class="app-image real-wrapper">
         <image class="real-title" src="https://static-qa.yimutea.com/test/%E6%A0%87%E9%A2%98_%E5%AE%9E%E5%90%8D%E4%BF%A1%E6%81%AF%E8%AE%A4%E8%AF%81%403x.png"/>
         <view class="real-mobile-wrapper">
             <view class="real-mobile">姓  名</view>
@@ -140,7 +140,6 @@
 <style lang="stylus">
     .real-wrapper
         height 100vh
-        background url('https://static-qa.yimutea.com/test/home_bg.png') 100% 100%
         display flex
         flex-direction column
         align-items: center

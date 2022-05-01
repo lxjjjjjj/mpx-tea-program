@@ -1,5 +1,5 @@
 <template>
-    <view class="my-edit-wrapper">
+    <view class="app-image my-edit-wrapper">
         <view class="my-edit">
             <view class="my-edit-avatar">
                 <view class="my-edit-avatar-text">头像</view>
@@ -197,7 +197,6 @@
             height 100%
             min-height 100vh
             width 100vw
-            background-image url('https://static-qa.yimutea.com/test/home_bg.png')
             background-size 100% 100%
         &-avatar,
         &-name,

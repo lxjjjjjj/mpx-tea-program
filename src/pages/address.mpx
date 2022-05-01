@@ -1,5 +1,5 @@
 <template>
-    <view class="address">
+    <view class="app-image address">
         <view wx:class="{{addrId ? 'address-edit':'address-title'}}"/>
         <view class="address-user-wrapper">
             <view class="address-user">收货人</view>
@@ -207,7 +207,6 @@ createPage({
     flex-direction column
     align-items center
     padding-top 58px
-    background-image url('https://static-qa.yimutea.com/test/home_bg.png')
     background-size 100% 100%
     &-title
         height 22px

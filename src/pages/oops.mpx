@@ -1,5 +1,5 @@
 <template>
-    <view class="oops-wrapper">
+    <view class="app-image oops-wrapper">
         <view class="oops-title"></view>
         <view class="oops-content">抱歉，网络崩溃了</view>
         <view class="oops-desc">点击右上角重新进入小程序</view>
@@ -22,7 +22,6 @@
         height 100%
         min-height 100vh
         width 100vw
-        background-image url('https://static-qa.yimutea.com/test/home_bg.png')
         background-size 100% 100%
         display flex
         flex-direction column

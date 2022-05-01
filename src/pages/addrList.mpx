@@ -1,5 +1,5 @@
 <template>
-    <view class="addrList-wrapper">
+    <view class="app-image addrList-wrapper">
         <view class="addrList-title"></view>
         <view class="addrList-item" wx:if="{{addrList && addrList.length}}" wx:for="{{addrList}}" wx:key="index">
             <view class="addrList-piece-one">
@@ -61,7 +61,6 @@
         height 100%
         min-height 100vh
         width 100vw
-        background-image url('https://static-qa.yimutea.com/test/home_bg.png')
         background-size 100% 100%
         display flex
         flex-direction column

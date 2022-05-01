@@ -1,5 +1,5 @@
 <template>
-    <view class="signin-wrapper">
+    <view class="app-image signin-wrapper">
         <view class="signin-title">注册</view>
         <view class="signin-phone-wrapper">
             <view class="signin-phone">电话 : </view>

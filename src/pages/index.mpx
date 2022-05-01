@@ -1,11 +1,11 @@
 <template>
-    <view class="index-container" wx:if="{{Number(frontVersion.type)===0}}">
+    <view class="app-image index-container" wx:if="{{Number(frontVersion.type)===0}}">
         <image src="{{bgImage}}" class="index-bg"/>
         <view wx:if="{{homeList && homeList.length}}" wx:for="{{homeList}}" wx:key="index">
             <image src="{{item.imageUrl}}" style="top{{item.yaxis}}pxleft{{item.xaxis}}px" class="index-icon" bindtap="clickBtn(item.jumpUrl)"/>
         </view>
     </view>
-    <view wx:else class="home-background">
+    <view wx:else class="app-image home-background">
         <view class="home-title">
             <image class="home-title-left" src="{{logo}}"></image>
             <image class="home-title-right" src="{{go}}"></image>
@@ -85,7 +85,6 @@
         height 100%
         min-height 100vh
         width 100vw
-        background-image url('https://static-qa.yimutea.com/test/home_bg.png')
         background-size 100% 100%
     .home-background-image 
         width 100%

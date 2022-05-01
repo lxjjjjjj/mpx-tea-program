@@ -1,5 +1,5 @@
 <template>
-    <view class="my-wrapper">
+    <view class="app-image my-wrapper">
         <view class="my-container" srcoll-y="true" show-scrollbar="false" enable-flex="true">
             <view class="my-top" wx:if="{{userInfo}}">
                 <view class="my-avatar" bindtap="goToPerson"><image src="{{userInfo.logo || avatarUrl || defaultAvatar}}"/></view>
@@ -106,7 +106,6 @@ createPage({
 </script>
 <style lang="stylus">
     .my-wrapper
-        background url('https://static-qa.yimutea.com/test/home_bg.png')
         background-size 100% 100%
         min-height 100vh
         height 100%

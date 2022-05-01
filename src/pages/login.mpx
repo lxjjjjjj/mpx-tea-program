@@ -1,5 +1,5 @@
 <template>
-    <view class="login-wrapper">
+    <view class="app-image login-wrapper">
         <image class="login-title" src="https://qa-yimu.oss-cn-shenzhen.aliyuncs.com/test/%E6%A0%87%E9%A2%98_hi%403x.png"/>
         <view class="login-desc">这里是易亩生璞</view>
         <!-- <view class="login-phone-wrapper">
@@ -141,8 +141,6 @@
 </script>
 <style lang="stylus">
     .login-wrapper
-        height 100vh
-        background url('https://static-qa.yimutea.com/test/home_bg.png') 100% 100%
         display flex
         flex-direction column
         align-items: center
