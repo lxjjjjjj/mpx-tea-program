@@ -167,6 +167,7 @@ createPage({
             position absolute 
             left 20px
             top 25px
+            z-index 9
             font-size 12px
             font-family SourceHanSansOLD-Normal
             word-wrap break-word
