@@ -51,7 +51,7 @@
           return this.NFTMaterial.filter(item => item.name === this.typeSelect)?.[0]?.materialLevelVOList
         },
         iconPosition(){
-          const data = this.NFTMaterial.filter(item => item.name === this.typeSelect)
+          const data = this.NFTMaterial.filter(item => item.name === this.typeSelect)[0]
           return {
             x: data.xAxis,
             y: data.yAxis,
@@ -81,11 +81,11 @@
             url,
             success: (res) => {
               this.graph = {
-                    w: 100,//图片宽度
-                    h: 100,//图片高度
+                    w: this.iconPosition.width,//图片宽度
+                    h: this.iconPosition.height,//图片高度
                     type: 'image',
-                    x: 100,//图片左边位置
-                    y: 100,//图片右边位置
+                    x: this.iconPosition.x,//图片左边位置
+                    y: this.iconPosition.y,//图片右边位置
                     url: res.tempFilePath
                   }
               }

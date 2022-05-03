@@ -72,10 +72,10 @@
     computed:{
         ...store.mapState(['userInfo','nickName','avatarUrl']),
         yes(){
-            return this.sex === 0
+            return Number(this.sex) === 0
         },
         no(){
-            return this.sex === 1
+            return Number(this.sex) === 1
         },
     }, 
     methods:{

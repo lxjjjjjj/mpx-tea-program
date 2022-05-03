@@ -511,6 +511,7 @@
               this.draw();
           },
           move(e) {
+              return
               const {x, y} = e.touches[0];
               if (this.tempGraphArr && this.tempGraphArr.length > 0) {
                   isMove = true; // 有选中元素，并且有移动时，设置移动标识
