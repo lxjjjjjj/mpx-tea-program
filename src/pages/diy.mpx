@@ -84,6 +84,7 @@
                     w: this.iconPosition.width,//图片宽度
                     h: this.iconPosition.height,//图片高度
                     type: 'image',
+                    typeId: this.typeSelect,
                     x: this.iconPosition.x,//图片左边位置
                     y: this.iconPosition.y,//图片右边位置
                     url: res.tempFilePath

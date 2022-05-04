@@ -16,7 +16,7 @@
   let isMove = false; // 标识触摸后是否有移动，用来判断是否需要增加操作历史
 
   const DEBUG_MODE = false; // 打开调试后会渲染操作区域边框（无背景时有效）
-  const dragGraph = function ({x = 30, y = 30, w, h, type, text, fontSize = 20, color = 'red', url = null, rotate = 0, sourceId = null, selected = true}, canvas, factor) {
+  const dragGraph = function ({x = 30, y = 30, w, h, type, text, fontSize = 20, color = 'red', url = null, rotate = 0, sourceId = null, selected = true, typeId = null}, canvas, factor) {
       if (type === 'text') {
           canvas.setFontSize(fontSize);
           const textWidth = canvas.measureText(text).width;
@@ -53,6 +53,7 @@
       this.selected = selected;
       this.factor = factor;
       this.sourceId = sourceId;
+      this.typeId = typeId;
       this.MIN_WIDTH = 20;
       this.MIN_FONTSIZE = 10;
   };
@@ -405,11 +406,18 @@
           },
           onGraphChange(n, o) {
               if (JSON.stringify(n) === '{}') return;
-              this.drawArr = []
-              this.drawArr.push(new dragGraph(Object.assign({
+              const selectIndex = this.drawArr.findIndex(item=>item.typeId === n.typeId)
+              if (selectIndex === -1) {
+                this.drawArr.push(new dragGraph(Object.assign({
                   x: 30,
                   y: 30,
-              }, n), this.ctx, this.factor));
+                }, n), this.ctx, this.factor));
+              } else {
+                this.drawArr.splice(selectIndex, 1, new dragGraph(Object.assign({
+                  x: 30,
+                  y: 30,
+                }, n), this.ctx, this.factor));
+              }
               this.draw();
               // 参数有变化时记录历史
               this.recordHistory();

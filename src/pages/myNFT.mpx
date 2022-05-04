@@ -10,7 +10,7 @@
             <image class="nft-image-bg" src="{{nftInfo.url || displayNFT.url}}"/>
             <view class="nft-image-share">
                 <view class="nft-image-share-name">{{nftInfo.name || displayNFT.name}}</view>
-                <button class="nft-image-share-btn" open-type="share"></button>
+                <button class="nft-image-share-btn" open-type="share" wx:if="{{nftInfo.tokenId || displayNFT.tokenId}}"></button>
             </view>
         </view>
         <view class="nft-desc">
@@ -84,9 +84,26 @@ createPage({
             return formatExactDate(this.nftInfo.publishTime) || formatExactDate(this.displayNFT.publishTime)
         }
     },
+    watch:{
+        'nftInfo.tokenId,displayNFT.tokenId':{
+            handler(val){
+                const showShare = val.some(item=>Boolean(item))
+                if (showShare) {
+                    wx.showShareMenu({
+                        withShareTicket: true,
+                        menus: ['shareAppMessage', 'shareTimeline']
+                    });
+                } else {
+                    wx.hideShareMenu({
+                        menus: ['shareAppMessage', 'shareTimeline']
+                    })
+                }
+            },
+            immediate: true
+        }
+    },
     onShow(){
         const { options: { id, show } } = this
-        console.log('id',id)
         if(show){
             this.collectId = id
             this.getDisplayNFTById({ id: id })
@@ -95,10 +112,6 @@ createPage({
             this.getNFTById({ id: id })
             this.getMyNftTradeList({ id: id })
         }
-        wx.showShareMenu({
-            withShareTicket: true,
-            menus: ['shareAppMessage', 'shareTimeline']
-        });
     },
     methods:{
         ...store.mapActions(['getNFTById','getMyNftTradeList','getDisplayNFTById'])
@@ -171,11 +184,6 @@ createPage({
             font-size 12px
             font-family SourceHanSansOLD-Normal
             word-wrap break-word
-            text-overflow ellipsis
-            overflow hidden
-            display -webkit-box
-            -webkit-line-clamp 2
-            -webkit-box-orient vertical
     .nft-ad
         background url('https://static-qa.yimutea.com/test/%E5%B9%BF%E5%91%8A%E8%AF%AD%403x.png')
         background-size 100% 100%
