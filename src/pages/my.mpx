@@ -19,7 +19,7 @@
                     </view>
                 </view>
                 <view class="my-coupon" bindtap="goToCoupon">
-                    <view class="my-coupon-num">{{userInfo.couponCount}}</view>
+                    <view class="my-coupon-num" wx:if="{{userInfo.couponCount}}">{{userInfo.couponCount}}</view>
                 </view>
             </view>
             <view class="my-vip" wx:if="{{userInfo}}">
