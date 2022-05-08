@@ -17,6 +17,7 @@ export default ({url,params,method="GET"}) => {
                 'authorization':`${wx.getStorageSync('token')}`
             },
             success (res) {
+                console.log('res.statusCode',res.statusCode)
                 wx.hideLoading()
                 if (res.statusCode === 403) {
                     mpx.navigateTo({
@@ -31,7 +32,11 @@ export default ({url,params,method="GET"}) => {
                 }
             },
             fail (reason) {
+                console.log('reason',reason)
                 wx.hideLoading()
+                mpx.navigateTo({
+                    url: LoginPage
+                })
                 reject(reason)
             }
         })

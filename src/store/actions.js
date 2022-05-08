@@ -18,9 +18,11 @@ export function getHomeList(context, params){
             res?.data?.frontPageList && res.data.frontPageList.forEach(item => {
                 if(!frontPageList[Number(item.type)-1]) {
                     frontPageList[Number(item.type)-1] = []
-                } else {
-                    frontPageList[Number(item.type)-1].push(item)
-                }
+                } 
+                frontPageList[Number(item.type)-1].push(item)
+            })
+            frontPageList = frontPageList.map(list => {
+                return list.sort((a,b)=>a.sort - b.sort)
             })
             res?.data?.frontPageList && context.commit('setHomeList',frontPageList)
             res?.data?.frontVersion && context.commit('setFrontVersion',res.data.frontVersion)
@@ -70,7 +72,7 @@ export function fillUserPhone(context, params){
     })
 }
 export function getUserInfo(context, params){
-    request({
+    return request({
         url: apis.userInfoAPI,
         params
     }).then(res=>{

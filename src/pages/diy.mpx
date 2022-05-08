@@ -48,7 +48,7 @@
       computed:{
         ...store.mapState(['NFTMaterial', 'NFTTab']),
         showList(){
-          return this.NFTMaterial.filter(item => item.name === this.typeSelect)?.[0]?.materialLevelVOList
+          return this.NFTMaterial.filter(item => item.name === this.typeSelect)?.[0]?.materialLevelVOList.filter(material=>material.url)
         },
         iconPosition(){
           const data = this.NFTMaterial.filter(item => item.name === this.typeSelect)[0]

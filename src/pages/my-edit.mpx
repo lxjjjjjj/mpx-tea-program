@@ -79,7 +79,7 @@
         },
     }, 
     methods:{
-        ...store.mapActions(['editPersonInfo']),
+        ...store.mapActions(['editPersonInfo', 'getUserInfo']),
         chooseSex(type){
             this.sex = type
         },
@@ -178,7 +178,8 @@
             this.rulesMap[type] = false
         }
     },
-    onShow(){
+    async onShow(){
+        await this.getUserInfo()
         this.logo = this.userInfo.logo || this.avatarUrl
         this.name = this.userInfo.nickName || this.nickName
         this.birthday = this.userInfo.birthDate || formatDate()

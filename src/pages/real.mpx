@@ -49,15 +49,15 @@
         },
         isRightNumber: false,
         identifyErrorMsg:"",
-        codeCountDown:60,
         timer:0,
         showSendBtn:true
       },
       computed:{
-          ...store.mapState(['getPhoneNumber'])
+          ...store.mapState(['getPhoneNumber','codeCountDown'])
       },
       methods:{
             ...store.mapActions(['userAuth','sendAuthSms']),
+            ...store.mapMutations(['updateCodeCountDown']),
             cancel(){
                 wx.navigateBack({
                     delta: 1
@@ -70,7 +70,19 @@
             },
             sendMessage(){
                 console.log('sendMessage')
-                if (!this.mobile) {
+                if (!this.name) {
+                    wx.showToast({
+                        title: '姓名不能为空',
+                        icon: 'error',
+                        duration: 1000
+                    })
+                } else if (!this.idCard) {
+                    wx.showToast({
+                        title: '身份证不能为空',
+                        icon: 'error',
+                        duration: 1000
+                    })
+                } else if (!this.mobile) {
                     wx.showToast({
                         title: '电话不能为空',
                         icon: 'error',
@@ -87,16 +99,16 @@
                 if(this.mobile && !this.isRightNumber){
                     if(this.timer) {
                         clearInterval(this.timer)
-                        this.codeCountDown = 60
+                        this.updateCodeCountDown(60)
                     }
                     const self = this
                     this.timer = setInterval(()=>{
                         if (this.codeCountDown <= 0) {
                             clearInterval(this.timer)
-                            this.codeCountDown = 60
+                            this.updateCodeCountDown(60)
                             this.showSendBtn = true
                         } else {
-                            this.codeCountDown = this.codeCountDown - 1
+                            this.updateCodeCountDown(this.codeCountDown - 1) 
                             this.showSendBtn = false
                         }
                     }, 1000)

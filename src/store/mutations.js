@@ -91,3 +91,6 @@ export function setAllArea(state, data) {
 export function setDisplayNFT(state, data){
   state.displayNFT = data
 }
+export function updateCodeCountDown(state, data){
+  state.codeCountDown = data
+}
