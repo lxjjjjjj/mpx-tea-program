@@ -26,7 +26,8 @@ const state = {
     myNftTradeList:[],
     displayNFT:{},
     identityType:0,
-    codeCountDown:60
+    codeCountDown:60,
+    codeTimer:null
 }
 
 export default state

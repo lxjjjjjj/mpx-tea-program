@@ -353,7 +353,7 @@ export function phoneValidate(context, params){
 }
 
 export function sendAuthSms(context, params){
-    request({
+    return request({
         url:apis.sendAuthSmsAPI,
         params:params,
         method:"POST"
@@ -373,6 +373,7 @@ export function sendAuthSms(context, params){
             icon: 'error',
             duration: 2000
         })
+        context.state.codeTimer && clearInterval(context.state.codeTimer)
     })
 }
 

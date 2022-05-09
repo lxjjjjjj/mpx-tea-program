@@ -94,3 +94,6 @@ export function setDisplayNFT(state, data){
 export function updateCodeCountDown(state, data){
   state.codeCountDown = data
 }
+export function setCodeTimer(state, data){
+  state.codeTimer = data
+}
