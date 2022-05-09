@@ -76,18 +76,21 @@
                         icon: 'error',
                         duration: 1000
                     })
+                    return
                 } else if (!this.idCard) {
                     wx.showToast({
                         title: '身份证不能为空',
                         icon: 'error',
                         duration: 1000
                     })
+                    return
                 } else if (!this.mobile) {
                     wx.showToast({
                         title: '电话不能为空',
                         icon: 'error',
                         duration: 1000
                     })
+                    return
                 } else if (!/^1(3[0-9]|5[012356789]|7[678]|8[0-9])(?=\d{8}$)/g.test(this.mobile)){
                     this.isRightNumber = true
                     wx.showToast({
@@ -95,8 +98,9 @@
                         icon: 'error',
                         duration: 1000
                     })
+                    return
                 } 
-                if(this.mobile && !this.isRightNumber){
+                if(this.mobile && !this.isRightNumber && this.name && this.idCard){
                     if(this.timer) {
                         clearInterval(this.timer)
                         this.updateCodeCountDown(60)
