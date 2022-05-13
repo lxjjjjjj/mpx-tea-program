@@ -43,7 +43,9 @@
           vip:0,
           typeSelect:'背景',
           bgImage: '',
-          publish:true
+          publish:true,
+          sourceWidth:0,
+          sourceHeight:0
       },
       computed:{
         ...store.mapState(['NFTMaterial', 'NFTTab']),
@@ -69,6 +71,12 @@
         this.vip = Number(vip)
         this.getNFTMaterial()
       },
+      onReady(){
+        this.getCanvasSize().then((res)=>{
+          this.sourceWidth = res?.width
+          this.sourceHeight = res?.height
+        })
+      },
       methods:{
         ...store.mapActions(['getNFTMaterial','NFTGenerate']),
         /**
@@ -81,8 +89,8 @@
             url,
             success: (res) => {
               this.graph = {
-                    w: this.iconPosition.width,//图片宽度
-                    h: this.iconPosition.height,//图片高度
+                    w: this.sourceWidth,//图片宽度
+                    h: this.sourceHeight,//图片高度
                     type: 'image',
                     typeId: this.typeSelect,
                     x: this.iconPosition.x,//图片左边位置
@@ -239,6 +247,20 @@
           }else{
             this.onAddImage(item.url)
           }
+        },
+        getCanvasSize(){
+          return new Promise((resolve,reject)=>{
+            wx.createSelectorQuery().select('#canvas-drag').boundingClientRect(res => {
+              if(res && res.width){
+                resolve({
+                  width:res.width,
+                  height:res.height
+                })
+              } else {
+                reject()
+              }
+            }).exec()
+          })
         }
       }
   });
