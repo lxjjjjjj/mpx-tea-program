@@ -58,7 +58,8 @@
             x: data.xAxis,
             y: data.yAxis,
             height: data.heightPx,
-            width: data.widthPx
+            width: data.widthPx,
+            sortIndex: data.sort
           }
         },
         iconStyle(){
@@ -92,6 +93,7 @@
                     w: this.sourceWidth,//图片宽度
                     h: this.sourceHeight,//图片高度
                     type: 'image',
+                    sortIndex:this.iconPosition.sortIndex,
                     typeId: this.typeSelect,
                     x: this.iconPosition.x,//图片左边位置
                     y: this.iconPosition.y,//图片右边位置
