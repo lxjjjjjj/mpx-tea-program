@@ -180,7 +180,7 @@
               // 缩放区域
               return 'transform';
           } else if (x - transformDelX >= 0 && y - transformDelY >= 0 &&
-              transformDelX + delW - x >= 0 && transformDelY + delH - y >= 0) {
+              transformDelX + delW  >= 0 && transformDelY + delH  >= 0) {
               // 删除区域
               return 'del';
           } else if (this.insidePolygon(this.square, [x, y])) {
