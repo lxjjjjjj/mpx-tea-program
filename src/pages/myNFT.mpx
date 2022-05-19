@@ -26,7 +26,7 @@
         <view class="nft-ID">
             <view class="nft-ID-num">NO.{{nftInfo.number || displayNFT.number}}</view>
             <view class="nft-ID-title"/>
-            <view class="nft-ID-special">{{nftInfo.tokenId || displayNFT.tokenId}}</view>
+            <view class="nft-ID-special">{{nftInfo.tokenId || displayNFT.tokenId || '待铸造'}}</view>
         </view>
         <view class="nft-desc">
             <view class="nft-msg-right">
@@ -334,8 +334,10 @@ createPage({
                 min-height 170px
                 width 100%
                 overflow-y scroll
+                -webkit-overflow-scrolling: touch
             &-wrapper::-webkit-scrollbar
                 display none
+                -webkit-overflow-scrolling: touch
             &-item
                 width 25%
                 color #ADC6F4

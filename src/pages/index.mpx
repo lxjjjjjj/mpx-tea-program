@@ -17,6 +17,8 @@
                     interval="{{5000}}" 
                     duration="{{1000}}"
                     circular="{{true}}"
+                    indicator-dots="{{true}}"
+                    indicator-active-color="{{'rgba(255, 255, 255)'}}"
                     bindchange="swiperChange($event,index)"
                     >
                     <block>
@@ -37,7 +39,7 @@
                         </swiper-item>
                     </block>
                 </swiper>
-                <image  class="home-container-swiper-item-dotImg" src="{{dot_pre}}{{item.swiperCurrent + 1}}.png"/>
+                <!-- <image  class="home-container-swiper-item-dotImg" src="{{dot_pre}}{{item.swiperCurrent + 1}}.png"/> -->
             </view>
         </scroll-view>
         <custom-tab-bar />
@@ -113,9 +115,11 @@
             height 100%
             &-container
                 height 230px !important
-                width 100%
+                width calc(100% - 40px)
                 position relative
-                margin-bottom 15px
+                margin: 0 20px 15px 20px;
+                background-color #fff
+                border-radius 10px
         &-swiper-item
             display flex
             flex-direction column

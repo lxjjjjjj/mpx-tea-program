@@ -29,8 +29,10 @@
       },
       methods:{
         ...store.mapActions(['getUserCoupons']),
+        ...store.mapMutations(['setUserCoupons']),
         changeTab(index){
             this.tabSelect = index
+            this.setUserCoupons([])
             this.getUserCoupons({
                 pageNum: 1,
                 pageSize: 20,

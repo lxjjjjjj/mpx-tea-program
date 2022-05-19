@@ -48,7 +48,7 @@
                         <view class="collect-item-wrapper" bindtap="getUserNFTById(item.id)">
                             <image mode="widthFix" class="collect-picture" src="{{item.url}}"/>
                             <view class="collect-name">{{item.name}}</view>
-                            <view class="collect-ID">数字藏品ID : {{item.id}}</view>
+                            <view class="collect-ID">数字藏品ID : {{item.tokenId || '待铸造'}}</view>
                             <view class="collect-desc" wx:if="{{item.summary}}">作品描述 : {{item.summary}}</view>
                         </view>
                     </view>
@@ -137,8 +137,10 @@ createPage({
         margin 0 20px
         margin-bottom 85px
         overflow-y scroll
+        -webkit-overflow-scrolling: touch
     .my-container::-webkit-scrollbar
         display none
+        -webkit-overflow-scrolling: touch
     .my-top
         width 100%
         display flex
@@ -348,6 +350,10 @@ createPage({
             font-size 9px
             font-family SourceHanSansOLD-Normal
             margin-top 5px
+            width 134px
+            text-overflow ellipsis
+            overflow hidden
+            white-space nowrap
         &-desc
             font-size 12px
             font-family SourceHanSansOLD-Normal
