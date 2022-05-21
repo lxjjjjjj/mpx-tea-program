@@ -23,31 +23,31 @@
   import myEditPage from './my-edit?resolve'
   createPage({
     data:{
-        defaultAvatar: "https://static-qa.yimutea.com/test/%E5%A4%B4%E5%83%8F%E9%81%AE%E7%BD%A9%403x.png",
+        defaultAvatar: "https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E5%A4%B4%E5%83%8F%E9%81%AE%E7%BD%A9%403x.png",
         list:[
             {
-                image:"https://static-qa.yimutea.com/test/%E5%9B%BE%E6%A0%87_%E5%AE%9E%E5%90%8D%E8%AE%A4%E8%AF%81%403x.png",
+                image:"https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E5%9B%BE%E6%A0%87_%E5%AE%9E%E5%90%8D%E8%AE%A4%E8%AF%81%403x.png",
                 desc:"实名认证",
                 height:"38px",
                 width:"48px",
                 url:realPage
             },
             {
-                image:"https://static-qa.yimutea.com/test/%E5%9B%BE%E6%A0%87_%E6%94%B6%E8%B4%A7%E5%9C%B0%E5%9D%80%E7%AE%A1%E7%90%86%403x.png",
+                image:"https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E5%9B%BE%E6%A0%87_%E6%94%B6%E8%B4%A7%E5%9C%B0%E5%9D%80%E7%AE%A1%E7%90%86%403x.png",
                 desc:"收货地址管理",
                 height:'47px',
                 width:'45px',
                 url: addrListPage
             },
             {
-                image:"https://static-qa.yimutea.com/test/%E5%9B%BE%E6%A0%87_%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%403x.png",
+                image:"https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E5%9B%BE%E6%A0%87_%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%403x.png",
                 desc:"常见问题",
                 height:'41px',
                 width:'50px',
                 url: questionPage
             },
             {
-                image:"https://static-qa.yimutea.com/test/%E5%9B%BE%E6%A0%87_%E6%9C%8D%E5%8A%A1%E5%8D%8F%E8%AE%AE%E5%8F%8A%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%96%403x.png",
+                image:"https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E5%9B%BE%E6%A0%87_%E6%9C%8D%E5%8A%A1%E5%8D%8F%E8%AE%AE%E5%8F%8A%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%96%403x.png",
                 desc:"服务协议及隐私政策",
                 height:'47px',
                 width:'42px',
@@ -93,14 +93,14 @@
     .person-image
         height 102px
         width 100%
-        background-image url('https://static-qa.yimutea.com/test/%E8%83%8C%E6%99%AF%E5%85%89%E6%95%88%403x.png')
+        background-image url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E8%83%8C%E6%99%AF%E5%85%89%E6%95%88%403x.png')
         background-size 100% 100%
     .person-avatar
         position absolute 
         left 50%
         top 69px
         transform translateX(-50%)
-        background url('https://static-qa.yimutea.com/test/%E5%A4%B4%E5%83%8F%E6%A1%86%403x.png')
+        background url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E5%A4%B4%E5%83%8F%E6%A1%86%403x.png')
         background-size 100% 100%
         width 70px
         height 70px
@@ -124,10 +124,10 @@
         font-family SourceHanSansOLD-Normal
         text-align center
         transform translateX(-50%)
-        background-image url('https://static-qa.yimutea.com/test/namebg%403x.png')
+        background-image url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/namebg%403x.png')
         background-size 100% 100%
     .person-list
-        background-image url('https://static-qa.yimutea.com/test/bg%403x.png')
+        background-image url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/bg%403x.png')
         background-size 100% 100%
         width calc(100% - 54px)
         margin 10px 27px
@@ -148,7 +148,7 @@
             right 20px
             height 15px
             width 9px
-            background-image url('https://static-qa.yimutea.com/test/%E7%AE%AD%E5%A4%B4%403x.png')
+            background-image url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E7%AE%AD%E5%A4%B4%403x.png')
             background-size 100% 100%
 </style>
 <script type="application/json">

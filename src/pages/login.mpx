@@ -11,20 +11,20 @@
             <input maxlength="6" class="login-number-input" type="number"/>
             <view class="get-login-number" bindtap="sendMessage"/>
         </view> -->
-        <image class="wx-login" bindtap="login" src="https://static-qa.yimutea.com/test/%E7%99%BB%E5%BD%95%403x.png"/>
+        <image class="wx-login" bindtap="login" src="https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E7%99%BB%E5%BD%95%403x.png"/>
         <view class="login-message-wrapper">
             <view class="login-checkbox" bindtap="argee">
-                <image class="login-checkbox-image" src="{{checked ? 'https://static-qa.yimutea.com/test/%E5%8B%BE%E9%80%89%403x.png' : ''}}"/>
+                <image class="login-checkbox-image" src="{{checked ? 'https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E5%8B%BE%E9%80%89%403x.png' : ''}}"/>
             </view>
             <view class="login-message">我已阅读、理解并接受《**NFT项目的条款和条件》《NFT账号与微信账号绑定协议》《隐私权政策》</view>
         </view>
         <!-- <view class="third-login" bindtap="thirdLogin">
             <view class="third-login-content">第三方账号登录</view>
-            <image class="third-login-image" src="https://static-qa.yimutea.com/test/%E5%BE%AE%E4%BF%A1%403x.png"></image>
+            <image class="third-login-image" src="https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E5%BE%AE%E4%BF%A1%403x.png"></image>
         </view> -->
     </view>
     <get-phone-number wx:if="{{getPhoneNumber}}"/>
-    <!-- <image bindtap="clickBtn" class="signIn-btn" src="https://static-qa.yimutea.com/test/%E6%B3%A8%E5%86%8C%403x.png"/> -->
+    <!-- <image bindtap="clickBtn" class="signIn-btn" src="https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E6%B3%A8%E5%86%8C%403x.png"/> -->
 </template>
 
 <script>
@@ -34,7 +34,7 @@
   createPage({
       data: {
         checked: false,
-        check_pre:'https://static-qa.yimutea.com/test/%E9%80%89%E6%8B%A9%E6%A1%86%403x.png'
+        check_pre:'https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E9%80%89%E6%8B%A9%E6%A1%86%403x.png'
       },
       computed:{
           ...store.mapState(['getPhoneNumber'])
@@ -169,7 +169,7 @@
         height 48px
         width 276px
     .login-phone-wrapper{
-        background-image url('https://static-qa.yimutea.com/test/bg%403x.png') 
+        background-image url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/bg%403x.png') 
         background-size 100% 100%
         width 276px
         height 48px
@@ -178,7 +178,7 @@
         align-items: center;
     }
     .login-number-wrapper{
-        background-image url('https://static-qa.yimutea.com/test/bg%403x.png') 
+        background-image url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/bg%403x.png') 
         background-size 100% 100%
         width 276px
         height 48px
@@ -200,7 +200,7 @@
         font-family SourceHanSansOLD-Normal
         font-size 15px
     .get-login-number{
-        background-image url('https://static-qa.yimutea.com/test/%E6%8C%89%E9%92%AE%E9%AA%8C%E8%AF%81%E7%A0%81%403x.png')
+        background-image url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E6%8C%89%E9%92%AE%E9%AA%8C%E8%AF%81%E7%A0%81%403x.png')
         background-size 100% 100%
         position absolute
         width 88px
@@ -225,7 +225,7 @@
         color #6171AB
         font-size 12px
     .login-checkbox
-        background-image url('https://static-qa.yimutea.com/test/%E9%80%89%E6%8B%A9%E6%A1%86%403x.png')
+        background-image url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E9%80%89%E6%8B%A9%E6%A1%86%403x.png')
         background-size 100% 100%
         height 26px
         width 26px

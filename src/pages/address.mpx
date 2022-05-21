@@ -211,13 +211,13 @@ createPage({
     &-title
         height 22px
         width 142px
-        background-image url('https://static-qa.yimutea.com/test/%E6%A0%87%E9%A2%98_%E6%94%B6%E8%B4%A7%E5%9C%B0%E5%9D%80%E7%AE%A1%E7%90%86%403x.png')
+        background-image url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E6%A0%87%E9%A2%98_%E6%94%B6%E8%B4%A7%E5%9C%B0%E5%9D%80%E7%AE%A1%E7%90%86%403x.png')
         background-size 100% 100%
     &-edit
         height 22px
         width 142px
         margin-left -200px
-        background-image url('https://static-qa.yimutea.com/test/%E7%BC%96%E8%BE%91%E6%94%B6%E8%B4%A7%E5%9C%B0%E5%9D%80%403x.png')
+        background-image url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E7%BC%96%E8%BE%91%E6%94%B6%E8%B4%A7%E5%9C%B0%E5%9D%80%403x.png')
         background-size 100% 100%
     &-user-wrapper,
     &-phone-wrapper,
@@ -225,7 +225,7 @@ createPage({
     &-detail-wrapper,
     &-default-wrapper
         margin-top 89px
-        background-image url('https://static-qa.yimutea.com/test/bg%403x.png') 
+        background-image url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/bg%403x.png') 
         background-size 100% 100%
         width calc(100% - 60px)
         height 48px
@@ -236,7 +236,7 @@ createPage({
         height 74px !important
         align-items flex-start !important
         padding-top 10px
-        background-image url('https://static-qa.yimutea.com/test/addressbg%403x.png') !important
+        background-image url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/addressbg%403x.png') !important
     &-default-wrapper
         background-image none
     &-user,
@@ -272,13 +272,13 @@ createPage({
         margin-top 10px
         width calc(100% - 180px)
     &-default-btnOne
-        background-image url('https://static-qa.yimutea.com/test/%E9%80%89%E6%8B%A91%403x.png')
+        background-image url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E9%80%89%E6%8B%A91%403x.png')
         background-size 100% 100%
         height 28px
         width 28px
         margin-left 30px
     &-default-btnTwo
-        background-image url('https://static-qa.yimutea.com/test/%E9%80%89%E6%8B%A92%403x.png')
+        background-image url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E9%80%89%E6%8B%A92%403x.png')
         background-size 100% 100%
         height 28px
         width 28px
@@ -291,17 +291,17 @@ createPage({
         width 276px
         justify-content space-between
         &-return
-            background-image url('https://static-qa.yimutea.com/test/%E8%BF%94%E5%9B%9E%403x%20(1).png')
+            background-image url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E8%BF%94%E5%9B%9E%403x%20(1).png')
             background-size 100% 100%
             height 43px
             width 127px
         &-new
-            background-image url('https://static-qa.yimutea.com/test/%E6%96%B0%E5%A2%9E%403x.png')
+            background-image url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E6%96%B0%E5%A2%9E%403x.png')
             background-size 100% 100%
             height 43px
             width 127px
         &-edit
-            background-image url('https://static-qa.yimutea.com/test/%E4%BF%9D%E5%AD%98%403x.png')
+            background-image url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E4%BF%9D%E5%AD%98%403x.png')
             background-size 100% 100%
             height 43px
             width 127px

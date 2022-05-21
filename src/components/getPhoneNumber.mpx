@@ -56,7 +56,7 @@
         font-size 16px
         font-family SourceHanSansOLD-Normal
     &-btn
-        background url('https://static-qa.yimutea.com/test/%E9%80%89%E4%B8%AD%E7%A4%BC%E5%93%81%E5%88%B8%E8%83%8C%E6%99%AF%403x.png')
+        background url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E9%80%89%E4%B8%AD%E7%A4%BC%E5%93%81%E5%88%B8%E8%83%8C%E6%99%AF%403x.png')
         background-size 100% 100%
         width 107px
         height 40px

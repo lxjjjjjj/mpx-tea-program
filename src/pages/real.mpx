@@ -1,6 +1,6 @@
 <template>
     <view class="app-image real-wrapper">
-        <image class="real-title" src="https://static-qa.yimutea.com/test/%E6%A0%87%E9%A2%98_%E5%AE%9E%E5%90%8D%E4%BF%A1%E6%81%AF%E8%AE%A4%E8%AF%81%403x.png"/>
+        <image class="real-title" src="https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E6%A0%87%E9%A2%98_%E5%AE%9E%E5%90%8D%E4%BF%A1%E6%81%AF%E8%AE%A4%E8%AF%81%403x.png"/>
         <view class="real-mobile-wrapper">
             <view class="real-mobile">姓  名</view>
             <input maxlength="11" class="real-mobile-input" wx:model="{{name}}" bindfocus="bindfocus('name')"/>
@@ -24,8 +24,8 @@
         </view>
         <view class="real-user-danger" wx:if="{{rulesMap.code}}">验证码不能为空</view>
         <view class="real-user-btns">
-            <image class="wx-auth" bindtap="cancel" src="https://static-qa.yimutea.com/test/%E5%8F%96%E6%B6%88%403x.png"/>
-            <image class="wx-auth" bindtap="auth" src="https://static-qa.yimutea.com/test/%E8%AE%A4%E8%AF%81%403x.png"/>
+            <image class="wx-auth" bindtap="cancel" src="https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E5%8F%96%E6%B6%88%403x.png"/>
+            <image class="wx-auth" bindtap="auth" src="https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E8%AE%A4%E8%AF%81%403x.png"/>
         </view>
     </view>
 </template>
@@ -194,7 +194,7 @@
         height 43px
         width 127px
     .real-mobile-wrapper{
-        background-image url('https://static-qa.yimutea.com/test/bg%403x.png') 
+        background-image url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/bg%403x.png') 
         background-size 100% 100%
         width 276px
         height 48px
@@ -203,7 +203,7 @@
         align-items: center;
     }
     .real-code-wrapper{
-        background-image url('https://static-qa.yimutea.com/test/bg%403x.png') 
+        background-image url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/bg%403x.png') 
         background-size 100% 100%
         width 276px
         height 48px
@@ -237,7 +237,7 @@
         width 60px
         white-space pre
     .get-real-code{
-        background-image url('https://static-qa.yimutea.com/test/%E6%8C%89%E9%92%AE%E9%AA%8C%E8%AF%81%E7%A0%81%403x.png')
+        background-image url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E6%8C%89%E9%92%AE%E9%AA%8C%E8%AF%81%E7%A0%81%403x.png')
         background-size 100% 100%
         position absolute
         width 88px
@@ -274,7 +274,7 @@
         color #6171AB
         font-size 12px
     .real-checkbox
-        background-image url('https://static-qa.yimutea.com/test/%E9%80%89%E6%8B%A9%E6%A1%86%403x.png')
+        background-image url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E9%80%89%E6%8B%A9%E6%A1%86%403x.png')
         background-size 100% 100%
         height 26px
         width 26px

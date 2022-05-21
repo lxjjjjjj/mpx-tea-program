@@ -28,7 +28,7 @@
 <style lang="stylus">
   /*此处编写全局样式*/
   .app-image{
-    background url('https://static-qa.yimutea.com/test/home_bg.png')
+    background url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/home_bg.png')
     background-size 100% 100%
     min-height 100vh
     height 100%

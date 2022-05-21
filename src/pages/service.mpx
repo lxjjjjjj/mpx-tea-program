@@ -75,13 +75,13 @@
         height 20px
         width 188px
         background-size 100% 100%
-        background-image url('https://static-qa.yimutea.com/test/%E6%9C%8D%E5%8A%A1%E5%8D%8F%E8%AE%AE%E5%8F%8A%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%96%403x.png')
+        background-image url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E6%9C%8D%E5%8A%A1%E5%8D%8F%E8%AE%AE%E5%8F%8A%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%96%403x.png')
       &-item
         width 322px
         height 63px
         position relative
         background-size 100% 100%
-        background-image url('https://static-qa.yimutea.com/test/servicebg%403x.png')
+        background-image url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/servicebg%403x.png')
       &-num
         &-content
           color #ffffff
@@ -89,7 +89,7 @@
           font-family SourceHanSansOLD-Normal
           margin-left 10px
         &-bg
-          background-image url('https://static-qa.yimutea.com/test/%E6%95%B0%E5%AD%97%403x.png')
+          background-image url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E6%95%B0%E5%AD%97%403x.png')
           background-size 100%
           height 20px
           width 170px

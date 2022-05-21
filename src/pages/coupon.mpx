@@ -65,7 +65,7 @@
         align-items: center;
         margin 27px 0;
         justify-content center
-        background-image url('https://static-qa.yimutea.com/test/%E9%80%89%E9%A1%B9%E8%83%8C%E6%99%AF%403x.png')
+        background-image url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E9%80%89%E9%A1%B9%E8%83%8C%E6%99%AF%403x.png')
         background-size cover
         width 240px
         height 50px
@@ -80,7 +80,7 @@
             margin: 0px 6px;
             font-family SourceHanSansOLD-Normal
         &-item-active
-            background-image url("https://static-qa.yimutea.com/test/%E9%80%89%E4%B8%AD%E7%A4%BC%E5%93%81%E5%88%B8%E8%83%8C%E6%99%AF%403x.png")
+            background-image url("https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E9%80%89%E4%B8%AD%E7%A4%BC%E5%93%81%E5%88%B8%E8%83%8C%E6%99%AF%403x.png")
             background-size 100% 100%
             color #fff
     .coupon-container
@@ -98,7 +98,7 @@
         display flex
         border-radius 5px
         align-items center
-        background-image url("https://static-qa.yimutea.com/test/%E5%8D%A1%E5%8C%85bg%403x.png")
+        background-image url("https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E5%8D%A1%E5%8C%85bg%403x.png")
         background-size 100% 100%
     .coupon-image{
         width:108px;

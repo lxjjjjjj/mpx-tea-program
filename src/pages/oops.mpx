@@ -30,7 +30,7 @@
         width 182px
         height 88px
         margin-top 84px
-        background-image url('https://static-qa.yimutea.com/test/OOPS%403x.png')
+        background-image url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/OOPS%403x.png')
         background-size 100% 100%
     .oops-content
         color #D4D4D4

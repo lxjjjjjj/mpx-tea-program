@@ -6,14 +6,14 @@
             </view>
             <view class="times-content">
                 <view class="times-top">
-                    <image class="times-title-image" src="https://static-qa.yimutea.com/test/VIP%403x.png"/>
+                    <image class="times-title-image" src="https://qa-yimu.oss-accelerate.aliyuncs.com/test/VIP%403x.png"/>
                     <view class="times-title">{{item.level}}</view>
                 </view>
                 <view class="times-desc">可创作次数：{{item.count}}</view>
             </view>
             <view class="times-btn">
-                <image class="times-btn-image" wx:if="{{!item.count}}" src="https://static-qa.yimutea.com/test/%E6%8C%89%E9%92%AE_%E4%B8%8D%E5%8F%AF%E7%94%A8%403x.png"/>
-                <image class="times-btn-image" wx:else bindtap="gotoDIY(item.level)" src="https://static-qa.yimutea.com/test/%E6%8C%89%E9%92%AE_%E4%BD%BF%E7%94%A8%403x.png"/>
+                <image class="times-btn-image" wx:if="{{!item.count}}" src="https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E6%8C%89%E9%92%AE_%E4%B8%8D%E5%8F%AF%E7%94%A8%403x.png"/>
+                <image class="times-btn-image" wx:else bindtap="gotoDIY(item.level)" src="https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E6%8C%89%E9%92%AE_%E4%BD%BF%E7%94%A8%403x.png"/>
         </view>
     </view>
 </template>
@@ -25,12 +25,12 @@
   createPage({
     data:{
         imageMap:{
-            1: 'https://static-qa.yimutea.com/test/vip1%403x.png',
-            2: 'https://static-qa.yimutea.com/test/vip2%403x.png',
-            3: 'https://static-qa.yimutea.com/test/vip3%403x.png',
-            4: 'https://static-qa.yimutea.com/test/vip4%403x.png',
-            5: 'https://static-qa.yimutea.com/test/vip5%403x.png',
-            6: 'https://static-qa.yimutea.com/test/vip6%403x.png',
+            1: 'https://qa-yimu.oss-accelerate.aliyuncs.com/test/vip1%403x.png',
+            2: 'https://qa-yimu.oss-accelerate.aliyuncs.com/test/vip2%403x.png',
+            3: 'https://qa-yimu.oss-accelerate.aliyuncs.com/test/vip3%403x.png',
+            4: 'https://qa-yimu.oss-accelerate.aliyuncs.com/test/vip4%403x.png',
+            5: 'https://qa-yimu.oss-accelerate.aliyuncs.com/test/vip5%403x.png',
+            6: 'https://qa-yimu.oss-accelerate.aliyuncs.com/test/vip6%403x.png',
         }
     },
     computed:{
@@ -61,7 +61,7 @@
         display: flex;
         border-radius: 5px;
         align-items center
-        background-image url('https://static-qa.yimutea.com/test/timesbg%403x.png')
+        background-image url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/timesbg%403x.png')
         background-size 100% 100%
     .times-image
         width:87px;

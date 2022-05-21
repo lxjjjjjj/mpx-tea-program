@@ -63,7 +63,7 @@
           }
         },
         iconStyle(){
-          const IconBg = "https://static-qa.yimutea.com/test/%E7%B4%A0%E6%9D%90%E9%80%8F%E6%98%8E%E6%A1%86%403x.png"
+          const IconBg = "https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E7%B4%A0%E6%9D%90%E9%80%8F%E6%98%8E%E6%A1%86%403x.png"
           return this.typeSelect !== 'bg' ? `background-image:url(${IconBg});background-size:100% 100%;`:''
         }
       },
@@ -295,13 +295,13 @@
     display flex
     position relative
     justify-content center
-    background-image: url('https://static-qa.yimutea.com/test/%E5%8C%BA%E5%9F%9F%E8%83%8C%E6%99%AF%403x.png')
+    background-image: url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E5%8C%BA%E5%9F%9F%E8%83%8C%E6%99%AF%403x.png')
   .operation-btn
     background-color transparentify
     border-radius: 15px
     height 30px
     width 78px
-    background-image url('https://static-qa.yimutea.com/test/%E5%8F%91%E5%B8%83%403x.png')
+    background-image url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E5%8F%91%E5%B8%83%403x.png')
     background-size 100% 100%
     position absolute
     right 20px
@@ -314,7 +314,7 @@
     overflow-x scroll
     width: 100%;
   .change-select
-    background-image url('https://static-qa.yimutea.com/test/%E9%80%89%E4%B8%AD%E8%83%8C%E6%99%AF%403x.png')
+    background-image url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E9%80%89%E4%B8%AD%E8%83%8C%E6%99%AF%403x.png')
     background-size 100% 100%
     width 56px
     height 30px
@@ -354,7 +354,7 @@
       margin-right: calc(72% + 8% / 3);
   }
   .lock-one
-    background-image url('https://static-qa.yimutea.com/test/%E9%94%811%403x.png')
+    background-image url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E9%94%811%403x.png')
     background-size 100% 100%
     width 21px
     height 27px
@@ -362,7 +362,7 @@
     left 0
     top 0
   .lock-two
-    background-image url('https://static-qa.yimutea.com/test/%E9%94%812%403x.png')
+    background-image url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E9%94%812%403x.png')
     background-size 100% 100%
     width 21px
     height 27px
@@ -370,7 +370,7 @@
     left 0
     top 0
   .lock-three
-    background-image url('https://static-qa.yimutea.com/test/%E9%94%813%403x.png')
+    background-image url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E9%94%813%403x.png')
     background-size 100% 100%
     width 21px
     height 27px
@@ -378,7 +378,7 @@
     left 0
     top 0
   .lock-four
-    background-image url('https://static-qa.yimutea.com/test/%E9%94%814%403x.png')
+    background-image url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E9%94%814%403x.png')
     background-size 100% 100%
     width 21px
     height 27px
@@ -386,7 +386,7 @@
     left 0
     top 0
   .lock-five
-    background-image url('https://static-qa.yimutea.com/test/%E9%94%815%403x.png')
+    background-image url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E9%94%815%403x.png')
     background-size 100% 100%
     width 21px
     height 27px
@@ -394,7 +394,7 @@
     left 0
     top 0
   .lock-six
-    background-image url('https://static-qa.yimutea.com/test/%E9%94%816%403x.png')
+    background-image url('https://qa-yimu.oss-accelerate.aliyuncs.com/test/%E9%94%816%403x.png')
     background-size 100% 100%
     width 21px
     height 27px
