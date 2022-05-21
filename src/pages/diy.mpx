@@ -242,7 +242,7 @@
           this.typeSelect = id
         },
         changeImage(item){
-          if(item.level !== this.vip) return
+          if(item.level > this.vip) return
           if(this.typeSelect === '背景'){
             this.bgImage = item.url
             this.onChangeBgImage(item.url)

@@ -8,7 +8,7 @@
         <view wx:if="{{userCoupons && userCoupons.length}}" wx:for="{{userCoupons}}" wx:key="index" class="coupon-style">
             <view class="coupon-content">
                 <view class="coupon-title">{{item.giftName}}</view>
-                <view class="coupon-num">剩余张数 : {{item.giftValue}}</view>
+                <view class="coupon-num">剩余张数 : {{item.giftNum}}</view>
                 <view class="coupon-effective">有效期 : {{item.endDateText}}</view>
             </view>
             <image src="{{item.giftUrl}}" class="coupon-image"/>

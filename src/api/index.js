@@ -1,4 +1,5 @@
-export const host = "https://wx.yimutea.com"
+// "https://wx.yimutea.com"
+export const host = "https://qa-yimu.oss-accelerate.aliyuncs.com"
 //首页接口
 export const getHomeListAPI = host + "/api/v1/frontPage/get"
 //用户接口
