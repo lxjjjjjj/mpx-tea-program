@@ -37,6 +37,7 @@
   import mpx,{ createPage } from '@mpxjs/core'
   import CanvasDrag from '../../scripts/canvas-drag';
   import store from '../store'
+  import realPage from './real?resolve'
   createPage({
       data: {
           graph: {},
@@ -48,7 +49,7 @@
           sourceHeight:0
       },
       computed:{
-        ...store.mapState(['NFTMaterial', 'NFTTab']),
+        ...store.mapState(['NFTMaterial', 'NFTTab', 'identityType']),
         showList(){
           return this.NFTMaterial.filter(item => item.name === this.typeSelect)?.[0]?.materialLevelVOList.filter(material=>material.url)
         },
@@ -68,6 +69,11 @@
         }
       },
       onShow(){
+        if(!this.identityType){
+          mpx.navigateTo({
+            url: realPage
+          })
+        }
         const { options: { vip } } = this
         this.vip = Number(vip)
         this.getNFTMaterial()

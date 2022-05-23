@@ -10,6 +10,7 @@
             <image class="home-title-left" src="{{logo}}"></image>
             <image class="home-title-right" src="{{go}}"></image>
         </view>
+        <view class="home-scroll-view-container">
         <scroll-view wx:if="{{homeList && homeList.length}}" scroll-y="true" class="home-container" show-scrollbar="false">
             <view wx:for="{{homeList}}" wx:key="index" class="home-container-swiper-container">
                 <swiper class="home-container-swiper"
@@ -42,6 +43,7 @@
                 <!-- <image  class="home-container-swiper-item-dotImg" src="{{dot_pre}}{{item.swiperCurrent + 1}}.png"/> -->
             </view>
         </scroll-view>
+        </view>
         <custom-tab-bar />
     </view>
 </template>
@@ -104,7 +106,7 @@
             height 100%
             width 32px
     .home-container
-        width 100%
+        width 330px
         display flex
         flex-direction column
         justify-content center
@@ -113,12 +115,15 @@
         &-swiper
             width 100%
             height 100%
+            display flex
+            justify-content center
             &-container
                 height 230px !important
-                width 320px
+                width 330px
+                display flex
+                justify-content center
                 position relative
-                margin: 0 30px 15px 30px;
-                background-color #ffffff
+                margin-bottom: 15px;
                 border-radius 20px
         &-swiper-item
             display flex
@@ -171,7 +176,10 @@
         height 60px
         position absolute
         z-index 2
-
+    .home-scroll-view-container
+        width 100% 
+        display flex
+        justify-content center
 </style>
 <script type="application/json">
   {
