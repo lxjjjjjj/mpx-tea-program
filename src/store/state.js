@@ -27,7 +27,9 @@ const state = {
     displayNFT:{},
     identityType:0,
     codeCountDown:60,
-    codeTimer:null
+    codeTimer:null,
+    showSendBtn: true,
+    isAppHide:false
 }
 
 export default state

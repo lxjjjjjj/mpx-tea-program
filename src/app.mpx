@@ -20,6 +20,35 @@
         }
       })
     },
+    onHide () {
+      store.state.codeTimer && clearInterval(store.state.codeTimer)
+      store.mutations.setCodeTimer(null)
+      store.mutations.setIsAppHide(true)
+    },
+    onShow () {
+      if(store.state.codeTimer){
+          clearInterval(store.state.codeTimer)
+          store.mutations.setCodeTimer(null)
+      }
+      console.log('app onShow')
+      if(!store.state.showSendBtn && store.state.isAppHide){
+        const timer = setInterval(()=>{
+          store.mutations.setIsAppHide(false)
+          console.log('this.codeCountDown',store.state.codeCountDown)
+          if (store.state.codeCountDown <= 0) {
+              clearInterval(store.state.codeTimer)
+              store.mutations.setCodeTimer(null)
+              store.mutations.updateCodeCountDown(60)
+              store.mutations.setShowSendBtn(true)
+          } else {
+              store.mutations.updateCodeCountDown(store.state.codeCountDown - 1) 
+              console.log('app setShowSendBtn 1')
+              store.mutations.setShowSendBtn(false)
+          }
+        }, 1000)
+        store.mutations.setCodeTimer(timer)
+      }
+    },
     globalData: {
     }
   })

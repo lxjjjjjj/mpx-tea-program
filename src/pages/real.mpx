@@ -13,7 +13,7 @@
         <view class="real-user-danger" wx:if="{{rulesMap.idCard || identifyErrorMsg}}">{{identifyErrorMsg}}</view>
         <view class="real-code-wrapper">
             <view class="real-code">电  话</view>
-            <input maxlength="11" class="real-code-input" type="code" wx:model="{{mobile}}" bindfocus="bindfocus('mobile')"/>
+            <input maxlength="11" class="real-code-input" type="code" wx:model="{{realMobile}}" bindfocus="bindfocus('mobile')"/>
         </view>
         <view class="real-user-danger" wx:if="{{rulesMap.mobile || isRightNumber}}">{{isRightNumber ? '电话格式错误':'电话不能为空'}}</view>
         <view class="real-code-wrapper">
@@ -39,7 +39,6 @@
       data: {
         name:'',
         idCard:'',
-        mobile:'',
         code:'',
         rulesMap: {
             name: false,
@@ -48,15 +47,30 @@
             code: false
         },
         isRightNumber: false,
-        identifyErrorMsg:"",
-        showSendBtn:true
+        identifyErrorMsg:""
       },
       computed:{
-          ...store.mapState(['getPhoneNumber','codeCountDown'])
+          ...store.mapState(['getPhoneNumber','codeCountDown', 'codeTimer', 'userInfo', 'showSendBtn', 'isAppHide']),
+          realMobile(){
+              return this.userInfo.mobile
+          }
+      },
+      watch:{
+        codeCountDown:{
+            handler(val){
+                if(val <= 0){
+                    this.codeTimer && clearInterval(this.codeTimer)
+                    this.setCodeTimer(null)
+                    this.setShowSendBtn(true)
+                    this.updateCodeCountDown(60)
+                }
+            },
+            immediate:true
+        }
       },
       methods:{
-            ...store.mapActions(['userAuth','sendAuthSms','codeTimer']),
-            ...store.mapMutations(['updateCodeCountDown','setCodeTimer']),
+            ...store.mapActions(['userAuth','sendAuthSms']),
+            ...store.mapMutations(['updateCodeCountDown','setCodeTimer', 'setShowSendBtn']),
             cancel(){
                 wx.navigateBack({
                     delta: 1
@@ -68,7 +82,6 @@
                 type === 'idCard' && (this.identifyErrorMsg = '')
             },
             sendMessage(){
-                console.log('sendMessage')
                 if (!this.name) {
                     wx.showToast({
                         title: '姓名不能为空',
@@ -83,14 +96,14 @@
                         duration: 1000
                     })
                     return
-                } else if (!this.mobile) {
+                } else if (!this.realMobile) {
                     wx.showToast({
                         title: '电话不能为空',
                         icon: 'error',
                         duration: 1000
                     })
                     return
-                } else if (!/^1(3[0-9]|5[012356789]|7[678]|8[0-9])(?=\d{8}$)/g.test(this.mobile)){
+                } else if (!/^1(3[0-9]|5[012356789]|7[678]|8[0-9])(?=\d{8}$)/g.test(this.realMobile)){
                     this.isRightNumber = true
                     wx.showToast({
                         title: '电话号码格式不正确',
@@ -99,26 +112,31 @@
                     })
                     return
                 } 
-                if(this.mobile && !this.isRightNumber && this.name && this.idCard){
+                if(this.realMobile && !this.isRightNumber && this.name && this.idCard){
                     if(this.codeTimer) {
                         clearInterval(this.codeTimer)
+                        this.setCodeTimer(null)
+                        this.setShowSendBtn(true)
                         this.updateCodeCountDown(60)
                     }
                     const self = this
-                    this.sendAuthSms({
-                        mobile:this.mobile
-                    }).then(()=>{
-                        this.codeTimer = setInterval(()=>{
+                    // this.sendAuthSms({
+                    //     mobile:this.realMobile
+                    // }).then(()=>{
+                        const timer = setInterval(()=>{
                             if (this.codeCountDown <= 0) {
-                                clearInterval(this.codeTimer)
+                                this.codeTimer && clearInterval(this.codeTimer)
+                                this.setCodeTimer(null)
                                 this.updateCodeCountDown(60)
-                                this.showSendBtn = true
+                                this.setShowSendBtn(true)
                             } else {
                                 this.updateCodeCountDown(this.codeCountDown - 1) 
-                                this.showSendBtn = false
+                                console.log('real setShowSendBtn 1')
+                                this.setShowSendBtn(false)
                             }
                         }, 1000)
-                    })
+                        this.setCodeTimer(timer)
+                    // })
                 }
             },
             auth(){
@@ -133,38 +151,29 @@
                 if (!identyfyRes.isPass) {
                     this.rulesMap.idCard = true
                 } 
-                if (!this.mobile) {
+                if (!this.realMobile) {
                     this.rulesMap.mobile = true
-                } else if (!/^1(3[0-9]|5[012356789]|7[678]|8[0-9])(?=\d{8}$)/g.test(this.mobile)){
+                } else if (!/^1(3[0-9]|5[012356789]|7[678]|8[0-9])(?=\d{8}$)/g.test(this.realMobile)){
                     this.isRightNumber = true
                 } 
-                if(this.name && this.mobile && this.code && !this.isRightNumber && identyfyRes.isPass) {
+                if(this.name && this.realMobile && this.code && !this.isRightNumber && identyfyRes.isPass) {
                     this.updateCodeCountDown(60)
                     this.userAuth({
                         name:this.name,
                         idCard:this.idCard,
                         code:this.code,
-                        mobile:this.mobile
+                        mobile:this.realMobile
                     })
                 }
             }       
       },
       onShow(){
-        wx.onAppShow(() => {
-            this.codeTimer = setInterval(()=>{
-                if (this.codeCountDown <= 0) {
-                    clearInterval(this.codeTimer)
-                    this.updateCodeCountDown(60)
-                    this.showSendBtn = true
-                } else {
-                    this.updateCodeCountDown(this.codeCountDown - 1) 
-                    this.showSendBtn = false
-                }
-            }, 1000)
-        })
+        console.log('!this.isAppHide',!this.isAppHide)
+        !this.isAppHide && this.setShowSendBtn(true)
       },
       onHide(){
-        this.codeTimer && clearTimeout(this.codeTimer)
+        this.codeTimer && clearInterval(this.codeTimer)
+        this.setCodeTimer(null)
       }
   });
 </script>

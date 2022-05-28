@@ -306,6 +306,7 @@ export function userAuth(context, params){
                 duration: 2000
             })
         }else{
+            context.commit('setIdentityType',1)
             context.commit('setAuth', true)
             mpx.showToast({
                 title: '认证成功',
@@ -365,6 +366,7 @@ export function sendAuthSms(context, params){
                 icon: 'error',
                 duration: 2000
             })
+            return Promise.reject()
         }
     }).catch(err => {
         console.log('发送验证码失败',JSON.stringify(err))
@@ -374,6 +376,7 @@ export function sendAuthSms(context, params){
             duration: 2000
         })
         context.state.codeTimer && clearInterval(context.state.codeTimer)
+        return Promise.reject()
     })
 }
 

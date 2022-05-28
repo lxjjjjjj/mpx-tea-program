@@ -97,3 +97,9 @@ export function updateCodeCountDown(state, data){
 export function setCodeTimer(state, data){
   state.codeTimer = data
 }
+export function setShowSendBtn(state, data){
+  state.showSendBtn = data
+}
+export function setIsAppHide(state, data){
+  state.isAppHide = data
+}
