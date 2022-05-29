@@ -67,7 +67,7 @@
             },
             immediate:true
         }
-      },
+    },
       methods:{
             ...store.mapActions(['userAuth','sendAuthSms']),
             ...store.mapMutations(['updateCodeCountDown','setCodeTimer', 'setShowSendBtn']),
@@ -111,7 +111,7 @@
                         duration: 1000
                     })
                     return
-                } 
+                }
                 if(this.realMobile && !this.isRightNumber && this.name && this.idCard){
                     if(this.codeTimer) {
                         clearInterval(this.codeTimer)
@@ -119,24 +119,18 @@
                         this.setShowSendBtn(true)
                         this.updateCodeCountDown(60)
                     }
-                    const self = this
-                    // this.sendAuthSms({
-                    //     mobile:this.realMobile
-                    // }).then(()=>{
-                        const timer = setInterval(()=>{
-                            if (this.codeCountDown <= 0) {
-                                this.codeTimer && clearInterval(this.codeTimer)
-                                this.setCodeTimer(null)
-                                this.updateCodeCountDown(60)
-                                this.setShowSendBtn(true)
-                            } else {
-                                this.updateCodeCountDown(this.codeCountDown - 1) 
-                                console.log('real setShowSendBtn 1')
-                                this.setShowSendBtn(false)
-                            }
-                        }, 1000)
-                        this.setCodeTimer(timer)
-                    // })
+                    const timer = setInterval(()=>{
+                        if (this.codeCountDown <= 0) {
+                            this.codeTimer && clearInterval(this.codeTimer)
+                            this.setCodeTimer(null)
+                            this.updateCodeCountDown(60)
+                            this.setShowSendBtn(true)
+                        } else {
+                            this.updateCodeCountDown(this.codeCountDown - 1)
+                            this.setShowSendBtn(false)
+                        }
+                    }, 1000)
+                    this.setCodeTimer(timer)
                 }
             },
             auth(){
@@ -165,13 +159,13 @@
                         mobile:this.realMobile
                     })
                 }
-            }       
+            }
       },
       onShow(){
-        console.log('!this.isAppHide',!this.isAppHide)
         !this.isAppHide && this.setShowSendBtn(true)
       },
-      onHide(){
+      onUnload(){
+        this.updateCodeCountDown(60)
         this.codeTimer && clearInterval(this.codeTimer)
         this.setCodeTimer(null)
       }

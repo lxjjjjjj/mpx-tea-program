@@ -41,7 +41,7 @@
               store.mutations.updateCodeCountDown(60)
               store.mutations.setShowSendBtn(true)
           } else {
-              store.mutations.updateCodeCountDown(store.state.codeCountDown - 1) 
+              store.mutations.updateCodeCountDown(store.state.codeCountDown - 1)
               console.log('app setShowSendBtn 1')
               store.mutations.setShowSendBtn(false)
           }
