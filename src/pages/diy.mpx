@@ -69,16 +69,16 @@
         }
       },
       onShow(){
-        if(!this.identityType){
-          mpx.navigateTo({
-            url: realPage
-          })
-        }
         const { options: { vip } } = this
         this.vip = Number(vip)
         this.getNFTMaterial()
       },
       onReady(){
+        if(!this.identityType){
+          mpx.navigateTo({
+            url: realPage
+          })
+        }
         this.getCanvasSize().then((res)=>{
           this.sourceWidth = res?.width
           this.sourceHeight = res?.height

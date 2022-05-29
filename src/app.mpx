@@ -5,21 +5,6 @@
   mpx.use(apiProxy, { usePromise: true })
 
   createApp({
-    onLaunch () {
-      wx.getSystemInfo({
-        success: e => {
-          this.globalData.StatusBar = e.statusBarHeight;
-          let capsule = wx.getMenuButtonBoundingClientRect();
-          if (capsule) {
-            this.globalData.Custom = capsule;
-            this.globalData.CustomBar = capsule.bottom + capsule.top - e.statusBarHeight;
-          } else {
-            this.globalData.CustomBar = e.statusBarHeight + 50;
-          }
-          this.globalData.screenHeight = e.screenHeight
-        }
-      })
-    },
     onHide () {
       store.state.codeTimer && clearInterval(store.state.codeTimer)
       store.mutations.setCodeTimer(null)
@@ -30,7 +15,6 @@
           clearInterval(store.state.codeTimer)
           store.mutations.setCodeTimer(null)
       }
-      console.log('app onShow')
       if(!store.state.showSendBtn && store.state.isAppHide){
         const timer = setInterval(()=>{
           store.mutations.setIsAppHide(false)
@@ -48,8 +32,6 @@
         }, 1000)
         store.mutations.setCodeTimer(timer)
       }
-    },
-    globalData: {
     }
   })
 </script>

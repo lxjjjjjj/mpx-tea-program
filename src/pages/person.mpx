@@ -60,14 +60,14 @@
     }, 
     methods:{
         goToPage(item){
-            // if(item.desc === '实名认证' && this.identityType) {
-            //     mpx.showToast({
-            //         title: '已实名认证',
-            //         icon: 'warn',
-            //         duration: 2000
-            //     })
-            //     return
-            // }
+            if(item.desc === '实名认证' && this.identityType) {
+                mpx.showToast({
+                    title: '已实名认证',
+                    icon: 'warn',
+                    duration: 2000
+                })
+                return
+            }
             item.url && mpx.navigateTo({
                 url:item.url
             })
