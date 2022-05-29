@@ -316,6 +316,7 @@ export function userAuth(context, params){
             mpx.navigateBack({
                 delta:1
             })
+            getUserInfo()
         }
     }).catch(err => {
         console.log('实名认证失败',JSON.stringify(err))
